@@ -1,12 +1,12 @@
 package net.bounceme.dur.usenet.swing;
 
-import net.bounceme.dur.usenet.controller.Persist;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Marker;
+import net.bounceme.dur.usenet.controller.Persist;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class Frame extends javax.swing.JFrame {
@@ -111,7 +111,7 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
-        if (evt.getPropertyName().equals("slider")) {
+        if (evt.getPropertyName().equals("message")) {
             Msg msg = (Msg) evt.getNewValue();
             int id = msg.getId();
             String group = panelWithList1.getGroup();
@@ -119,7 +119,7 @@ public class Frame extends javax.swing.JFrame {
             String content = msg.getContent();
             Msg message = new Msg(id, group, subject, content);
             Persist p = Persist.INSTANCE;
-            p.get(message);
+            p.persist(message);
         }
     }//GEN-LAST:event_panelWithTable1PropertyChange
 

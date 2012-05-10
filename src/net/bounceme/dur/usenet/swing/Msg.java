@@ -1,7 +1,10 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.logging.Logger;
+
 public final class Msg {
 
+    private static final Logger LOG = Logger.getLogger(Msg.class.getName());
     private int id;
     private String group;
     private String subject;
@@ -12,12 +15,20 @@ public final class Msg {
         setGroup(group);
         setSubject(subject);
         setContent(content);
+        LOG.fine(toString());
     }
 
     Msg(int id, String subject, String content) {
         setId(id);
         setSubject(subject);
         setContent(content);
+        LOG.fine(toString());
+    }
+
+    @Override
+    public String toString() {
+        String s = "\n\n" + id + group + subject;
+        return s;
     }
 
     public int getId() {

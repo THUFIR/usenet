@@ -19,10 +19,11 @@ public enum Persist {
     Persist() {
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
-        LOG.fine("entity manager made???" + em.isOpen());
+        LOG.warning("entity manager made???" + em.isOpen());
     }
 
-    public void get(Msg message) {
+    public void persist(Msg message) {
+        LOG.warning("\t" + message);
         LOG.info("open?" + em.isOpen());
         em.getTransaction().begin();
         int id = message.getId();
