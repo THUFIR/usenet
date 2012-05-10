@@ -47,6 +47,12 @@ public class Frame extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab2", panelWithTable1);
         jTabbedPane1.addTab("tab3", panelWithText1);
 
+        panelWithSlider1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                panelWithSlider1PropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +91,6 @@ public class Frame extends javax.swing.JFrame {
     private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithList1PropertyChange
         Object object = evt.getNewValue();
         String string = object.toString();
-        System.out.println("panelWithList1PropertyChange " + string);
         if (evt.getPropertyName().equals("list")) {
             panelWithText1.setJTextArea(string);
         }
@@ -96,6 +101,14 @@ public class Frame extends javax.swing.JFrame {
             Logger.getLogger(Frame.class.getName()).log(Level.FINE, "could not set marker");
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
+
+    private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithSlider1PropertyChange
+        int i = 1;
+        if (evt.getPropertyName().equals("slider")) {
+            i = (int) evt.getNewValue();
+        }
+        //System.out.println("slider..." + i);
+    }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     /**
      * @param args the command line arguments
