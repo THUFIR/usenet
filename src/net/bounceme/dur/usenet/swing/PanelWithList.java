@@ -91,4 +91,10 @@ public class PanelWithList extends javax.swing.JPanel {
     void setJList(DefaultListModel defaultListModel) {
         jList1.setModel(defaultListModel);
     }
+
+    String getGroup() {
+        Object o = jList1.getSelectedValue();
+        String s = (String) o;
+        return s;
+    }
 }

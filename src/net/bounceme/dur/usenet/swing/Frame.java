@@ -108,6 +108,8 @@ public class Frame extends javax.swing.JFrame {
             i = (int) evt.getNewValue();
         }
         //System.out.println("slider..." + i);
+        String s = panelWithList1.getGroup();
+        Marker marker = new Marker(s, i);
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     /**

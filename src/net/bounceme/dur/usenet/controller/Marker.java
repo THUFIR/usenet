@@ -12,6 +12,7 @@ public class Marker {
     }
 
     public Marker(String g, int s) {
+        LOG.info("trying to make marker:" + s + g);
         setGroup(g);
         setStart(s);
         LOG.fine(toString());
