@@ -4,12 +4,11 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import net.bounceme.dur.usenet.controller.NewsGroups;
-import net.bounceme.dur.usenet.controller.PropertiesReader;
 
 public enum Usenet {
 
     INSTANCE;
+    private final Level LEVEL = Level.INFO;
     private final Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<>();
@@ -21,7 +20,7 @@ public enum Usenet {
     private int size;
 
     Usenet() {
-        LOG.fine("Usenet..only once...");
+        LOG.log(LEVEL, "created enum");
         props = PropertiesReader.getProps();
         if (!loaded) {
             try {

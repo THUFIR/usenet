@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 
 public class PropertiesReader {
 
-    private static final Logger logger = Logger.getLogger(PropertiesReader.class.getName());
-    private static Level level = Level.INFO;
+    private static final Logger LOG = Logger.getLogger(PropertiesReader.class.getName());
+    private static final Level LEVEL = Level.INFO;
     private static Properties props = new Properties();
 
     public static Properties getProps() {
-        logger.log(level, "NNTP.loadMessages...");
+        LOG.log(LEVEL, "NNTP.loadMessages...");
         try {
             props.load(PropertiesReader.class.getResourceAsStream("/usenet.properties"));
         } catch (IOException ex) {
