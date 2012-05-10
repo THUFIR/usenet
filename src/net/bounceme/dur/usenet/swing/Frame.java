@@ -36,6 +36,8 @@ public class Frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+
         panelWithList1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 panelWithList1PropertyChange(evt);
@@ -87,7 +89,7 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             panelWithText1.setJTextArea(string);
         }
-        Marker marker = new Marker(string, 15, 20);
+        Marker marker = new Marker(string, 20);
         try {
             panelWithText1.setMessages(marker);
         } catch (Exception ex) {

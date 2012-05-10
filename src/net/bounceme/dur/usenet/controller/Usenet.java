@@ -42,7 +42,7 @@ public enum Usenet {
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
         String group = getFolders().get(0).getFullName();
-        marker = new Marker(group,15,20);
+        marker = new Marker(group,20);
         return true;
     }
 

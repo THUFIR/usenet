@@ -6,22 +6,20 @@ public class Marker {
 
     private static final Logger LOG = Logger.getLogger(Marker.class.getName());
     private int start = 15;
-    private int end = 20;
     private String group = "";
 
     private Marker() {
     }
 
-    public Marker(String g, int s, int e) {
+    public Marker(String g, int s) {
         setGroup(g);
-        setStart(Math.abs(s));
-        setEnd(Math.abs(e));
+        setStart(s);
         LOG.fine(toString());
     }
 
     @Override
     public final String toString() {
-        String s = "\n\n****\nmarker is\nstart " + getStart() + "\nend " + getEnd() + "\ngroup " + getGroup() + "\n\n\n****\n";
+        String s = "\n\n****\nmarker is\nstart " + getStart() + "\ngroup " + getGroup() + "\n\n\n****\n";
         return s;
     }
 
@@ -37,23 +35,15 @@ public class Marker {
         }
     }
 
-    public int getEnd() {
-        return end;
-    }
-
-    private void setEnd(int end) {
-        if (end > getStart()) {
-            this.end = end;
-        } else {
-            this.end = getStart();
-        }
-    }
-
     public String getGroup() {
         return group;
     }
 
     private void setGroup(String group) {
         this.group = group;
+    }
+
+    int getEnd() {
+        return start + 20;
     }
 }
