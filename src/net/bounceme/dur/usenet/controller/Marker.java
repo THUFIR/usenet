@@ -5,10 +5,10 @@ import java.util.logging.Logger;
 public class Marker {
 
     private static final Logger LOG = Logger.getLogger(Marker.class.getName());
-    private int start = 0;
-    private int end = 0;
+    private int start = 800;
+    private int end = 800;
     private String group = "";
-    
+
     private Marker() {
     }
 
@@ -21,7 +21,7 @@ public class Marker {
 
     @Override
     public final String toString() {
-        String s = "start " + getStart() + " end " + getEnd() + " " + getGroup();
+        String s = "\n\nstart " + getStart() + "\nend " + getEnd() + "\ngroup " + getGroup() + "\n\n";
         return s;
     }
 

@@ -9,7 +9,6 @@ import net.bounceme.dur.usenet.swing.model.MyListModel;
 public enum Usenet {
 
     INSTANCE;
-    private final Level LEVEL = Level.INFO;
     private final Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<>();
@@ -80,11 +79,17 @@ public enum Usenet {
     }
 
     private void setMarker(Marker marker) {
+        LOG.warning("current Marker " + getMarker());
         for (Folder f : folders) {
-            if (f.getFullName().equals(marker.getGroup())) {
+            String knownGood = f.getFullName();
+            String newGroup = marker.getGroup();
+            if (knownGood.equalsIgnoreCase(newGroup)) {
+                LOG.warning("setting " + newGroup);
                 this.marker = marker;
-                LOG.info(getMarker().toString());
+            } else {
+                LOG.warning("rejected " + newGroup);
             }
         }
+        LOG.warning("finished setMarker " + getMarker());
     }
 }
