@@ -75,8 +75,7 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             panelWithText1.setJTextArea(string);
         }
-        Marker marker = new Marker();
-        marker.setGroup(string);
+        Marker marker = new Marker(string, 0, 0);
         //panelWithText1.setMarker(marker);
     }//GEN-LAST:event_panelWithList1PropertyChange
 
