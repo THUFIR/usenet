@@ -6,7 +6,7 @@ public class Marker {
 
     private static final Logger LOG = Logger.getLogger(Marker.class.getName());
     private int start = 5;
-    private int end = 5;
+    private int end = 6;
     private String group = "";
 
     private Marker() {
@@ -14,8 +14,8 @@ public class Marker {
 
     public Marker(String g, int s, int e) {
         setGroup(g);
-        setStart(s);
-        setEnd(e);
+        setStart(Math.abs(s));
+        setEnd(Math.abs(e));
         LOG.fine(toString());
     }
 
@@ -38,7 +38,11 @@ public class Marker {
     }
 
     private void setEnd(int end) {
-        this.end = end;
+        if (end >= getStart()) {
+            this.end = end;
+        } else {
+            this.end = getStart();
+        }
     }
 
     public String getGroup() {
