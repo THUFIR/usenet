@@ -71,8 +71,8 @@ public class PanelWithText extends javax.swing.JPanel {
         jTextArea1.setText(string);
     }
 
-    void setMarker(Marker marker) {
-        Logger.getLogger(PanelWithText.class.getName()).log(Level.SEVERE, "hmm "+ marker);
+    void setMessages(Marker marker) {
+        Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm "+ marker);
         Usenet u = Usenet.INSTANCE;
         List<Message> messages = u.getMessages(marker);
         StringBuilder sb = new StringBuilder();

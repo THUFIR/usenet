@@ -76,7 +76,7 @@ public class Frame extends javax.swing.JFrame {
             panelWithText1.setJTextArea(string);
         }
         Marker marker = new Marker(string, 0, 0);
-        //panelWithText1.setMarker(marker);
+        panelWithText1.setMessages(marker);
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     /**

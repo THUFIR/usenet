@@ -8,7 +8,7 @@ public class Marker {
     private int start = 0;
     private int end = 0;
     private String group = "";
-
+    
     private Marker() {
     }
 

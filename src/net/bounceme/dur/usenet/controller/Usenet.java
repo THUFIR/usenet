@@ -17,8 +17,10 @@ public enum Usenet {
     private boolean loaded = false;
     private Folder folder = null;
     private Folder root = null;
-    private List<Folder> folders = null;
+    //private List<Folder> folders = null;
     private Store store = null;
+    private Marker marker = null;
+    private List<Folder> folders = new ArrayList<>();
 
     Usenet() {
         LOG.fine("controller..");
@@ -40,8 +42,8 @@ public enum Usenet {
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
-        //ng.loadFoldersList(Arrays.asList(root.list()));
-        //setGroup(ng.getFoldersListModel().getElementAt(0).toString());
+        String group = getFolders().get(0).getFullName();
+        setMarker(new Marker(group, 0, 0));
         return true;
     }
 
@@ -53,7 +55,8 @@ public enum Usenet {
     }
 
     public List<Message> getMessages(Marker m) {
-        LOG.fine("NewsServer.getMessages "+ m.toString());
+        LOG.severe("trying.. " + m.toString());
+        setMarker(m);
         try {
             messages = Arrays.asList(folder.getMessages(m.getStart(), m.getEnd()));
             Collections.reverse(messages);
@@ -64,11 +67,24 @@ public enum Usenet {
         return Collections.unmodifiableList(messages);
     }
 
+    public List<Folder> getFolders() {
+        return Collections.unmodifiableList(folders);
+    }
+
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
 
-    public List<Folder> getFolders() {
-        return Collections.unmodifiableList(folders);
+    private Marker getMarker() {
+        return marker;
+    }
+
+    private void setMarker(Marker marker) {
+        for (Folder f : folders) {
+            if (f.getFullName().equals(marker.getGroup())) {
+                this.marker = marker;
+                LOG.info(getMarker().toString());
+            }
+        }
     }
 }
