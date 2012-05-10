@@ -1,4 +1,4 @@
-package dur.bounceme.net;
+package net.bounceme.dur.view;
 
 public class PanelWithList extends javax.swing.JPanel {
 
