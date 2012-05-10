@@ -64,9 +64,13 @@ public enum Usenet {
         setMarker(m);
         loadFolder();
         LOG.severe("trying to load messages..");
-        messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
+        Message[] foo = folder.getMessages(15, 20);
+        //messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
         Collections.reverse(messages);
-        LOG.severe("..messages loaded");
+        LOG.severe("..messages loaded " + foo.length);
+        for(int i=0;i< foo.length;i++){
+            LOG.warning(foo[i].getSubject());
+        }
         logMessages();
         return Collections.unmodifiableList(messages);
     }

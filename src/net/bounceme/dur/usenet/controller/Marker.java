@@ -21,7 +21,7 @@ public class Marker {
 
     @Override
     public final String toString() {
-        String s = "\n\nstart " + getStart() + "\nend " + getEnd() + "\ngroup " + getGroup() + "\n\n";
+        String s = "\n\n****\nmarker is\nstart " + getStart() + "\nend " + getEnd() + "\ngroup " + getGroup() + "\n\n\n****\n";
         return s;
     }
 
