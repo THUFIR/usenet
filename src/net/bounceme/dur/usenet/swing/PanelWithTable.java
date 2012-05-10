@@ -5,10 +5,11 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.swing.table.DefaultTableModel;
 import net.bounceme.dur.usenet.controller.Marker;
 import net.bounceme.dur.usenet.controller.Usenet;
 
@@ -107,19 +108,22 @@ public class PanelWithTable extends javax.swing.JPanel {
         jTextArea1.setText(String.valueOf(row));
     }
 
+    @SuppressWarnings("unchecked") //vector ops
     void setMessages(Marker marker) throws Exception {
         Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
         List<Message> messages = u.getMessages(marker);
-        StringBuilder sb = new StringBuilder();
-        for(Message m : messages){
-            try {
-                sb.append(m.getSubject().toString());
-                sb.append("\n");
-            } catch (MessagingException ex) {
-                Logger.getLogger(PanelWithText.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //setJTextArea(sb.toString());
+        DefaultTableModel defaultTableModel = new DefaultTableModel();
+        defaultTableModel.addColumn("index");
+        defaultTableModel.addColumn("subject");
+        defaultTableModel.addColumn("content");
+        for (Message m : messages) {
+            Vector foo = new Vector();
+            foo.add(String.valueOf(m.getMessageNumber()));
+            foo.add((m.getSubject()));
+            foo.add(m.getContent().toString());
+            defaultTableModel.addRow(foo);
         }
+        jTable1.setModel(defaultTableModel);
     }
 }
