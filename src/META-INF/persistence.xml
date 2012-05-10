@@ -3,12 +3,12 @@
   <persistence-unit name="USENETPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>net.bounceme.dur.usenet.controller.Notes</class>
-    <class>net.bounceme.dur.usenet.controller.Groups</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nntp"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="java"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>
