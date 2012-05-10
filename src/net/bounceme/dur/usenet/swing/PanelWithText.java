@@ -72,7 +72,7 @@ public class PanelWithText extends javax.swing.JPanel {
     }
 
     void setMessages(Marker marker) throws Exception {
-        Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm "+ marker);
+        Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
         List<Message> messages = u.getMessages(marker);
         StringBuilder sb = new StringBuilder();
