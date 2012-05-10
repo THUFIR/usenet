@@ -16,7 +16,7 @@ public class Marker {
         setGroup(g);
         setStart(s);
         setEnd(e);
-        LOG.info(toString());
+        LOG.fine(toString());
     }
 
     @Override

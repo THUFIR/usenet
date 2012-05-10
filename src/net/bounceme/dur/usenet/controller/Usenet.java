@@ -46,6 +46,11 @@ public enum Usenet {
         return true;
     }
 
+    private void loadFolder() throws Exception {
+        folder = root.getFolder(marker.getGroup());
+        folder.open(Folder.READ_ONLY);
+    }
+
     private void logMessages() throws MessagingException {
         LOG.fine("NewsServer.logMessages..");
         for (Message m : messages) {
@@ -53,16 +58,13 @@ public enum Usenet {
         }
     }
 
-    public List<Message> getMessages(Marker m) {
-        LOG.severe("trying.. " + m.toString());
+    public List<Message> getMessages(Marker m) throws Exception {
+        LOG.fine("trying.. " + m.toString());
         setMarker(m);
-        try {
-            messages = Arrays.asList(folder.getMessages(m.getStart(), m.getEnd()));
-            Collections.reverse(messages);
-            logMessages();
-        } catch (MessagingException ex) {
-            Logger.getLogger(Usenet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadFolder();
+        messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
+        Collections.reverse(messages);
+        logMessages();
         return Collections.unmodifiableList(messages);
     }
 
@@ -79,17 +81,17 @@ public enum Usenet {
     }
 
     private void setMarker(Marker marker) {
-        LOG.warning("current Marker " + getMarker());
+        LOG.fine("current Marker " + getMarker());
         for (Folder f : folders) {
             String knownGood = f.getFullName();
             String newGroup = marker.getGroup();
             if (knownGood.equalsIgnoreCase(newGroup)) {
-                LOG.warning("setting " + newGroup);
+                LOG.fine("setting " + newGroup);
                 this.marker = marker;
             } else {
-                LOG.warning("rejected " + newGroup);
+                LOG.fine("rejected " + newGroup);
             }
         }
-        LOG.warning("finished setMarker " + getMarker());
+        LOG.fine("finished setMarker " + getMarker());
     }
 }

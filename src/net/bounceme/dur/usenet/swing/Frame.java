@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
@@ -76,7 +77,11 @@ public class Frame extends javax.swing.JFrame {
             panelWithText1.setJTextArea(string);
         }
         Marker marker = new Marker(string, 0, 0);
-        panelWithText1.setMessages(marker);
+        try {
+            panelWithText1.setMessages(marker);
+        } catch (Exception ex) {
+            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     /**
