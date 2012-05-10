@@ -1,4 +1,4 @@
-package net.bounceme.dur.view;
+package net.bounceme.dur.usenet.swing;
 
 public class Frame extends javax.swing.JFrame {
 
@@ -16,9 +16,9 @@ public class Frame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelWithList1 = new net.bounceme.dur.view.PanelWithList();
-        panelWithTable1 = new net.bounceme.dur.view.PanelWithTable();
-        panelWithText1 = new net.bounceme.dur.view.PanelWithText();
+        panelWithList1 = new net.bounceme.dur.usenet.swing.PanelWithList();
+        panelWithTable1 = new net.bounceme.dur.usenet.swing.PanelWithTable();
+        panelWithText1 = new net.bounceme.dur.usenet.swing.PanelWithText();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,8 +107,8 @@ public class Frame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
-    private net.bounceme.dur.view.PanelWithList panelWithList1;
-    private net.bounceme.dur.view.PanelWithTable panelWithTable1;
-    private net.bounceme.dur.view.PanelWithText panelWithText1;
+    private net.bounceme.dur.usenet.swing.PanelWithList panelWithList1;
+    private net.bounceme.dur.usenet.swing.PanelWithTable panelWithTable1;
+    private net.bounceme.dur.usenet.swing.PanelWithText panelWithText1;
     // End of variables declaration//GEN-END:variables
 }

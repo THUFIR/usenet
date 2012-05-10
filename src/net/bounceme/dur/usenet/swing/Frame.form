@@ -50,7 +50,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="net.bounceme.dur.view.PanelWithList" name="panelWithList1">
+        <Component class="net.bounceme.dur.usenet.swing.PanelWithList" name="panelWithList1">
           <Events>
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="panelWithList1PropertyChange"/>
           </Events>
@@ -62,7 +62,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="net.bounceme.dur.view.PanelWithTable" name="panelWithTable1">
+        <Component class="net.bounceme.dur.usenet.swing.PanelWithTable" name="panelWithTable1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab2">
@@ -71,7 +71,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="net.bounceme.dur.view.PanelWithText" name="panelWithText1">
+        <Component class="net.bounceme.dur.usenet.swing.PanelWithText" name="panelWithText1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">

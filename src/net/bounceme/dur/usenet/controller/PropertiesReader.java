@@ -1,4 +1,6 @@
-package net.bounceme.dur.controller;
+package net.bounceme.dur.usenet.controller;
+
+
 
 import java.io.IOException;
 import java.util.Properties;
@@ -14,7 +16,7 @@ public class PropertiesReader {
     public static Properties getProps() {
         logger.log(level, "NNTP.loadMessages...");
         try {
-            props.load(PropertiesReader.class.getResourceAsStream("/nntp.properties"));
+            props.load(PropertiesReader.class.getResourceAsStream("/usenet.properties"));
         } catch (IOException ex) {
             Logger.getLogger(PropertiesReader.class.getName()).log(Level.SEVERE, null, ex);
         }

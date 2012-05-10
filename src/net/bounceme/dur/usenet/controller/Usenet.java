@@ -1,11 +1,11 @@
-package net.bounceme.dur.controller;
+package net.bounceme.dur.usenet.controller;
 
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import net.bounceme.dur.controller.NewsGroups;
-import net.bounceme.dur.controller.PropertiesReader;
+import net.bounceme.dur.usenet.controller.NewsGroups;
+import net.bounceme.dur.usenet.controller.PropertiesReader;
 
 public enum Usenet {
 

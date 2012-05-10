@@ -1,4 +1,4 @@
-package net.bounceme.dur.controller;
+package net.bounceme.dur.usenet.controller;
 
 import java.util.List;
 import java.util.logging.Level;
