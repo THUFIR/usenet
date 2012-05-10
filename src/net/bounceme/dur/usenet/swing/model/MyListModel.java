@@ -16,12 +16,12 @@ public class MyListModel extends AbstractListModel {
     
     @Override
     public int getSize() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return foo.size();
     }
 
     @Override
     public Object getElementAt(int index) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return foo.get(index);
     }
     
 }

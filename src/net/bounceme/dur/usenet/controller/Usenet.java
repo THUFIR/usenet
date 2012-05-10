@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
+import net.bounceme.dur.usenet.swing.model.MyListModel;
 
 public enum Usenet {
 
@@ -12,10 +13,11 @@ public enum Usenet {
     private final Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<>();
-    private NewsGroups ng = NewsGroups.INSTANCE;
+    private MyListModel mlm = new MyListModel();
     private boolean loaded = false;
     private Folder folder = null;
     private Folder root = null;
+    private List<Folder> folders = null;
     private Store store = null;
     private int size;
 
@@ -31,23 +33,16 @@ public enum Usenet {
         }
     }
 
-    private void loadFolder() throws Exception {
-        LOG.fine(ng.getGroup());
-        folder = root.getFolder(ng.getGroup());
-        folder.open(Folder.READ_ONLY);
-        setSize(folder.getMessageCount());
-    }
-
     private boolean connect() throws Exception {
-
         LOG.fine("Usenet.connect..");
         Session session = Session.getDefaultInstance(props);
-        session.setDebug(true);
+        session.setDebug(false);
         store = session.getStore(new URLName(props.getProperty("nntp.host")));
         store.connect();
         root = store.getDefaultFolder();
-        ng.loadFoldersList(Arrays.asList(root.list()));
-        setGroup(ng.getFoldersListModel().getElementAt(0).toString());
+        setFolders(Arrays.asList(root.listSubscribed()));
+        //ng.loadFoldersList(Arrays.asList(root.list()));
+        //setGroup(ng.getFoldersListModel().getElementAt(0).toString());
         return true;
     }
 
@@ -80,11 +75,15 @@ public enum Usenet {
 
     public void setGroup(String group) {
         LOG.fine(group);
-        ng.setGroup(group);
-        try {
-            loadFolder();
-        } catch (Exception ex) {
-            Logger.getLogger(Usenet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //ng.setGroup(group);
     }
+    
+    public void setFolders(List<Folder> folders){
+        this.folders = folders;
+    }
+    
+    public List<Folder> getFolders(){
+        return folders;
+    }
+    
 }
