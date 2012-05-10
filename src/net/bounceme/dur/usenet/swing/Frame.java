@@ -12,16 +12,10 @@ public class Frame extends javax.swing.JFrame {
     private final static Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Usenet u = Usenet.INSTANCE;
 
+    @SuppressWarnings("unchecked")
     public Frame() {
-        List<Folder> folders = u.getFolders();
-        DefaultListModel defaultListModel = new DefaultListModel();
-        for (Folder f : folders) {
-            String z = f.getFullName();
-            defaultListModel.addElement(z);
-        }
         initComponents();
-        LOG.warning(defaultListModel.toString());
-        panelWithList1.setFoo(defaultListModel);
+        load();
     }
 
     /**
@@ -130,4 +124,16 @@ public class Frame extends javax.swing.JFrame {
     private net.bounceme.dur.usenet.swing.PanelWithTable panelWithTable1;
     private net.bounceme.dur.usenet.swing.PanelWithText panelWithText1;
     // End of variables declaration//GEN-END:variables
+
+    @SuppressWarnings("unchecked")
+    private void load() {
+        List<Folder> folders = u.getFolders();
+        DefaultListModel defaultListModel = new DefaultListModel();
+        for (Folder f : folders) {
+            String z = f.getFullName();
+            defaultListModel.addElement(z);
+        }
+        LOG.fine(defaultListModel.toString());
+        panelWithList1.setFoo(defaultListModel);
+    }
 }
