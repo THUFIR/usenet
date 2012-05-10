@@ -4,39 +4,25 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
-import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.swing.model.MyListModel;
 
 public enum NewsGroups {
 
     INSTANCE;
-    private final Logger LOG = Logger.getLogger(NewsGroups.class.getName());
-    private DefaultListModel foldersListModel;
+    private final static Logger LOG = Logger.getLogger(NewsGroups.class.getName());
+     private static final Level LEVEL = Level.INFO;
     private List<Folder> folders;
     private String group;
+    private MyListModel model;
 
     NewsGroups() {
     }
 
     public void loadFoldersList(List<Folder> folders) {
         setFolders(folders);
-        LOG.log(Level.FINE, "folders {0}", folders.size());
-        DefaultListModel dlm = new DefaultListModel();
-        for (Folder f : getFolders()) {
-            String name = f.getName();
-            dlm.addElement(name);
-            LOG.fine(name);
-        }
-        setFoldersListModel(dlm);
+        LOG.log(LEVEL, "folders {0}", folders.size());
     }
 
-    public DefaultListModel getFoldersListModel() {
-        LOG.fine(foldersListModel.toString());
-        return foldersListModel;
-    }
-
-    public void setFoldersListModel(DefaultListModel foldersListModel) {
-        this.foldersListModel = foldersListModel;
-    }
 
     @Override
     public String toString() {
@@ -57,14 +43,14 @@ public enum NewsGroups {
     }
 
     public String getGroup() {
-        LOG.fine("GROUP IS " + group);
+        LOG.log(LEVEL, "GROUP IS {0}", group);
         return group;
     }
 
     public void setGroup(String group) {
-        LOG.fine("trying..." + group);
+        LOG.log(LEVEL, "trying...{0}", group);
         for (Folder f : folders) {
-            LOG.fine(f.getFullName());
+            LOG.log(LEVEL, f.getFullName());
             if (f.getFullName().equals(group)) {
                 this.group = group;
             }
