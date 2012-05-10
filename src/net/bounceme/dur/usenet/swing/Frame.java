@@ -91,7 +91,7 @@ public class Frame extends javax.swing.JFrame {
             panelWithText1.setJTextArea(group);
         }
         int slider = panelWithSlider1.getValue();
-        setMarker(group, slider);
+        setMarker(new Marker(group, slider));
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithSlider1PropertyChange
@@ -100,7 +100,7 @@ public class Frame extends javax.swing.JFrame {
             slider = (int) evt.getNewValue();
         }
         String group = panelWithList1.getGroup();
-        setMarker(group, slider);
+        setMarker(new Marker(group, slider));
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     /**
@@ -165,8 +165,7 @@ public class Frame extends javax.swing.JFrame {
         panelWithList1.setJList(defaultListModel);
     }
 
-    private void setMarker(String group, int slider) {
-        Marker marker = new Marker(group, slider);
+    private void setMarker(Marker marker) {
         try {
             panelWithTable1.setMessages(marker);
         } catch (Exception ex) {

@@ -64,6 +64,9 @@ public class PanelWithTable extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jTextPane1.setContentType("text/html");
+        jTextPane1.setEditable(false);
+        jTextPane1.setAutoscrolls(false);
         jScrollPane3.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -109,7 +112,6 @@ public class PanelWithTable extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void row() {
-        jTextPane1.setContentType("text/html");
         int row = jTable1.getSelectedRow();
         jTextPane1.setText(jTable1.getModel().getValueAt(row, 2).toString());
     }

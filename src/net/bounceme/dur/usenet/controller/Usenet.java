@@ -42,7 +42,7 @@ public enum Usenet {
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
         String group = getFolders().get(0).getFullName();
-        marker = new Marker(group,20);
+        marker = new Marker(group, 20);
         return true;
     }
 
@@ -60,10 +60,10 @@ public enum Usenet {
     }
 
     public List<Message> getMessages(Marker marker) throws Exception {
-        LOG.fine("trying.. " + marker.toString());
+        LOG.fine("loading.. " + marker.toString());
         setMarker(marker);
         loadFolder();
-        messages = Arrays.asList(folder.getMessages(getMarker().getStart(),getMarker().getEnd()));
+        messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
         Collections.reverse(messages);
         return Collections.unmodifiableList(messages);
     }
