@@ -1,19 +1,26 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class Frame extends javax.swing.JFrame {
 
+    private final static Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Usenet u = Usenet.INSTANCE;
 
     public Frame() {
-        List<Folder> foo = u.getFolders();
+        List<Folder> folders = u.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
-        defaultListModel.copyInto(foo.toArray());
+        for (Folder f : folders) {
+            String z = f.getFullName();
+            defaultListModel.addElement(z);
+        }
         initComponents();
+        LOG.warning(defaultListModel.toString());
         panelWithList1.setFoo(defaultListModel);
     }
 
