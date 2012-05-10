@@ -2,6 +2,7 @@ package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
 import javax.mail.Folder;
+import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class Frame extends javax.swing.JFrame {
@@ -10,8 +11,10 @@ public class Frame extends javax.swing.JFrame {
 
     public Frame() {
         List<Folder> foo = u.getFolders();
-        
+        DefaultListModel defaultListModel = new DefaultListModel();
+        defaultListModel.copyInto(foo.toArray());
         initComponents();
+        panelWithList1.setFoo(defaultListModel);
     }
 
     /**

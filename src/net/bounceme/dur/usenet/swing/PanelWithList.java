@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
+import javax.swing.DefaultListModel;
+
 public class PanelWithList extends javax.swing.JPanel {
 
     public PanelWithList() {
@@ -83,5 +85,10 @@ public class PanelWithList extends javax.swing.JPanel {
         String s = (String) o;
         jTextArea1.setText(s);
         this.firePropertyChange("list", null, o);
+    }
+
+    @SuppressWarnings("unchecked")
+    void setFoo(DefaultListModel defaultListModel) {
+        jList1.setModel(defaultListModel);
     }
 }
