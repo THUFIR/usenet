@@ -64,4 +64,8 @@ public class PanelWithSlider extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
+
+    int getValue() {
+        return jSlider1.getValue();
+    }
 }

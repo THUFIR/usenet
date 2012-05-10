@@ -89,27 +89,22 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithList1PropertyChange
-        Object object = evt.getNewValue();
-        String string = object.toString();
+        Object newValue = evt.getNewValue();
+        String group = newValue.toString();
         if (evt.getPropertyName().equals("list")) {
-            panelWithText1.setJTextArea(string);
+            panelWithText1.setJTextArea(group);
         }
-        Marker marker = new Marker(string, 20);
-        try {
-            panelWithText1.setMessages(marker);
-        } catch (Exception ex) {
-            Logger.getLogger(Frame.class.getName()).log(Level.FINE, "could not set marker");
-        }
+        int slider = panelWithSlider1.getValue();
+        setMarker(group, slider);
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithSlider1PropertyChange
-        int i = 1;
+        int slider = 1;
         if (evt.getPropertyName().equals("slider")) {
-            i = (int) evt.getNewValue();
+            slider = (int) evt.getNewValue();
         }
-        //System.out.println("slider..." + i);
-        String s = panelWithList1.getGroup();
-        Marker marker = new Marker(s, i);
+        String group = panelWithList1.getGroup();
+        setMarker(group, slider);
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     /**
@@ -148,6 +143,7 @@ public class Frame extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new Frame().setVisible(true);
             }
@@ -171,5 +167,15 @@ public class Frame extends javax.swing.JFrame {
         }
         LOG.fine(defaultListModel.toString());
         panelWithList1.setJList(defaultListModel);
+    }
+
+    private void setMarker(String group, int slider) {
+        Marker marker = new Marker(group, slider);
+        try {
+            panelWithText1.setMessages(marker);
+        } catch (Exception ex) {
+            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

@@ -38,6 +38,7 @@ public class PanelWithList extends javax.swing.JPanel {
                 jList1KeyReleased(evt);
             }
         });
+        jList1.setSelectionInterval(1,1);
         jScrollPane1.setViewportView(jList1);
 
         jTextArea1.setColumns(20);
@@ -86,10 +87,11 @@ public class PanelWithList extends javax.swing.JPanel {
         jTextArea1.setText(s);
         this.firePropertyChange("list", null, o);
     }
-
+    
     @SuppressWarnings("unchecked")
     void setJList(DefaultListModel defaultListModel) {
         jList1.setModel(defaultListModel);
+        jList1.setSelectedIndex(0);
     }
 
     String getGroup() {
