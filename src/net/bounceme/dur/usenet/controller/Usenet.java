@@ -59,18 +59,19 @@ public enum Usenet {
         }
     }
 
-    public List<Message> getMessages(Marker m) throws Exception {
-        LOG.fine("trying.. " + m.toString());
-        setMarker(m);
+    public List<Message> getMessages(Marker mrkr) throws Exception {
+        LOG.fine("trying.. " + mrkr.toString());
+        setMarker(mrkr);
         loadFolder();
-        LOG.severe("trying to load messages..");
-        Message[] foo = folder.getMessages(15, 20);
-        //messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
+        //LOG.severe("trying to load messages..");
+        //Message[] msgs = folder.getMessages(15,20);
+        //messages=Arrays.asList(msgs);
+        messages = Arrays.asList(folder.getMessages(15,20));
         Collections.reverse(messages);
-        LOG.severe("..messages loaded " + foo.length);
-        for(int i=0;i< foo.length;i++){
-            LOG.warning(foo[i].getSubject());
-        }
+        //LOG.severe("..messages loaded " + msgs.length);
+        //for(int i=0;i< msgs.length;i++){
+         //   LOG.warning(msgs[i].getSubject());
+        //}
         logMessages();
         return Collections.unmodifiableList(messages);
     }
