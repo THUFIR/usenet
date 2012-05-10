@@ -6,17 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import net.bounceme.dur.usenet.swing.Msg;
 
-class Persist {
+public enum Persist {
 
-    
-    private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(Persist.class.getName());
+    INSTANCE;
+    private final Logger LOG = Logger.getLogger(Persist.class.getName());
     private EntityManagerFactory emf;
     private EntityManager em;
-    private String PERSISTENCE_UNIT_NAME = "nntpPU";
-    
-    public Persist() {
+    private String PERSISTENCE_UNIT_NAME = "USENETPU";
+
+    Persist() {
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
         LOG.fine("entity manager made???" + em.isOpen());
@@ -27,9 +27,13 @@ class Persist {
         LOG.fine("open?" + em.isOpen());
         em.getTransaction().begin();
         LOG.fine("trying to populate.....");
-        Query q = em.createNamedQuery("NoteBean.findAll");
+        Query q = em.createNamedQuery("Groups.findAll");
         LOG.fine(q.toString());
         List results = q.getResultList();
         em.getTransaction().commit();
+    }
+
+    public void get(Msg message) {
+        
     }
 }

@@ -8,7 +8,7 @@ package net.bounceme.dur.usenet.swing;
  *
  * @author thufir
  */
-class Msg {
+public class Msg {
 
     Msg(int id, String subject, String content) {
         //whatever
