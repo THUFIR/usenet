@@ -172,7 +172,7 @@ public class Frame extends javax.swing.JFrame {
     private void setMarker(String group, int slider) {
         Marker marker = new Marker(group, slider);
         try {
-            panelWithText1.setMessages(marker);
+            panelWithTable1.setMessages(marker);
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
