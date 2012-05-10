@@ -49,13 +49,13 @@ public enum Usenet {
     private void loadFolder() throws Exception {
         folder = root.getFolder(marker.getGroup());
         folder.open(Folder.READ_ONLY);
-        LOG.warning("folder: " + folder.getFullName() + " " + folder.getMessageCount());
+        LOG.fine("folder: " + folder.getFullName() + " " + folder.getMessageCount());
     }
 
     private void logMessages() throws MessagingException {
         LOG.fine("NewsServer.logMessages..");
         for (Message m : messages) {
-            LOG.log(Level.FINER, "***** {0} {1}", new Object[]{m.getMessageNumber(), m.getSubject()});
+            LOG.log(Level.INFO, "***** {0} {1}", new Object[]{m.getMessageNumber(), m.getSubject()});
         }
     }
 
