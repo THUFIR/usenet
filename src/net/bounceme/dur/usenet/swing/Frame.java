@@ -80,7 +80,7 @@ public class Frame extends javax.swing.JFrame {
         try {
             panelWithText1.setMessages(marker);
         } catch (Exception ex) {
-            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, "could not set marker");
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
 

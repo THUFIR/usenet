@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 public class Marker {
 
     private static final Logger LOG = Logger.getLogger(Marker.class.getName());
-    private int start = 800;
-    private int end = 800;
+    private int start = 5;
+    private int end = 5;
     private String group = "";
 
     private Marker() {

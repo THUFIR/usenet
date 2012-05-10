@@ -49,6 +49,7 @@ public enum Usenet {
     private void loadFolder() throws Exception {
         folder = root.getFolder(marker.getGroup());
         folder.open(Folder.READ_ONLY);
+        LOG.warning("folder: " + folder.getFullName() + " " + folder.getMessageCount());
     }
 
     private void logMessages() throws MessagingException {
