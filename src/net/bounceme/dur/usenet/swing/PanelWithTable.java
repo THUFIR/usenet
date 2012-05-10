@@ -115,6 +115,7 @@ public class PanelWithTable extends javax.swing.JPanel {
         int row = jTable1.getSelectedRow();
         String s = jTable1.getModel().getValueAt(row, 0).toString();
         int id = Integer.parseInt(s);
+        String group = "";
         String subject = jTable1.getModel().getValueAt(row, 1).toString();
         String content = jTable1.getModel().getValueAt(row, 2).toString();
         Msg message = new Msg(id, subject, content);

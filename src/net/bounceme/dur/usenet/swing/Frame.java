@@ -112,7 +112,12 @@ public class Frame extends javax.swing.JFrame {
 
     private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
         if (evt.getPropertyName().equals("slider")) {
-            Msg message = (Msg)evt.getNewValue();
+            Msg msg = (Msg) evt.getNewValue();
+            int id = msg.getId();
+            String group = panelWithList1.getGroup();
+            String subject = msg.getSubject();
+            String content = msg.getContent();
+            Msg message = new Msg(id, group, subject, content);
             Persist p = Persist.INSTANCE;
             p.get(message);
         }
