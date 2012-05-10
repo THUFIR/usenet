@@ -76,7 +76,7 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             panelWithText1.setJTextArea(string);
         }
-        Marker marker = new Marker(string, 0, 0);
+        Marker marker = new Marker(string, 15, 20);
         try {
             panelWithText1.setMessages(marker);
         } catch (Exception ex) {
@@ -141,6 +141,6 @@ public class Frame extends javax.swing.JFrame {
             defaultListModel.addElement(z);
         }
         LOG.fine(defaultListModel.toString());
-        panelWithList1.setFoo(defaultListModel);
+        panelWithList1.setJList(defaultListModel);
     }
 }

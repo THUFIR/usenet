@@ -77,7 +77,7 @@ public enum Usenet {
     }
 
     private Marker getMarker() {
-        LOG.info(marker.toString());
+        LOG.fine(marker.toString());
         return marker;
     }
 
@@ -93,6 +93,6 @@ public enum Usenet {
                 LOG.fine("rejected " + newGroup);
             }
         }
-        LOG.info("finished setMarker " + getMarker());
+        LOG.fine("finished setMarker " + getMarker());
     }
 }

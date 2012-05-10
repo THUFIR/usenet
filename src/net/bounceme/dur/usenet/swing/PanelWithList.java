@@ -88,7 +88,7 @@ public class PanelWithList extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    void setFoo(DefaultListModel defaultListModel) {
+    void setJList(DefaultListModel defaultListModel) {
         jList1.setModel(defaultListModel);
     }
 }

@@ -30,7 +30,11 @@ public class Marker {
     }
 
     private void setStart(int start) {
-        this.start = start;
+        if (start > 0) {
+            this.start = start;
+        } else {
+            start = 1;
+        }
     }
 
     public int getEnd() {
@@ -38,7 +42,7 @@ public class Marker {
     }
 
     private void setEnd(int end) {
-        if (end >= getStart()) {
+        if (end > getStart()) {
             this.end = end;
         } else {
             this.end = getStart();
