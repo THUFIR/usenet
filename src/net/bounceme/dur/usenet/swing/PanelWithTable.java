@@ -113,7 +113,13 @@ public class PanelWithTable extends javax.swing.JPanel {
 
     private void row() {
         int row = jTable1.getSelectedRow();
+        String s = jTable1.getModel().getValueAt(row, 0).toString();
+        int id = Integer.parseInt(s);
+        String subject = jTable1.getModel().getValueAt(row, 1).toString();
+        String content = jTable1.getModel().getValueAt(row, 2).toString();
+        Msg message = new Msg(id, subject, content);
         jTextPane1.setText(jTable1.getModel().getValueAt(row, 2).toString());
+        this.firePropertyChange("message", null, message);
     }
 
     @SuppressWarnings("unchecked") //vector ops

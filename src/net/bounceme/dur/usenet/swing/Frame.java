@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.swing;
 
+import net.bounceme.dur.usenet.controller.Persist;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,12 @@ public class Frame extends javax.swing.JFrame {
             }
         });
         jTabbedPane1.addTab("tab1", panelWithList1);
+
+        panelWithTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                panelWithTable1PropertyChange(evt);
+            }
+        });
         jTabbedPane1.addTab("tab2", panelWithTable1);
         jTabbedPane1.addTab("tab3", panelWithText1);
 
@@ -102,6 +109,13 @@ public class Frame extends javax.swing.JFrame {
         String group = panelWithList1.getGroup();
         setMarker(new Marker(group, slider));
     }//GEN-LAST:event_panelWithSlider1PropertyChange
+
+    private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
+        if (evt.getPropertyName().equals("slider")) {
+            Msg message = (Msg)evt.getNewValue();
+            Persist p = new Persist();
+        }
+    }//GEN-LAST:event_panelWithTable1PropertyChange
 
     /**
      * @param args the command line arguments
