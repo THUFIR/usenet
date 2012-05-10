@@ -1,9 +1,9 @@
 package net.bounceme.dur.usenet.controller;
 
-class Marker {
+public class Marker {
 
-    private int start;
-    private int end;
+    private int start = 0;
+    private int end = 0;
     private String group;
 
     /**
@@ -46,5 +46,11 @@ class Marker {
      */
     public void setGroup(String group) {
         this.group = group;
+    }
+    
+    @Override
+    public String toString(){
+        String s = "start " + getStart() + " end " + getEnd() + " " + getGroup();
+        return s;
     }
 }

@@ -4,6 +4,14 @@
  */
 package net.bounceme.dur.usenet.swing;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import net.bounceme.dur.usenet.controller.Marker;
+import net.bounceme.dur.usenet.controller.Usenet;
+
 /**
  *
  * @author thufir
@@ -61,5 +69,22 @@ public class PanelWithText extends javax.swing.JPanel {
 
     void setJTextArea(String string) {
         jTextArea1.setText(string);
+    }
+
+    void setMarker(Marker marker) {
+        Logger.getLogger(PanelWithText.class.getName()).log(Level.SEVERE, "hmm "+ marker);
+        Usenet u = Usenet.INSTANCE;
+        List<Message> messages = u.getMessages(marker);
+        StringBuilder sb = new StringBuilder();
+        for(Message m : messages){
+            try {
+                sb.append(m.getSubject().toString());
+                sb.append("\n");
+            } catch (MessagingException ex) {
+                Logger.getLogger(PanelWithText.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            setJTextArea(sb.toString());
+        }
+        
     }
 }

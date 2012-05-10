@@ -1,10 +1,10 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.controller.Marker;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class Frame extends javax.swing.JFrame {
@@ -75,6 +75,9 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             panelWithText1.setJTextArea(string);
         }
+        Marker marker = new Marker();
+        marker.setGroup(string);
+        //panelWithText1.setMarker(marker);
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     /**
