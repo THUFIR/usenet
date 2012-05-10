@@ -19,10 +19,9 @@ public enum Usenet {
     private Folder root = null;
     private List<Folder> folders = null;
     private Store store = null;
-    private int size;
 
     Usenet() {
-        LOG.log(LEVEL, "created enum");
+        LOG.fine("controller..");
         props = PropertiesReader.getProps();
         if (!loaded) {
             try {
@@ -46,14 +45,6 @@ public enum Usenet {
         return true;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    private void setSize(int size) {
-        this.size = size;
-    }
-
     private void logMessages() throws MessagingException {
         LOG.fine("NewsServer.logMessages..");
         for (Message m : messages) {
@@ -61,10 +52,10 @@ public enum Usenet {
         }
     }
 
-    public List<Message> getMessages(int start, int end) {
-        LOG.log(Level.FINE, "NewsServer.getMessages {0} {1}", new Object[]{start, end});
+    public List<Message> getMessages(Marker m) {
+        LOG.fine("NewsServer.getMessages "+ m.toString());
         try {
-            messages = Arrays.asList(folder.getMessages(start, end));
+            messages = Arrays.asList(folder.getMessages(m.getStart(), m.getEnd()));
             Collections.reverse(messages);
             logMessages();
         } catch (MessagingException ex) {
@@ -73,17 +64,11 @@ public enum Usenet {
         return Collections.unmodifiableList(messages);
     }
 
-    public void setGroup(String group) {
-        LOG.fine(group);
-        //ng.setGroup(group);
-    }
-    
-    public void setFolders(List<Folder> folders){
+    public void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
-    
-    public List<Folder> getFolders(){
-        return folders;
+
+    public List<Folder> getFolders() {
+        return Collections.unmodifiableList(folders);
     }
-    
 }

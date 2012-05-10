@@ -1,8 +1,16 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.List;
+import javax.mail.Folder;
+import net.bounceme.dur.usenet.controller.Usenet;
+
 public class Frame extends javax.swing.JFrame {
 
+    private Usenet u = Usenet.INSTANCE;
+
     public Frame() {
+        List<Folder> foo = u.getFolders();
+        
         initComponents();
     }
 
@@ -52,7 +60,8 @@ public class Frame extends javax.swing.JFrame {
                     .addContainerGap(22, Short.MAX_VALUE)))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-947)/2, (screenSize.height-585)/2, 947, 585);
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithList1PropertyChange
