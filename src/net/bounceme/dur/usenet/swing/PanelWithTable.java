@@ -41,6 +41,7 @@ public class PanelWithTable extends javax.swing.JPanel {
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -112,7 +113,7 @@ public class PanelWithTable extends javax.swing.JPanel {
         this.firePropertyChange("message", null, message);
     }
 
-    @SuppressWarnings("unchecked") //vector ops
+    @SuppressWarnings("unchecked")
     void setMessages(Marker marker) throws Exception {
         Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
@@ -129,5 +130,8 @@ public class PanelWithTable extends javax.swing.JPanel {
             defaultTableModel.addRow(foo);
         }
         jTable1.setModel(defaultTableModel);
+        System.out.println("jTable1.selectAll..");
+        jTable1.selectAll();
+        System.out.println("..jTable1.selectAll\t" + defaultTableModel.getRowCount());
     }
 }
