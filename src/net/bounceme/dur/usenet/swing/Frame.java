@@ -112,14 +112,11 @@ public class Frame extends javax.swing.JFrame {
 
     private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
         if (evt.getPropertyName().equals("message")) {
-            Msg msg = (Msg) evt.getNewValue();
-            int id = msg.getId();
-            String group = panelWithList1.getGroup();
-            String subject = msg.getSubject();
-            String content = msg.getContent();
-            Msg message = new Msg(id, group, subject, content);
+            Msg message = (Msg) evt.getNewValue();
+            message.setGroup(panelWithList1.getGroup());
             Persist p = Persist.INSTANCE;
             p.insertMessage(message);
+            panelWithText1.setMessage(message);
         }
     }//GEN-LAST:event_panelWithTable1PropertyChange
 

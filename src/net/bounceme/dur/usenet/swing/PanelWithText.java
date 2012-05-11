@@ -115,4 +115,8 @@ public class PanelWithText extends javax.swing.JPanel {
         }
         
     }
+
+    void setMessage(Msg message) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
