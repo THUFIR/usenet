@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
@@ -13,15 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import net.bounceme.dur.usenet.controller.Marker;
 import net.bounceme.dur.usenet.controller.Usenet;
 
-/**
- *
- * @author thufir
- */
 public class PanelWithTable extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelWithTable
-     */
     public PanelWithTable() {
         initComponents();
     }

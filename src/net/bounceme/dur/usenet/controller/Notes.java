@@ -15,8 +15,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp"),
     @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId")})
 public class Notes implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     private Long id;
@@ -39,10 +41,12 @@ public class Notes implements Serializable {
     private String newsGroup;
 
     public Notes() {
+        stamp = new Date();
     }
 
     public Notes(Long id) {
         this.id = id;
+        stamp = new Date();
     }
 
     public Notes(Long id, int groupId, Date stamp, int messageId, String newsGroup) {
@@ -125,5 +129,4 @@ public class Notes implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.controller.Notes[ id=" + id + " ]";
     }
-    
 }

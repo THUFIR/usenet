@@ -9,33 +9,35 @@ import javax.persistence.TypedQuery;
 import net.bounceme.dur.usenet.swing.Msg;
 
 public enum Persist {
-
+    
     INSTANCE;
     private final Logger LOG = Logger.getLogger(Persist.class.getName());
     private EntityManagerFactory emf;
     private EntityManager em;
     private String PERSISTENCE_UNIT_NAME = "USENETPU";
-
+    
     Persist() {
         emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = emf.createEntityManager();
         LOG.fine("entity manager made???" + em.isOpen());
     }
-
+    
     public void insertMessage(Msg m) {
-        LOG.fine("\t" + m);
-        LOG.fine("isOpen?" + em.isOpen());
+        LOG.warning("\t" + m);
+        LOG.warning("isOpen?" + em.isOpen());
         String comment = "dummy comment";
         Notes n = new Notes();
         n.setNewsGroup(m.getGroup());
         n.setMessageId(m.getId());
         n.setNote(comment);
+        LOG.warning(n.toString());
         em.getTransaction().begin();
+        LOG.severe("transaction began..\n\n" + n);
         em.persist(n);
         em.getTransaction().commit();
-        LOG.info("insert..\n\n" );
+        LOG.info("insert..\n\n" + m);
     }
-
+    
     public void queryMessage(Msg message) {
         LOG.fine("\t" + message);
         LOG.fine("isOpen?" + em.isOpen());

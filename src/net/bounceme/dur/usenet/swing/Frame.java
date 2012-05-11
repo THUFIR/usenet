@@ -119,7 +119,7 @@ public class Frame extends javax.swing.JFrame {
             String content = msg.getContent();
             Msg message = new Msg(id, group, subject, content);
             Persist p = Persist.INSTANCE;
-            p.queryMessage(message);
+            p.insertMessage(message);
         }
     }//GEN-LAST:event_panelWithTable1PropertyChange
 
