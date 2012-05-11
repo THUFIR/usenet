@@ -10,6 +10,10 @@ public final class Msg {
     private String subject;
     private String content;
 
+    public Msg() {
+        LOG.warning(toString());
+    }
+
     Msg(int id, String group, String subject, String content) {
         setId(id);
         setGroup(group);

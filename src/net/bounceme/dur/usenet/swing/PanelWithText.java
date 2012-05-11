@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.swing.ButtonModel;
 import net.bounceme.dur.usenet.controller.Marker;
 import net.bounceme.dur.usenet.controller.Usenet;
 
@@ -36,7 +37,7 @@ public class PanelWithText extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         newNote = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        addNote = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         notes = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -46,7 +47,12 @@ public class PanelWithText extends javax.swing.JPanel {
         newNote.setRows(5);
         jScrollPane1.setViewportView(newNote);
 
-        jButton1.setText("jButton1");
+        addNote.setText("jButton1");
+        addNote.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                addNotePropertyChange(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(notes);
 
@@ -61,7 +67,7 @@ public class PanelWithText extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -76,7 +82,7 @@ public class PanelWithText extends javax.swing.JPanel {
                 .addGap(248, 248, 248)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(addNote, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -85,8 +91,16 @@ public class PanelWithText extends javax.swing.JPanel {
                     .addGap(218, 218, 218)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addNotePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_addNotePropertyChange
+        //System.out.println("prop chg \n\n\n" + evt.toString());
+        Object o = evt.getNewValue();
+        ButtonModel foo = addNote.getModel();
+        //BtnMdl bar = (BtnMdl) foo;
+        System.out.println("prop chg \n\n\n" + foo);
+    }//GEN-LAST:event_addNotePropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addNote;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -104,7 +118,7 @@ public class PanelWithText extends javax.swing.JPanel {
         Usenet u = Usenet.INSTANCE;
         List<Message> messages = u.getMessages(marker);
         StringBuilder sb = new StringBuilder();
-        for(Message m : messages){
+        for (Message m : messages) {
             try {
                 sb.append(m.getSubject().toString());
                 sb.append("\n");
@@ -113,11 +127,12 @@ public class PanelWithText extends javax.swing.JPanel {
             }
             setJTextArea(sb.toString());
         }
-        
     }
 
     void setMessage(Msg message) {
         messageJTextPane.setText(message.toString());
-        
+        addNote.setText(message.toString());
+        BtnMdl bMdl = new BtnMdl(message);
+        addNote.setModel(bMdl);
     }
 }
