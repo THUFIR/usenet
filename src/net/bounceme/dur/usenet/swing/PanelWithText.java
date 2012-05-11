@@ -40,7 +40,7 @@ public class PanelWithText extends javax.swing.JPanel {
         newNote = new javax.swing.JTextArea();
         addNote = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        noteText = new javax.swing.JTextPane();
+        noteLog = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         messageJTextPane = new javax.swing.JTextPane();
 
@@ -49,14 +49,14 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane1.setViewportView(newNote);
 
         addNote.setText("jButton1");
-        addNote.setModel(new BtnMdl(new NoteBean()));
+        addNote.setModel(new BtnMdl(new net.bounceme.dur.usenet.swing.NoteBean()));
         addNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNoteActionPerformed(evt);
             }
         });
 
-        jScrollPane2.setViewportView(noteText);
+        jScrollPane2.setViewportView(noteLog);
 
         jScrollPane3.setViewportView(messageJTextPane);
 
@@ -84,24 +84,24 @@ public class PanelWithText extends javax.swing.JPanel {
                 .addGap(248, 248, 248)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addNote, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(addNote, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(66, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(218, 218, 218)))
+                    .addContainerGap(67, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(287, 287, 287)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
         NoteBean nb = buttonModel.getMessage();
-        //String note = newNote.getText();
-        //nb.setNote(note);
-        //newNote.setText("");
-        //Persist p = Persist.INSTANCE;
-        //p.addNote(nb);
+        String note = newNote.getText();
+        nb.setNote(note);
+        newNote.setText("");
+        Persist p = Persist.INSTANCE;
+        p.addNote(nb);
     }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
@@ -110,7 +110,7 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane messageJTextPane;
     private javax.swing.JTextArea newNote;
-    private javax.swing.JTextPane noteText;
+    private javax.swing.JTextPane noteLog;
     // End of variables declaration//GEN-END:variables
 
     void setJTextArea(String string) {
