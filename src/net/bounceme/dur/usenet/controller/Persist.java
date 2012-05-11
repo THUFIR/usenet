@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import net.bounceme.dur.usenet.swing.Msg;
 
 public enum Persist {
@@ -23,17 +23,18 @@ public enum Persist {
     }
 
     public void persist(Msg message) {
-        LOG.warning("\t" + message);
-        LOG.info("open?" + em.isOpen());
+        LOG.info("\t" + message);
+        LOG.info("isOpen?" + em.isOpen());
         em.getTransaction().begin();
         int id = message.getId();
-        Query q = em.createQuery("SELECT DISTINCT n "
+        TypedQuery<Notes> q = em.createQuery("SELECT  n "
                 + "FROM Notes n WHERE n.messageId = :messageId "
-                + "AND n.group=group");
-        List results = q.getResultList();
+                + "AND n.group = :group", Notes.class);
+        q.setParameter("messageId", message.getId()).setParameter("group", message.getGroup());
+        List<Notes> results = q.getResultList();
         em.getTransaction().commit();
-        for (Object o : results) {
-            LOG.warning("object is \n\n" + o);
+        for (Notes o : results) {
+            LOG.info("object is \n\n" + o);
         }
     }
 }
