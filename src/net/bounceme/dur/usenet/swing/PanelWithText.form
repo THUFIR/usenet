@@ -93,7 +93,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="message">
+        <Component class="javax.swing.JTextPane" name="messageJTextPane">
         </Component>
       </SubComponents>
     </Container>

@@ -40,7 +40,7 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         notes = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        message = new javax.swing.JTextPane();
+        messageJTextPane = new javax.swing.JTextPane();
 
         newNote.setColumns(20);
         newNote.setRows(5);
@@ -50,7 +50,7 @@ public class PanelWithText extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(notes);
 
-        jScrollPane3.setViewportView(message);
+        jScrollPane3.setViewportView(messageJTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -90,7 +90,7 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextPane message;
+    private javax.swing.JTextPane messageJTextPane;
     private javax.swing.JTextArea newNote;
     private javax.swing.JTextPane notes;
     // End of variables declaration//GEN-END:variables
@@ -117,6 +117,7 @@ public class PanelWithText extends javax.swing.JPanel {
     }
 
     void setMessage(Msg message) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        messageJTextPane.setText(message.toString());
+        
     }
 }
