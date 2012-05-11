@@ -97,11 +97,11 @@ public class PanelWithText extends javax.swing.JPanel {
     private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
         NoteBean nb = buttonModel.getMessage();
-        String note = newNote.getText();
-        nb.setNote(note);
-        newNote.setText("");
-        Persist p = Persist.INSTANCE;
-        p.addNote(nb);
+        //String note = newNote.getText();
+        //nb.setNote(note);
+        //newNote.setText("");
+        //Persist p = Persist.INSTANCE;
+        //p.addNote(nb);
     }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
