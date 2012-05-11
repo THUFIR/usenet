@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.controller;
 
 import java.io.Serializable;
@@ -9,10 +5,6 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "notes", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -21,9 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notes.findById", query = "SELECT n FROM Notes n WHERE n.id = :id"),
     @NamedQuery(name = "Notes.findByGroupId", query = "SELECT n FROM Notes n WHERE n.groupId = :groupId"),
     @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp"),
-    @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId"),
-    @NamedQuery(name = "Notes.getByIdAndGroup", query = "SELECT DISTINCT n FROM Notes n WHERE n.messageId = :messageId AND n.group=group"),
-})
+    @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId")})
 public class Notes implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,8 +35,8 @@ public class Notes implements Serializable {
     private int messageId;
     @Basic(optional = false)
     @Lob
-    @Column(name = "GROUP", nullable = false, length = 65535)
-    private String group;
+    @Column(name = "NEWS_GROUP", nullable = false, length = 65535)
+    private String newsGroup;
 
     public Notes() {
     }
@@ -55,12 +45,12 @@ public class Notes implements Serializable {
         this.id = id;
     }
 
-    public Notes(Long id, int groupId, Date stamp, int messageId, String group) {
+    public Notes(Long id, int groupId, Date stamp, int messageId, String newsGroup) {
         this.id = id;
         this.groupId = groupId;
         this.stamp = stamp;
         this.messageId = messageId;
-        this.group = group;
+        this.newsGroup = newsGroup;
     }
 
     public Long getId() {
@@ -103,12 +93,12 @@ public class Notes implements Serializable {
         this.messageId = messageId;
     }
 
-    public String getGroup() {
-        return group;
+    public String getNewsGroup() {
+        return newsGroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setNewsGroup(String newsGroup) {
+        this.newsGroup = newsGroup;
     }
 
     @Override

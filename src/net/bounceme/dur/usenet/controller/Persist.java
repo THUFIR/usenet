@@ -27,14 +27,13 @@ public enum Persist {
         LOG.info("isOpen?" + em.isOpen());
         em.getTransaction().begin();
         int id = message.getId();
-        TypedQuery<Notes> q = em.createQuery("SELECT  n "
-                + "FROM Notes n WHERE n.messageId = :messageId "
-                + "AND n.group = :group", Notes.class);
-        q.setParameter("messageId", message.getId()).setParameter("group", message.getGroup());
+        TypedQuery<Notes> q = em.createQuery("SELECT DISTINCT n FROM Notes n WHERE n.messageId = :messageId AND n.newsGroup=:newsGroup", Notes.class);
+        q.setParameter("messageId", message.getId()).setParameter("newsGroup", message.getGroup());
         List<Notes> results = q.getResultList();
         em.getTransaction().commit();
         for (Notes o : results) {
             LOG.info("object is \n\n" + o);
         }
+        LOG.info("persist..\n\n" + results);
     }
 }
