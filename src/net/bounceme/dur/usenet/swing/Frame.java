@@ -114,8 +114,6 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("message")) {
             Msg message = (Msg) evt.getNewValue();
             message.setGroup(panelWithList1.getGroup());
-            Persist p = Persist.INSTANCE;
-            p.insertMessage(message);
             panelWithText1.setMessage(message);
         }
     }//GEN-LAST:event_panelWithTable1PropertyChange

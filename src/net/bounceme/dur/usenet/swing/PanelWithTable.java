@@ -130,8 +130,7 @@ public class PanelWithTable extends javax.swing.JPanel {
             defaultTableModel.addRow(foo);
         }
         jTable1.setModel(defaultTableModel);
-        System.out.println("jTable1.selectAll..");
         jTable1.selectAll();
-        System.out.println("..jTable1.selectAll\t" + defaultTableModel.getRowCount());
+        row();
     }
 }

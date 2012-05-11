@@ -11,6 +11,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.swing.ButtonModel;
 import net.bounceme.dur.usenet.controller.Marker;
+import net.bounceme.dur.usenet.controller.Persist;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 /**
@@ -96,6 +97,8 @@ public class PanelWithText extends javax.swing.JPanel {
     private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
         Msg m = buttonModel.getMessage();
+        Persist p = Persist.INSTANCE;
+        p.insertMessage(m);
     }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
@@ -130,7 +133,6 @@ public class PanelWithText extends javax.swing.JPanel {
     void setMessage(Msg message) {
         messageJTextPane.setText(message.toString());
         addNote.setText(message.toString());
-        BtnMdl bMdl = new BtnMdl(message);
-        addNote.setModel(bMdl);
+        addNote.setModel(new BtnMdl(message));
     }
 }
