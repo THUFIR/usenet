@@ -11,7 +11,7 @@ public final class Msg {
     private String content;
 
     public Msg() {
-        LOG.warning(toString());
+        LOG.fine(toString());
     }
 
     Msg(int id, String group, String subject, String content) {

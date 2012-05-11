@@ -23,19 +23,19 @@ public enum Persist {
     }
     
     public void insertMessage(Msg m) {
-        LOG.warning("\t" + m);
-        LOG.warning("isOpen?" + em.isOpen());
+        LOG.fine("\t" + m);
+        LOG.fine("isOpen?" + em.isOpen());
         String comment = "dummy comment";
         Notes n = new Notes();
         n.setNewsGroup(m.getGroup());
         n.setMessageId(m.getId());
         n.setNote(comment);
-        LOG.warning(n.toString());
+        LOG.fine(n.toString());
         em.getTransaction().begin();
-        LOG.severe("transaction began..\n\n" + n);
+        LOG.fine("transaction began..\n\n" + n);
         em.persist(n);
         em.getTransaction().commit();
-        LOG.info("insert..\n\n" + m);
+        LOG.fine("insert..\n\n" + m);
     }
     
     public void queryMessage(Msg message) {

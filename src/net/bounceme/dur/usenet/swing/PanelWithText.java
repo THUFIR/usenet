@@ -49,9 +49,9 @@ public class PanelWithText extends javax.swing.JPanel {
 
         addNote.setText("jButton1");
         addNote.setModel(new BtnMdl(new Msg()));
-        addNote.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                addNotePropertyChange(evt);
+        addNote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNoteActionPerformed(evt);
             }
         });
 
@@ -93,11 +93,10 @@ public class PanelWithText extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addNotePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_addNotePropertyChange
+    private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
         Msg m = buttonModel.getMessage();
-        System.out.println("prop chg \n\n\n" + m);
-    }//GEN-LAST:event_addNotePropertyChange
+    }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
     private javax.swing.JScrollPane jScrollPane1;
