@@ -48,6 +48,7 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane1.setViewportView(newNote);
 
         addNote.setText("jButton1");
+        addNote.setModel(new BtnMdl(new Msg()));
         addNote.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 addNotePropertyChange(evt);
@@ -93,11 +94,9 @@ public class PanelWithText extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNotePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_addNotePropertyChange
-        //System.out.println("prop chg \n\n\n" + evt.toString());
-        Object o = evt.getNewValue();
-        ButtonModel foo = addNote.getModel();
-        //BtnMdl bar = (BtnMdl) foo;
-        System.out.println("prop chg \n\n\n" + foo);
+        BtnMdl buttonModel = (BtnMdl) addNote.getModel();
+        Msg m = buttonModel.getMessage();
+        System.out.println("prop chg \n\n\n" + m);
     }//GEN-LAST:event_addNotePropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;

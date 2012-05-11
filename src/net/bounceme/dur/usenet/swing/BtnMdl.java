@@ -4,7 +4,7 @@ import javax.swing.DefaultButtonModel;
 
 public class BtnMdl extends DefaultButtonModel {
 
-    private Msg message = new Msg();
+    private Msg message;
 
     BtnMdl(Msg message) {
         this.message = message;
