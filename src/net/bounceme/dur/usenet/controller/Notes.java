@@ -6,16 +6,15 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "notes", catalog = "nntp", schema = "")
+@Table(name = "NOTES", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n"),
     @NamedQuery(name = "Notes.findById", query = "SELECT n FROM Notes n WHERE n.id = :id"),
-    @NamedQuery(name = "Notes.findByGroupId", query = "SELECT n FROM Notes n WHERE n.groupId = :groupId"),
-    @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp"),
-    @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId")})
+    @NamedQuery(name = "Notes.findByNewsGroupId", query = "SELECT n FROM Notes n WHERE n.newsGroupId = :newsGroupId"),
+    @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId"),
+    @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp")})
 public class Notes implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
@@ -23,22 +22,22 @@ public class Notes implements Serializable {
     @Column(name = "ID", nullable = false)
     private Long id;
     @Basic(optional = false)
-    @Column(name = "GROUP_ID", nullable = false)
-    private int groupId;
-    @Basic(optional = false)
-    @Column(name = "STAMP", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date stamp;
-    @Lob
-    @Column(name = "NOTE", length = 65535)
-    private String note;
+    @Column(name = "NEWS_GROUP_ID", nullable = false)
+    private long newsGroupId;
     @Basic(optional = false)
     @Column(name = "MESSAGE_ID", nullable = false)
     private int messageId;
     @Basic(optional = false)
     @Lob
-    @Column(name = "NEWS_GROUP", nullable = false, length = 65535)
+    @Column(name = "NEWS_GROUP", nullable = false, length = 2147483647)
     private String newsGroup;
+    @Lob
+    @Column(name = "NOTE", length = 2147483647)
+    private String note;
+    @Basic(optional = false)
+    @Column(name = "STAMP", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date stamp;
 
     public Notes() {
         stamp = new Date();
@@ -49,12 +48,12 @@ public class Notes implements Serializable {
         stamp = new Date();
     }
 
-    public Notes(Long id, int groupId, Date stamp, int messageId, String newsGroup) {
+    public Notes(Long id, long newsGroupId, int messageId, String newsGroup, Date stamp) {
         this.id = id;
-        this.groupId = groupId;
-        this.stamp = stamp;
+        this.newsGroupId = newsGroupId;
         this.messageId = messageId;
         this.newsGroup = newsGroup;
+        this.stamp = stamp;
     }
 
     public Long getId() {
@@ -65,28 +64,12 @@ public class Notes implements Serializable {
         this.id = id;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public long getNewsGroupId() {
+        return newsGroupId;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
-    public Date getStamp() {
-        return stamp;
-    }
-
-    public void setStamp(Date stamp) {
-        this.stamp = stamp;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
+    public void setNewsGroupId(long newsGroupId) {
+        this.newsGroupId = newsGroupId;
     }
 
     public int getMessageId() {
@@ -103,6 +86,22 @@ public class Notes implements Serializable {
 
     public void setNewsGroup(String newsGroup) {
         this.newsGroup = newsGroup;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Date getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(Date stamp) {
+        this.stamp = stamp;
     }
 
     @Override
@@ -129,4 +128,5 @@ public class Notes implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.controller.Notes[ id=" + id + " ]";
     }
+    
 }
