@@ -22,20 +22,19 @@ public enum Persist {
         LOG.fine("entity manager made???" + em.isOpen());
     }
     
-    public void addNote(NoteBean m) {
-        LOG.fine("\t" + m);
+    public void addNote(NoteBean noteBean) {
+        LOG.fine("\t" + noteBean);
         LOG.fine("isOpen?" + em.isOpen());
-        String comment = "dummy comment";
         Notes n = new Notes();
-        n.setNewsGroup(m.getGroup());
-        n.setMessageId(m.getId());
-        n.setNote(comment);
+        n.setNewsGroup(noteBean.getGroup());
+        n.setMessageId(noteBean.getId());
+        n.setNote(noteBean.getNote());
         LOG.fine(n.toString());
         em.getTransaction().begin();
         LOG.fine("transaction began..\n\n" + n);
         em.persist(n);
         em.getTransaction().commit();
-        LOG.fine("insert..\n\n" + m);
+        LOG.fine("insert..\n\n" + noteBean);
     }
     
     public void queryMessage(NoteBean message) {
