@@ -108,7 +108,7 @@ public class PanelWithTable extends javax.swing.JPanel {
         String group = "";
         String subject = jTable1.getModel().getValueAt(row, 1).toString();
         String content = jTable1.getModel().getValueAt(row, 2).toString();
-        Msg message = new Msg(id, subject, content);
+        NoteBean message = new NoteBean(id, subject, content);
         jTextPane1.setText(jTable1.getModel().getValueAt(row, 2).toString());
         this.firePropertyChange("message", null, message);
     }

@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import net.bounceme.dur.usenet.swing.Msg;
+import net.bounceme.dur.usenet.swing.NoteBean;
 
 public enum Persist {
     
@@ -22,7 +22,7 @@ public enum Persist {
         LOG.fine("entity manager made???" + em.isOpen());
     }
     
-    public void insertMessage(Msg m) {
+    public void addNote(NoteBean m) {
         LOG.fine("\t" + m);
         LOG.fine("isOpen?" + em.isOpen());
         String comment = "dummy comment";
@@ -38,7 +38,7 @@ public enum Persist {
         LOG.fine("insert..\n\n" + m);
     }
     
-    public void queryMessage(Msg message) {
+    public void queryMessage(NoteBean message) {
         LOG.fine("\t" + message);
         LOG.fine("isOpen?" + em.isOpen());
         em.getTransaction().begin();

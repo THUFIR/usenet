@@ -40,7 +40,7 @@ public class PanelWithText extends javax.swing.JPanel {
         newNote = new javax.swing.JTextArea();
         addNote = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        notes = new javax.swing.JTextPane();
+        noteText = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         messageJTextPane = new javax.swing.JTextPane();
 
@@ -49,14 +49,14 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane1.setViewportView(newNote);
 
         addNote.setText("jButton1");
-        addNote.setModel(new BtnMdl(new Msg()));
+        addNote.setModel(new BtnMdl(new NoteBean()));
         addNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNoteActionPerformed(evt);
             }
         });
 
-        jScrollPane2.setViewportView(notes);
+        jScrollPane2.setViewportView(noteText);
 
         jScrollPane3.setViewportView(messageJTextPane);
 
@@ -96,9 +96,12 @@ public class PanelWithText extends javax.swing.JPanel {
 
     private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
-        Msg m = buttonModel.getMessage();
+        NoteBean nb = buttonModel.getMessage();
+        String note = newNote.getText();
+        nb.setNote(note);
+        newNote.setText("");
         Persist p = Persist.INSTANCE;
-        p.insertMessage(m);
+        p.addNote(nb);
     }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
@@ -107,7 +110,7 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane messageJTextPane;
     private javax.swing.JTextArea newNote;
-    private javax.swing.JTextPane notes;
+    private javax.swing.JTextPane noteText;
     // End of variables declaration//GEN-END:variables
 
     void setJTextArea(String string) {
@@ -130,7 +133,7 @@ public class PanelWithText extends javax.swing.JPanel {
         }
     }
 
-    void setMessage(Msg message) {
+    void setMessage(NoteBean message) {
         messageJTextPane.setText(message.toString());
         addNote.setText(message.toString());
         addNote.setModel(new BtnMdl(message));

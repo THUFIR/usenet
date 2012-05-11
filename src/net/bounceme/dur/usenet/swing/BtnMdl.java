@@ -4,13 +4,13 @@ import javax.swing.DefaultButtonModel;
 
 public class BtnMdl extends DefaultButtonModel {
 
-    private Msg message;
+    private NoteBean message;
 
-    BtnMdl(Msg message) {
+    BtnMdl(NoteBean message) {
         this.message = message;
     }
 
-    public Msg getMessage() {
+    public NoteBean getMessage() {
         return message;
     }
 }
