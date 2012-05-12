@@ -6,9 +6,7 @@ import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Marker;
-import net.bounceme.dur.usenet.controller.Persist;
 import net.bounceme.dur.usenet.controller.Usenet;
-import net.bounceme.dur.usenet.swing.NoteBean;
 
 public class Frame extends javax.swing.JFrame {
 
