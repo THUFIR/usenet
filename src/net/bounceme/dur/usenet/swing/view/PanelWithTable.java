@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.swing.table.DefaultTableModel;
 import net.bounceme.dur.usenet.controller.Marker;
-import net.bounceme.dur.usenet.controller.Notes;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class PanelWithTable extends javax.swing.JPanel {

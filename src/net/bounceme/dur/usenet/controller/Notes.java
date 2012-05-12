@@ -12,8 +12,8 @@ import net.bounceme.dur.usenet.swing.view.MessageBean;
 @NamedQueries({
     @NamedQuery(name = "Notes.findAll", query = "SELECT n FROM Notes n"),
     @NamedQuery(name = "Notes.findById", query = "SELECT n FROM Notes n WHERE n.id = :id"),
-    @NamedQuery(name = "Notes.findByNewsGroupId", query = "SELECT n FROM Notes n WHERE n.newsGroupId = :newsGroupId"),
     @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId"),
+    @NamedQuery(name = "Notes.findByNewsGroupId", query = "SELECT n FROM Notes n WHERE n.newsGroupId = :newsGroupId"),
     @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp")})
 public class Notes implements Serializable {
 
@@ -24,15 +24,15 @@ public class Notes implements Serializable {
     @Column(name = "ID", nullable = false)
     private Long id;
     @Basic(optional = false)
-    @Column(name = "NEWS_GROUP_ID", nullable = false)
-    private long newsGroupId;
-    @Basic(optional = false)
     @Column(name = "MESSAGE_ID", nullable = false)
     private int messageId;
     @Basic(optional = false)
     @Lob
     @Column(name = "NEWS_GROUP", nullable = false, length = 2147483647)
     private String newsGroup;
+    @Basic(optional = false)
+    @Column(name = "NEWS_GROUP_ID", nullable = false)
+    private long newsGroupId;
     @Lob
     @Column(name = "NOTE", length = 2147483647)
     private String note;
@@ -45,10 +45,11 @@ public class Notes implements Serializable {
         stamp = new Date();
     }
 
-    public Notes(MessageBean mb) {
-        messageId = mb.getId();
-        newsGroup = mb.getGroup();
-        note = mb.getNote();
+    public Notes(MessageBean messageBean) {
+        messageId = messageBean.getId();
+        newsGroup = messageBean.getGroup();
+        note = messageBean.getNote();
+        stamp = new Date();
     }
 
     public Notes(Long id) {
@@ -56,11 +57,11 @@ public class Notes implements Serializable {
         stamp = new Date();
     }
 
-    public Notes(Long id, long newsGroupId, int messageId, String newsGroup, Date stamp) {
+    public Notes(Long id, int messageId, String newsGroup, long newsGroupId, Date stamp) {
         this.id = id;
-        this.newsGroupId = newsGroupId;
         this.messageId = messageId;
         this.newsGroup = newsGroup;
+        this.newsGroupId = newsGroupId;
         this.stamp = stamp;
     }
 
@@ -70,14 +71,6 @@ public class Notes implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getNewsGroupId() {
-        return newsGroupId;
-    }
-
-    public void setNewsGroupId(long newsGroupId) {
-        this.newsGroupId = newsGroupId;
     }
 
     public int getMessageId() {
@@ -94,6 +87,14 @@ public class Notes implements Serializable {
 
     public void setNewsGroup(String newsGroup) {
         this.newsGroup = newsGroup;
+    }
+
+    public long getNewsGroupId() {
+        return newsGroupId;
+    }
+
+    public void setNewsGroupId(long newsGroupId) {
+        this.newsGroupId = newsGroupId;
     }
 
     public String getNote() {
@@ -134,7 +135,6 @@ public class Notes implements Serializable {
 
     @Override
     public String toString() {
-        String s = "id " + id + messageId + newsGroup + note;
-        return s;
+        return "net.bounceme.dur.usenet.controller.Notes[ id=" + id + " ]";
     }
 }
