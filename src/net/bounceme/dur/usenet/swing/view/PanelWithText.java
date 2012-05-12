@@ -48,6 +48,7 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane3.setViewportView(messageJTextPane);
 
         table.setModel(new NotesTableModel());
+        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -78,8 +79,8 @@ public class PanelWithText extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(73, 73, 73)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(67, 67, 67)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(260, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -102,25 +103,9 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JTextArea newNote;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-   
+
     void setJTextArea(String string) {
         newNote.setText(string);
-    }
-
-    private void setMessagesWithMarker(Marker marker) throws Exception {
-        Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
-        Usenet u = Usenet.INSTANCE;
-        List<javax.mail.Message> messages = u.getMessages(marker);
-        StringBuilder sb = new StringBuilder();
-        for (javax.mail.Message m : messages) {
-            try {
-                sb.append(m.getSubject().toString());
-                sb.append("\n");
-            } catch (MessagingException ex) {
-                Logger.getLogger(PanelWithText.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            setJTextArea(sb.toString());
-        }
     }
 
     void setMessage(MessageBean messageBean) {
@@ -129,7 +114,7 @@ public class PanelWithText extends javax.swing.JPanel {
         addNote.setModel(new BtnMdl(messageBean));
         Persist p = Persist.INSTANCE;
         List<Notes> notes = p.getMessages(messageBean);
-        NotesTableModel ntm = new NotesTableModel(notes,messageBean);
+        NotesTableModel ntm = new NotesTableModel(notes, messageBean);
         table.setModel(ntm);
     }
 }
