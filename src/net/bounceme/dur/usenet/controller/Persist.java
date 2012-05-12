@@ -36,7 +36,7 @@ public enum Persist {
         List<Notes> results = q.getResultList();
 
         em.getTransaction().commit();
-        LOG.warning("\n\nresults for\n\n" + messageBean + "..\n\n" + results + "\n\n");
+        LOG.fine("\n\nresults for\n\n" + messageBean + "..\n\n" + results + "\n\n");
         return results;
     }
 

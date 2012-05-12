@@ -28,10 +28,10 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         newNote = new javax.swing.JTextArea();
         addNote = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        noteLog = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         messageJTextPane = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         newNote.setColumns(20);
         newNote.setRows(5);
@@ -45,10 +45,10 @@ public class PanelWithText extends javax.swing.JPanel {
             }
         });
 
-        noteLog.setEditable(false);
-        jScrollPane2.setViewportView(noteLog);
-
         jScrollPane3.setViewportView(messageJTextPane);
+
+        table.setModel(new NotesTableModel());
+        jScrollPane2.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,7 +62,7 @@ public class PanelWithText extends javax.swing.JPanel {
                     .addComponent(addNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
                     .addContainerGap()))
@@ -77,10 +77,10 @@ public class PanelWithText extends javax.swing.JPanel {
                 .addComponent(addNote, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(68, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(256, 256, 256)))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(73, 73, 73)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(260, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,7 +100,7 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane messageJTextPane;
     private javax.swing.JTextArea newNote;
-    private javax.swing.JTextPane noteLog;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
    
     void setJTextArea(String string) {
@@ -129,5 +129,7 @@ public class PanelWithText extends javax.swing.JPanel {
         addNote.setModel(new BtnMdl(messageBean));
         Persist p = Persist.INSTANCE;
         List<Notes> notes = p.getMessages(messageBean);
+        NotesTableModel ntm = new NotesTableModel(notes,messageBean);
+        table.setModel(ntm);
     }
 }
