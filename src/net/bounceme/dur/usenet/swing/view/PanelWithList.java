@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.swing.view;
 
 import javax.swing.DefaultListModel;
 

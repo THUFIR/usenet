@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.swing.view;
 
 import java.util.List;
 import java.util.Vector;
@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.swing.table.DefaultTableModel;
 import net.bounceme.dur.usenet.controller.Marker;
+import net.bounceme.dur.usenet.controller.Notes;
 import net.bounceme.dur.usenet.controller.Usenet;
 
 public class PanelWithTable extends javax.swing.JPanel {
@@ -108,9 +109,9 @@ public class PanelWithTable extends javax.swing.JPanel {
         String group = "";
         String subject = jTable1.getModel().getValueAt(row, 1).toString();
         String content = jTable1.getModel().getValueAt(row, 2).toString();
-        NoteBean message = new NoteBean(id, subject, content);
+        MessageBean n = new MessageBean(id,subject,content);//id, subject, content
         jTextPane1.setText(jTable1.getModel().getValueAt(row, 2).toString());
-        this.firePropertyChange("message", null, message);
+        this.firePropertyChange("message", null, n);
     }
 
     @SuppressWarnings("unchecked")

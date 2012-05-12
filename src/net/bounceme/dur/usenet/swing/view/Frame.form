@@ -64,7 +64,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="net.bounceme.dur.usenet.swing.PanelWithList" name="panelWithList1">
+        <Component class="net.bounceme.dur.usenet.swing.view.PanelWithList" name="panelWithList1">
           <Events>
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="panelWithList1PropertyChange"/>
           </Events>
@@ -76,7 +76,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="net.bounceme.dur.usenet.swing.PanelWithTable" name="panelWithTable1">
+        <Component class="net.bounceme.dur.usenet.swing.view.PanelWithTable" name="panelWithTable1">
           <Events>
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="panelWithTable1PropertyChange"/>
           </Events>
@@ -88,7 +88,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="net.bounceme.dur.usenet.swing.PanelWithText" name="panelWithText1">
+        <Component class="net.bounceme.dur.usenet.swing.view.PanelWithText" name="panelWithText1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="tab3">
@@ -99,7 +99,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="net.bounceme.dur.usenet.swing.PanelWithSlider" name="panelWithSlider1">
+    <Component class="net.bounceme.dur.usenet.swing.view.PanelWithSlider" name="panelWithSlider1">
       <Events>
         <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="panelWithSlider1PropertyChange"/>
       </Events>

@@ -1,28 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.swing.view;
 
+import gnu.mail.handler.Message;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.swing.ButtonModel;
 import net.bounceme.dur.usenet.controller.Marker;
 import net.bounceme.dur.usenet.controller.Persist;
 import net.bounceme.dur.usenet.controller.Usenet;
+import net.bounceme.dur.usenet.swing.BtnMdl;
 
-/**
- *
- * @author thufir
- */
 public class PanelWithText extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelWithText
-     */
     public PanelWithText() {
         initComponents();
     }
@@ -49,7 +38,7 @@ public class PanelWithText extends javax.swing.JPanel {
         jScrollPane1.setViewportView(newNote);
 
         addNote.setText("jButton1");
-        addNote.setModel(new BtnMdl(new net.bounceme.dur.usenet.swing.NoteBean()));
+        addNote.setModel(new BtnMdl(new MessageBean()));
         addNote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNoteActionPerformed(evt);
@@ -97,12 +86,12 @@ public class PanelWithText extends javax.swing.JPanel {
 
     private void addNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNoteActionPerformed
         BtnMdl buttonModel = (BtnMdl) addNote.getModel();
-        NoteBean nb = buttonModel.getMessage();
-        String note = newNote.getText();
-        nb.setNote(note);
+        MessageBean message = buttonModel.getMessage();
+        String newNoteText = newNote.getText();
+        message.setNote(newNoteText);
         newNote.setText("");
         Persist p = Persist.INSTANCE;
-        p.addNote(nb);
+        p.addMessageBean(message);
     }//GEN-LAST:event_addNoteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNote;
@@ -121,9 +110,9 @@ public class PanelWithText extends javax.swing.JPanel {
     void setMessages(Marker marker) throws Exception {
         Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
-        List<Message> messages = u.getMessages(marker);
+        List<javax.mail.Message> messages = u.getMessages(marker);
         StringBuilder sb = new StringBuilder();
-        for (Message m : messages) {
+        for (javax.mail.Message m : messages) {
             try {
                 sb.append(m.getSubject().toString());
                 sb.append("\n");
@@ -134,7 +123,7 @@ public class PanelWithText extends javax.swing.JPanel {
         }
     }
 
-    void setMessage(NoteBean message) {
+    void setMessage(MessageBean message) {
         messageJTextPane.setText(message.toString());
         addNote.setText(message.toString());
         addNote.setModel(new BtnMdl(message));

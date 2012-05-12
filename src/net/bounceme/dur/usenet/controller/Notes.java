@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import net.bounceme.dur.usenet.swing.view.MessageBean;
 
 @Entity
 @Table(name = "NOTES", catalog = "nntp", schema = "")
@@ -15,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notes.findByMessageId", query = "SELECT n FROM Notes n WHERE n.messageId = :messageId"),
     @NamedQuery(name = "Notes.findByStamp", query = "SELECT n FROM Notes n WHERE n.stamp = :stamp")})
 public class Notes implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
@@ -41,6 +43,12 @@ public class Notes implements Serializable {
 
     public Notes() {
         stamp = new Date();
+    }
+
+    public Notes(MessageBean mb) {
+        messageId = mb.getId();
+        newsGroup = mb.getGroup();
+        note = mb.getNote();
     }
 
     public Notes(Long id) {
@@ -128,5 +136,4 @@ public class Notes implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.controller.Notes[ id=" + id + " ]";
     }
-    
 }

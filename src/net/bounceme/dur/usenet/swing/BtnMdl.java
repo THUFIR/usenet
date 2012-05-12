@@ -1,16 +1,24 @@
 package net.bounceme.dur.usenet.swing;
 
 import javax.swing.DefaultButtonModel;
+import net.bounceme.dur.usenet.swing.view.MessageBean;
 
-public class BtnMdl extends DefaultButtonModel {
+public final class BtnMdl extends DefaultButtonModel {
 
-    private NoteBean message;
+     private MessageBean message;
 
-    BtnMdl(NoteBean message) {
+
+    public BtnMdl(MessageBean message) {
+        setMessage(message);
+    }
+
+    public MessageBean getMessage() {
+        return message;
+    }
+
+    public void setMessage(MessageBean message) {
         this.message = message;
     }
 
-    public NoteBean getMessage() {
-        return message;
-    }
+
 }
