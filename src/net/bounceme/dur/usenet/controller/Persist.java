@@ -20,7 +20,7 @@ public enum Persist {
         LOG.fine("entity manager made???" + em.isOpen());
     }
 
-    public void addMessageBean(MessageBean messageBean) {
+    public void getMessages(MessageBean messageBean) {
         LOG.fine("\t" + messageBean);
         Notes note = new Notes(messageBean);
         LOG.fine("isOpen?" + em.isOpen());
@@ -31,11 +31,12 @@ public enum Persist {
         LOG.fine("insert..\n\n" + note);
     }
 
-    public void addNote(Notes note) {
-        LOG.fine("\t" + note);
+    public void addMessageBean(MessageBean messageBean) {
+        LOG.fine("\t" + messageBean);
+        Notes note = new Notes(messageBean);
         LOG.fine("isOpen?" + em.isOpen());
         em.getTransaction().begin();
-        LOG.fine("transaction began..\n\n" + note);
+        LOG.warning("transaction began..\n\n" + note);
         em.persist(note);
         em.getTransaction().commit();
         LOG.fine("insert..\n\n" + note);

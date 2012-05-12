@@ -7,9 +7,10 @@ public final class MessageBean {
     private String content;
     private String group;
     private String note;
-    
-    public MessageBean(){}
-    
+
+    public MessageBean() {
+    }
+
     public MessageBean(int id, String subject, String content) {
         setId(id);
         setSubject(subject);
@@ -54,5 +55,11 @@ public final class MessageBean {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        String s = "" + group + id + note;
+        return s;
     }
 }
