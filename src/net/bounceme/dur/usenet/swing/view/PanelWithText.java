@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import net.bounceme.dur.usenet.controller.Marker;
+import net.bounceme.dur.usenet.controller.Notes;
 import net.bounceme.dur.usenet.controller.Persist;
 import net.bounceme.dur.usenet.controller.Usenet;
 import net.bounceme.dur.usenet.swing.BtnMdl;
@@ -101,12 +102,12 @@ public class PanelWithText extends javax.swing.JPanel {
     private javax.swing.JTextArea newNote;
     private javax.swing.JTextPane noteLog;
     // End of variables declaration//GEN-END:variables
-
+   
     void setJTextArea(String string) {
         newNote.setText(string);
     }
 
-    void setMessages(Marker marker) throws Exception {
+    private void setMessagesWithMarker(Marker marker) throws Exception {
         Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
         List<javax.mail.Message> messages = u.getMessages(marker);
@@ -122,9 +123,11 @@ public class PanelWithText extends javax.swing.JPanel {
         }
     }
 
-    void setMessage(MessageBean message) {
-        messageJTextPane.setText(message.toString());
-        addNote.setText(message.toString());
-        addNote.setModel(new BtnMdl(message));
+    void setMessage(MessageBean messageBean) {
+        messageJTextPane.setText(messageBean.toString());
+        addNote.setText(messageBean.toString());
+        addNote.setModel(new BtnMdl(messageBean));
+        Persist p = Persist.INSTANCE;
+        List<Notes> notes = p.getMessages(messageBean);
     }
 }
