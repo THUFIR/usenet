@@ -1,6 +1,5 @@
 package net.bounceme.dur.usenet.swing.view;
 
-import gnu.mail.handler.Message;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
