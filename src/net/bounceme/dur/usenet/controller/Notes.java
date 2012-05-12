@@ -134,6 +134,7 @@ public class Notes implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.controller.Notes[ id=" + id + " ]";
+        String s = "id " + id + messageId + newsGroup + note;
+        return s;
     }
 }

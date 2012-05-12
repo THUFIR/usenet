@@ -25,7 +25,7 @@ public enum Persist {
         Notes note = new Notes(messageBean);
         LOG.fine("isOpen?" + em.isOpen());
         em.getTransaction().begin();
-        LOG.fine("transaction began..\n\n" + note);
+        LOG.warning("transaction began..\n\n" + note);
         em.persist(note);
         em.getTransaction().commit();
         LOG.fine("insert..\n\n" + note);
