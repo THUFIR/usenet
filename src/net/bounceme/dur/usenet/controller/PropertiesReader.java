@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class PropertiesReader {
 
     private static final Logger LOG = Logger.getLogger(PropertiesReader.class.getName());
-    private static final Level LEVEL = Level.INFO;
+    private static final Level LEVEL = Level.FINE;
     private static Properties props = new Properties();
 
     public static Properties getProps() {

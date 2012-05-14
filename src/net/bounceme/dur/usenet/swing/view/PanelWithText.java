@@ -1,11 +1,11 @@
 package net.bounceme.dur.usenet.swing.view;
 
 import java.util.List;
+import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.swing.BtnMdl;
 import net.bounceme.dur.usenet.swing.Notes;
 import net.bounceme.dur.usenet.swing.Persist;
-import net.bounceme.dur.usenet.model.MessageBean;
-import net.bounceme.dur.usenet.model.NotesTableModel;
+import net.bounceme.dur.usenet.swing.model.NotesTableModel;
 
 public class PanelWithText extends javax.swing.JPanel {
 

@@ -1,9 +1,10 @@
-package net.bounceme.dur.usenet.model;
+package net.bounceme.dur.usenet.swing.model;
 
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.swing.Notes;
 
 public class NotesTableModel extends DefaultTableModel {
@@ -25,6 +26,6 @@ public class NotesTableModel extends DefaultTableModel {
             v.add(n.getNote());
             this.addRow(v);
         }
-        LOG.warning(notes.toString());
+        LOG.fine(notes.toString());
     }
 }
