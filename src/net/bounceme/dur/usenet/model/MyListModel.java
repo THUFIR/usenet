@@ -1,5 +1,5 @@
 
-package net.bounceme.dur.usenet.swing.model;
+package net.bounceme.dur.usenet.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import javax.swing.DefaultButtonModel;
-import net.bounceme.dur.usenet.swing.model.MessageBean;
+import net.bounceme.dur.usenet.model.MessageBean;
 
 public final class BtnMdl extends DefaultButtonModel {
 

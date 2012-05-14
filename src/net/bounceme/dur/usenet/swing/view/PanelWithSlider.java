@@ -1,6 +1,6 @@
 package net.bounceme.dur.usenet.swing.view;
 
-import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
+import net.bounceme.dur.usenet.model.MyBoundedRangeModel;
 
 public class PanelWithSlider extends javax.swing.JPanel {
 

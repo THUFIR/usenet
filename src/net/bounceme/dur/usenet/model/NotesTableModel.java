@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing.model;
+package net.bounceme.dur.usenet.model;
 
 import java.util.List;
 import java.util.Vector;

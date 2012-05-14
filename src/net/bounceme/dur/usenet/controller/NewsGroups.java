@@ -3,7 +3,7 @@ package net.bounceme.dur.usenet.controller;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.bounceme.dur.usenet.swing.model.MyListModel;
+import net.bounceme.dur.usenet.model.MyListModel;
 
 public enum NewsGroups {
 

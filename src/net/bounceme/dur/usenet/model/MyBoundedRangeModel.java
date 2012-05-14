@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing.model;
+package net.bounceme.dur.usenet.model;
 
 import javax.swing.DefaultBoundedRangeModel;
 import net.bounceme.dur.usenet.swing.Usenet;

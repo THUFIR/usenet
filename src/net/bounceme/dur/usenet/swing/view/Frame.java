@@ -1,6 +1,6 @@
 package net.bounceme.dur.usenet.swing.view;
 
-import net.bounceme.dur.usenet.swing.model.MessageBean;
+import net.bounceme.dur.usenet.model.MessageBean;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

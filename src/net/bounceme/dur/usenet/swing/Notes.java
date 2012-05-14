@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import net.bounceme.dur.usenet.swing.model.MessageBean;
+import net.bounceme.dur.usenet.model.MessageBean;
 
 @Entity
 @Table(name = "NOTES", catalog = "nntp", schema = "")

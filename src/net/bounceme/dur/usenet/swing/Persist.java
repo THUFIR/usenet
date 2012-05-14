@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import net.bounceme.dur.usenet.swing.model.MessageBean;
+import net.bounceme.dur.usenet.model.MessageBean;
 
 public enum Persist {
 
