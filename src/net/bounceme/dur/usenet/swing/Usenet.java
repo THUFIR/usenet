@@ -65,7 +65,7 @@ public enum Usenet {
         setMarker(marker);
         loadFolder();
         messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
-        Collections.reverse(messages);
+        //Collections.reverse(messages);
         return Collections.unmodifiableList(messages);
     }
 

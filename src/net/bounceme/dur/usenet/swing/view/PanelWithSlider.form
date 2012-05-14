@@ -41,6 +41,11 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JSlider" name="jSlider1">
+      <Properties>
+        <Property name="model" type="javax.swing.BoundedRangeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new MyBoundedRangeModel()" type="code"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
       </Events>

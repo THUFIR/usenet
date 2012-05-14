@@ -1,18 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.swing.view;
 
-/**
- *
- * @author thufir
- */
+import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
+
 public class PanelWithSlider extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelWithSlider
-     */
     public PanelWithSlider() {
         initComponents();
     }
@@ -28,6 +19,7 @@ public class PanelWithSlider extends javax.swing.JPanel {
 
         jSlider1 = new javax.swing.JSlider();
 
+        jSlider1.setModel(new MyBoundedRangeModel());
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSlider1StateChanged(evt);
@@ -60,6 +52,7 @@ public class PanelWithSlider extends javax.swing.JPanel {
         //System.out.println("state2 " + jSlider1.getValue());
         int val = jSlider1.getValue();
         this.firePropertyChange("slider", null, val);
+        //jSlider1.setModel(new MyBoundedRangeModel());
     }//GEN-LAST:event_jSlider1StateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider jSlider1;
