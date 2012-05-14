@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.controller;
+package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import net.bounceme.dur.usenet.swing.view.MessageBean;
+import net.bounceme.dur.usenet.swing.model.MessageBean;
 
 public enum Persist {
 

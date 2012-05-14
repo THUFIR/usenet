@@ -1,9 +1,10 @@
-package net.bounceme.dur.usenet.controller;
+package net.bounceme.dur.usenet.swing;
 
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
+import net.bounceme.dur.usenet.controller.PropertiesReader;
 import net.bounceme.dur.usenet.swing.model.MyListModel;
 
 public enum Usenet {

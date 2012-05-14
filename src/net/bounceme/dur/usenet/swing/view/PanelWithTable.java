@@ -1,13 +1,14 @@
 package net.bounceme.dur.usenet.swing.view;
 
+import net.bounceme.dur.usenet.swing.model.MessageBean;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.swing.table.DefaultTableModel;
-import net.bounceme.dur.usenet.controller.Marker;
-import net.bounceme.dur.usenet.controller.Usenet;
+import net.bounceme.dur.usenet.swing.Marker;
+import net.bounceme.dur.usenet.swing.Usenet;
 
 public class PanelWithTable extends javax.swing.JPanel {
 

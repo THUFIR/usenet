@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing.view;
+package net.bounceme.dur.usenet.swing.model;
 
 public final class MessageBean {
 

@@ -1,12 +1,12 @@
-package net.bounceme.dur.usenet.swing.view;
+package net.bounceme.dur.usenet.swing.model;
 
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import net.bounceme.dur.usenet.controller.Notes;
+import net.bounceme.dur.usenet.swing.Notes;
 
-class NotesTableModel extends DefaultTableModel {
+public class NotesTableModel extends DefaultTableModel {
 
     private final static Logger LOG = Logger.getLogger(NotesTableModel.class.getName());
 

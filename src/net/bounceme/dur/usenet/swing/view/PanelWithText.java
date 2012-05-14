@@ -1,14 +1,11 @@
 package net.bounceme.dur.usenet.swing.view;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.MessagingException;
-import net.bounceme.dur.usenet.controller.Marker;
-import net.bounceme.dur.usenet.controller.Notes;
-import net.bounceme.dur.usenet.controller.Persist;
-import net.bounceme.dur.usenet.controller.Usenet;
 import net.bounceme.dur.usenet.swing.BtnMdl;
+import net.bounceme.dur.usenet.swing.Notes;
+import net.bounceme.dur.usenet.swing.Persist;
+import net.bounceme.dur.usenet.swing.model.MessageBean;
+import net.bounceme.dur.usenet.swing.model.NotesTableModel;
 
 public class PanelWithText extends javax.swing.JPanel {
 
