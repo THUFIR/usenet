@@ -14,7 +14,7 @@ import net.bounceme.dur.usenet.swing.view.controller.MyController;
 
 public class Frame extends javax.swing.JFrame implements Observer {
 
-    private final static Logger LOG = Logger.getLogger(Usenet.class.getName());
+    private final static Logger LOG = Logger.getLogger(Frame.class.getName());
     private Usenet u = Usenet.INSTANCE;
     private MyController c = new MyController();
 
