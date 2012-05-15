@@ -1,21 +1,26 @@
 package net.bounceme.dur.usenet.swing.view;
 
-import net.bounceme.dur.usenet.model.MessageBean;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.swing.Marker;
 import net.bounceme.dur.usenet.swing.Usenet;
+import net.bounceme.dur.usenet.swing.view.controller.MyController;
 
-public class Frame extends javax.swing.JFrame {
+public class Frame extends javax.swing.JFrame implements Observer {
 
     private final static Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Usenet u = Usenet.INSTANCE;
+    private MyController c = new MyController();
 
-    @SuppressWarnings("unchecked")
     public Frame() {
+        c.addObserver(this);
+        System.out.println("hmm, added this as observer");
         initComponents();
         load();
     }
@@ -139,13 +144,7 @@ public class Frame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -188,5 +187,10 @@ public class Frame extends javax.swing.JFrame {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("where's rick?" + c);
     }
 }
