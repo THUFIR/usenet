@@ -23,6 +23,7 @@ public class Frame extends javax.swing.JFrame implements Observer {
         System.out.println("hmm, added this as observer");
         initComponents();
         load();
+        c.foo();
     }
 
     /**

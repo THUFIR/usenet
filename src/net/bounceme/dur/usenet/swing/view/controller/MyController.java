@@ -9,4 +9,9 @@ public class MyController extends Observable {
         setChanged();
         notifyObservers(s);
     }
+
+    public void foo() {
+        setChanged();
+        notifyObservers();
+    }
 }
