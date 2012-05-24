@@ -23,7 +23,7 @@ public class MyController extends Observable {
     }
 
     @SuppressWarnings("unchecked")
-    private void load() {
+    public void load() {
         List<Folder> folders = u.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder f : folders) {
@@ -34,11 +34,11 @@ public class MyController extends Observable {
         //panelWithList1.setJList(defaultListModel);
     }
 
-    private void setMarker(Marker marker) {
+    public void setMarker(Marker marker) {
         //panelWithTable1.setMessages(marker);
     }
 
-    private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {
+    public void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("list")) {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
@@ -47,7 +47,7 @@ public class MyController extends Observable {
         }
     }
 
-    private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {
+    public void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {
         int slider = 1;
         if (evt.getPropertyName().equals("slider")) {
             slider = (int) evt.getNewValue();
@@ -56,7 +56,7 @@ public class MyController extends Observable {
         //setMarker(new Marker(group, slider));
     }
 
-    private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {
+    public void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("message")) {
             Object o = evt.getNewValue();
             MessageBean message = (MessageBean) o;

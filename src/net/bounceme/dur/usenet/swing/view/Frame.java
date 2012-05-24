@@ -98,13 +98,14 @@ public class Frame extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithList1PropertyChange
-        if (evt.getPropertyName().equals("list")) {
+        /*if (evt.getPropertyName().equals("list")) {
             //panelWithText1.setJTextArea(group);
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
             int slider = panelWithSlider1.getValue();
             setMarker(new Marker(group, slider));
-        }
+        }*/
+        
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithSlider1PropertyChange
