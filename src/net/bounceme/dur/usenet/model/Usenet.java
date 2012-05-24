@@ -18,6 +18,7 @@ public enum Usenet {
     private Folder root = null;
     private Store store = null;
     private List<Folder> folders = new ArrayList<>();
+    private int max = 100;
 
     Usenet() {
         LOG.fine("controller..");
@@ -41,17 +42,12 @@ public enum Usenet {
         setFolders(Arrays.asList(root.listSubscribed()));
         return true;
     }
-    
-    public Page generateMarker(Page m){
-        int end = 1;
-        
-        return m;
-    }
 
     public List<Message> getMessages(Page marker) throws Exception {
-        LOG.fine("loading.. " + marker.toString());
+        LOG.info("loading.. " + marker.toString());
         folder = root.getFolder(marker.getGroup());
         folder.open(Folder.READ_ONLY);
+        setMax(folder.getMessageCount() - 10);
         messages = Arrays.asList(folder.getMessages(marker.getStart(), marker.getEnd()));
         return Collections.unmodifiableList(messages);
     }
@@ -62,5 +58,13 @@ public enum Usenet {
 
     private void setFolders(List<Folder> folders) {
         this.folders = folders;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
     }
 }

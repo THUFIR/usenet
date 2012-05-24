@@ -15,7 +15,7 @@ public class Page {
     public Page(String group, int start) {
         setGroup(group);
         setStart(start);
-        LOG.info(toString());
+        LOG.fine(toString());
     }
 
     @Override
