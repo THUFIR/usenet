@@ -17,7 +17,6 @@ public enum Usenet {
     private boolean loaded = false;
     private Folder folder = null;
     private Folder root = null;
-    //private List<Folder> folders = null;
     private Store store = null;
     private List<Folder> folders = new ArrayList<>();
 
