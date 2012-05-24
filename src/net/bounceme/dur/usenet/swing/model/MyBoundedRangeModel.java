@@ -19,8 +19,13 @@ public class MyBoundedRangeModel extends DefaultBoundedRangeModel {
     }
 
     public MyBoundedRangeModel(Page page) {
-        LOG.warning("good.." + page);
+        LOG.fine("good.." + page);
         this.setMaximum(page.getEnd());
         this.setMinimum(1);
+    }
+
+    @Override
+    public String toString() {
+        return "max " + this.getMaximum();
     }
 }

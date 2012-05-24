@@ -9,7 +9,7 @@ public class PanelWithSlider extends javax.swing.JPanel {
 
     private final static Logger LOG = Logger.getLogger(PanelWithSlider.class.getName());
     private static final Level LEVEL = Level.INFO;
-    
+
     public PanelWithSlider() {
         initComponents();
     }
@@ -70,9 +70,8 @@ public class PanelWithSlider extends javax.swing.JPanel {
         return jSlider1.getValue();
     }
 
-    void setPage(Page page) {
-        LOG.warning(page.toString());
-        MyBoundedRangeModel model = new MyBoundedRangeModel();
+    void setModel(MyBoundedRangeModel model) {
+        LOG.fine("changing model" + model);
         jSlider1.setModel(model);
         jSlider1.setValue(model.getMaximum());
     }

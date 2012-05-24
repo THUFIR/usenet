@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
+import javax.mail.Message;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.model.Usenet;
@@ -95,9 +96,15 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
-            int slider = panelWithSlider1.getValue();
-            newSlider(new Page(group, slider));
-            setPage(new Page(group, slider));
+            //int slider = panelWithSlider1.getValue();
+            //LOG.severe("slider " + slider);
+            Page p = new Page(group, 10);
+            try {
+                usenet.getMessages(p);
+            } catch (Exception ex) {
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            setSliderModel(p);
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
 
@@ -106,7 +113,7 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("slider")) {
             slider = (int) evt.getNewValue();
             String group = panelWithList1.getGroup();
-            setPage(new Page(group, slider));
+            setTableMessages(new Page(group, slider));
         }
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
@@ -175,7 +182,7 @@ public class Frame extends javax.swing.JFrame {
         panelWithList1.setJList(defaultListModel);
     }
 
-    private void setPage(Page page) {
+    private void setTableMessages(Page page) {
         try {
             panelWithTable1.setMessages(page);
         } catch (Exception ex) {
@@ -183,9 +190,9 @@ public class Frame extends javax.swing.JFrame {
         }
     }
 
-    private void newSlider(Page page) {
-        MyBoundedRangeModel foo = new MyBoundedRangeModel(page);
+    private void setSliderModel(Page page) {
+        MyBoundedRangeModel model = new MyBoundedRangeModel(page);
+        panelWithSlider1.setModel(model);
+        setTableMessages(page);
     }
-
-
 }
