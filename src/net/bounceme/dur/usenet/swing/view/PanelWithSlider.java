@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing.view;
 
 import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
+import net.bounceme.dur.usenet.swing.model.Page;
 
 public class PanelWithSlider extends javax.swing.JPanel {
 
@@ -60,7 +61,9 @@ public class PanelWithSlider extends javax.swing.JPanel {
         return jSlider1.getValue();
     }
 
-    void newSlider() {
-        jSlider1.setModel(new MyBoundedRangeModel());
+    void setPage(Page page) {
+        MyBoundedRangeModel model = new MyBoundedRangeModel();
+        jSlider1.setModel(model);
+        jSlider1.setValue(model.getMaximum());
     }
 }
