@@ -7,6 +7,7 @@ import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.model.Usenet;
+import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
 import net.bounceme.dur.usenet.swing.model.Page;
 
 public class Frame extends javax.swing.JFrame {
@@ -16,7 +17,7 @@ public class Frame extends javax.swing.JFrame {
 
     public Frame() {
         initComponents();
-        load();
+        loadFoldersListModel();
     }
 
     /**
@@ -95,6 +96,7 @@ public class Frame extends javax.swing.JFrame {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
             int slider = panelWithSlider1.getValue();
+            newSlider(new Page(group, slider));
             setPage(new Page(group, slider));
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
@@ -162,12 +164,12 @@ public class Frame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     @SuppressWarnings("unchecked")
-    private void load() {
+    private void loadFoldersListModel() {
         List<Folder> folders = usenet.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder f : folders) {
-            String z = f.getFullName();
-            defaultListModel.addElement(z);
+            String fullGroupName = f.getFullName();
+            defaultListModel.addElement(fullGroupName);
         }
         LOG.fine(defaultListModel.toString());
         panelWithList1.setJList(defaultListModel);
@@ -175,11 +177,15 @@ public class Frame extends javax.swing.JFrame {
 
     private void setPage(Page page) {
         try {
-            //panelWithSlider1.setPage(page);
             panelWithTable1.setMessages(page);
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void newSlider(Page page) {
+        MyBoundedRangeModel foo = new MyBoundedRangeModel(page);
+    }
+
 
 }

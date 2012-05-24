@@ -13,7 +13,13 @@ public class MyBoundedRangeModel extends DefaultBoundedRangeModel {
     private Usenet u = Usenet.INSTANCE;
 
     public MyBoundedRangeModel() {
-        this.setMaximum(u.getMax());
+        LOG.warning("shouldn't happen..");
+        this.setMaximum(99);
+        this.setMinimum(1);
+    }
+
+    public MyBoundedRangeModel(Page page) {
+        this.setMaximum(page.getEnd());
         this.setMinimum(1);
     }
 }
