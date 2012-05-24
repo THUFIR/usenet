@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.swing.table.DefaultTableModel;
 import net.bounceme.dur.usenet.model.Usenet;
-import net.bounceme.dur.usenet.swing.model.Marker;
+import net.bounceme.dur.usenet.swing.model.Page;
 
 public class PanelWithTable extends javax.swing.JPanel {
 
@@ -115,7 +115,7 @@ public class PanelWithTable extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    void setMessages(Marker marker) throws Exception {
+    void setMessages(Page marker) throws Exception {
         Logger.getLogger(PanelWithText.class.getName()).log(Level.FINE, "hmm ");
         Usenet u = Usenet.INSTANCE;
         List<Message> messages = u.getMessages(marker);

@@ -7,7 +7,7 @@ import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.model.Usenet;
-import net.bounceme.dur.usenet.swing.model.Marker;
+import net.bounceme.dur.usenet.swing.model.Page;
 
 public class Frame extends javax.swing.JFrame {
 
@@ -107,7 +107,7 @@ public class Frame extends javax.swing.JFrame {
             slider = (int) evt.getNewValue();
         }
         String group = panelWithList1.getGroup();
-        setMarker(new Marker(group, slider));
+        setMarker(new Page(group,slider));
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
@@ -175,7 +175,7 @@ public class Frame extends javax.swing.JFrame {
         panelWithList1.setJList(defaultListModel);
     }
 
-    private void setMarker(Marker marker) {
+    private void setMarker(Page marker) {
         try {
             panelWithTable1.setMessages(marker);
         } catch (Exception ex) {

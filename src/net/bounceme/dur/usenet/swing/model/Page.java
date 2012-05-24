@@ -2,20 +2,20 @@ package net.bounceme.dur.usenet.swing.model;
 
 import java.util.logging.Logger;
 
-public class Marker {
+public class Page {
 
-    private static final Logger LOG = Logger.getLogger(Marker.class.getName());
+    private static final Logger LOG = Logger.getLogger(Page.class.getName());
     private int start = 15;
+    private int end = 100;
     private String group = "";
 
-    private Marker() {
+    private Page() {
     }
 
-    public Marker(String g, int s) {
-        LOG.fine("trying to make marker:" + s + g);
-        setGroup(g);
-        setStart(s);
-        LOG.fine(toString());
+    public Page(String group, int start) {
+        setGroup(group);
+        setStart(start);
+        LOG.info(toString());
     }
 
     @Override
@@ -44,7 +44,11 @@ public class Marker {
         this.group = group;
     }
 
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
     public int getEnd() {
-        return start + 20;
+        return end;
     }
 }
