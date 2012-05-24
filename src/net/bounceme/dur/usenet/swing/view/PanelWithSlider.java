@@ -1,10 +1,15 @@
 package net.bounceme.dur.usenet.swing.view;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
 import net.bounceme.dur.usenet.swing.model.Page;
 
 public class PanelWithSlider extends javax.swing.JPanel {
 
+    private final static Logger LOG = Logger.getLogger(PanelWithSlider.class.getName());
+    private static final Level LEVEL = Level.INFO;
+    
     public PanelWithSlider() {
         initComponents();
     }
@@ -62,6 +67,7 @@ public class PanelWithSlider extends javax.swing.JPanel {
     }
 
     void setPage(Page page) {
+        LOG.fine(page.toString());
         MyBoundedRangeModel model = new MyBoundedRangeModel();
         jSlider1.setModel(model);
         jSlider1.setValue(model.getMaximum());

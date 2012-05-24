@@ -48,7 +48,7 @@ public enum Usenet {
     }
 
     public List<Message> getMessages(Page page) throws Exception {
-        LOG.warning(page.toString());
+        LOG.fine(page.toString());
         folder = root.getFolder(page.getGroup());
         folder.open(Folder.READ_ONLY);
         setMax(folder.getMessageCount() - 10);

@@ -175,7 +175,7 @@ public class Frame extends javax.swing.JFrame {
 
     private void setPage(Page page) {
         try {
-            panelWithSlider1.setPage(page);
+            //panelWithSlider1.setPage(page);
             panelWithTable1.setMessages(page);
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
