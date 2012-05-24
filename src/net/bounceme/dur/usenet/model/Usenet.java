@@ -40,15 +40,19 @@ public enum Usenet {
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
+        Folder f = root.listSubscribed()[0];
+        String group = f.getFullName();
+        Page p = new Page(group,getMax());
+        getMessages(p);
         return true;
     }
 
-    public List<Message> getMessages(Page marker) throws Exception {
-        LOG.info("loading.. " + marker.toString());
-        folder = root.getFolder(marker.getGroup());
+    public List<Message> getMessages(Page page) throws Exception {
+        LOG.fine("loading.. " + page.toString());
+        folder = root.getFolder(page.getGroup());
         folder.open(Folder.READ_ONLY);
         setMax(folder.getMessageCount() - 10);
-        messages = Arrays.asList(folder.getMessages(marker.getStart(), marker.getEnd()));
+        messages = Arrays.asList(folder.getMessages(page.getStart(), page.getEnd()));
         return Collections.unmodifiableList(messages);
     }
 

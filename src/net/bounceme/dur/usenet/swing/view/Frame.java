@@ -95,6 +95,7 @@ public class Frame extends javax.swing.JFrame {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
             int slider = panelWithSlider1.getValue();
+            newSliderPane();
             setPage(new Page(group, slider));
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
@@ -179,5 +180,9 @@ public class Frame extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void newSliderPane() {
+        panelWithSlider1.newSlider();
     }
 }

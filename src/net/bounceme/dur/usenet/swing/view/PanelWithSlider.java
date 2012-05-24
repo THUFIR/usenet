@@ -49,10 +49,8 @@ public class PanelWithSlider extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        //System.out.println("state2 " + jSlider1.getValue());
         int val = jSlider1.getValue();
         this.firePropertyChange("slider", null, val);
-        //jSlider1.setModel(new MyBoundedRangeModel());
     }//GEN-LAST:event_jSlider1StateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider jSlider1;
@@ -60,5 +58,9 @@ public class PanelWithSlider extends javax.swing.JPanel {
 
     int getValue() {
         return jSlider1.getValue();
+    }
+
+    void newSlider() {
+        jSlider1.setModel(new MyBoundedRangeModel());
     }
 }

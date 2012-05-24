@@ -11,7 +11,7 @@ public class MyBoundedRangeModel extends DefaultBoundedRangeModel {
     private final static Logger LOG = Logger.getLogger(MyBoundedRangeModel.class.getName());
     private static final Level LEVEL = Level.INFO;
     private Usenet u = Usenet.INSTANCE;
-    
+
     public MyBoundedRangeModel() {
         this.setMaximum(u.getMax());
         this.setMinimum(1);
