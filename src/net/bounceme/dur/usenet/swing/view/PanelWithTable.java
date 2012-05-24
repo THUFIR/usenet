@@ -7,8 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.swing.table.DefaultTableModel;
-import net.bounceme.dur.usenet.swing.Marker;
-import net.bounceme.dur.usenet.swing.Usenet;
+import net.bounceme.dur.usenet.model.Usenet;
+import net.bounceme.dur.usenet.swing.model.Marker;
 
 public class PanelWithTable extends javax.swing.JPanel {
 

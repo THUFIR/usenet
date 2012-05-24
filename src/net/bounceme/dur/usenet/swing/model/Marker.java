@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.swing.model;
 
 import java.util.logging.Logger;
 
@@ -44,7 +44,7 @@ public class Marker {
         this.group = group;
     }
 
-    int getEnd() {
+    public int getEnd() {
         return start + 20;
     }
 }

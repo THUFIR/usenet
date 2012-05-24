@@ -1,11 +1,11 @@
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.model;
 
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
 import net.bounceme.dur.usenet.controller.PropertiesReader;
-import net.bounceme.dur.usenet.model.MyListModel;
+import net.bounceme.dur.usenet.swing.model.Marker;
 
 public enum Usenet {
 
@@ -19,7 +19,6 @@ public enum Usenet {
     private Folder root = null;
     //private List<Folder> folders = null;
     private Store store = null;
-    private Marker marker = null;
     private List<Folder> folders = new ArrayList<>();
 
     Usenet() {
@@ -43,18 +42,18 @@ public enum Usenet {
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
         String group = getFolders().get(0).getFullName();
-        marker = new Marker(group, 20);
+        Marker marker = new Marker(group, 20);
         return true;
     }
 
-    private void loadFolder() throws Exception {
+    private void loadFolder(Marker marker) throws Exception {
         folder = root.getFolder(marker.getGroup());
         folder.open(Folder.READ_ONLY);
         LOG.fine("folder: " + folder.getFullName() + " " + folder.getMessageCount());
     }
 
-    private void logMessages() throws MessagingException {
-        LOG.warning("logging as per " + getMarker());
+    private void logMessages(Marker marker) throws MessagingException {
+        LOG.warning("logging as per " + marker);
         for (Message m : messages) {
             LOG.log(Level.INFO, "***** {0} {1}", new Object[]{m.getMessageNumber(), m.getSubject()});
         }
@@ -62,9 +61,8 @@ public enum Usenet {
 
     public List<Message> getMessages(Marker marker) throws Exception {
         LOG.fine("loading.. " + marker.toString());
-        setMarker(marker);
-        loadFolder();
-        messages = Arrays.asList(folder.getMessages(getMarker().getStart(), getMarker().getEnd()));
+        loadFolder(marker);
+        messages = Arrays.asList(folder.getMessages(marker.getStart(), marker.getEnd()));
         //Collections.reverse(messages);
         return Collections.unmodifiableList(messages);
     }
@@ -77,23 +75,4 @@ public enum Usenet {
         this.folders = folders;
     }
 
-    private Marker getMarker() {
-        LOG.fine(marker.toString());
-        return marker;
-    }
-
-    private void setMarker(Marker marker) {
-        LOG.fine("current Marker " + getMarker());
-        for (Folder f : folders) {
-            String knownGood = f.getFullName();
-            String newGroup = marker.getGroup();
-            if (knownGood.equalsIgnoreCase(newGroup)) {
-                LOG.fine("setting " + newGroup);
-                this.marker = marker;
-            } else {
-                LOG.fine("rejected " + newGroup);
-            }
-        }
-        LOG.fine("finished setMarker " + getMarker());
-    }
 }

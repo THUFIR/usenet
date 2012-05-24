@@ -1,29 +1,22 @@
 package net.bounceme.dur.usenet.swing.view;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.MessageBean;
-import net.bounceme.dur.usenet.swing.Marker;
-import net.bounceme.dur.usenet.swing.Usenet;
-import net.bounceme.dur.usenet.swing.view.controller.MyController;
+import net.bounceme.dur.usenet.model.Usenet;
+import net.bounceme.dur.usenet.swing.model.Marker;
 
-public class Frame extends javax.swing.JFrame implements Observer {
+public class Frame extends javax.swing.JFrame {
 
     private final static Logger LOG = Logger.getLogger(Frame.class.getName());
-    private Usenet u = Usenet.INSTANCE;
-    private MyController c = new MyController();
+    private Usenet usenet = Usenet.INSTANCE;
 
     public Frame() {
-        c.addObserver(this);
-        System.out.println("hmm, added this as observer");
         initComponents();
         load();
-        c.foo();
     }
 
     /**
@@ -172,7 +165,7 @@ public class Frame extends javax.swing.JFrame implements Observer {
 
     @SuppressWarnings("unchecked")
     private void load() {
-        List<Folder> folders = u.getFolders();
+        List<Folder> folders = usenet.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder f : folders) {
             String z = f.getFullName();
@@ -188,11 +181,5 @@ public class Frame extends javax.swing.JFrame implements Observer {
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        System.out.println("where's rick?" + c);
     }
 }
