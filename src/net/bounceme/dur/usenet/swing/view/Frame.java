@@ -91,23 +91,21 @@ public class Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelWithList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithList1PropertyChange
-        /*if (evt.getPropertyName().equals("list")) {
-            //panelWithText1.setJTextArea(group);
+        if (evt.getPropertyName().equals("list")) {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
             int slider = panelWithSlider1.getValue();
-            setMarker(new Marker(group, slider));
-        }*/
-        
+            setPage(new Page(group, slider));
+        }
     }//GEN-LAST:event_panelWithList1PropertyChange
 
     private void panelWithSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithSlider1PropertyChange
         int slider = 1;
         if (evt.getPropertyName().equals("slider")) {
             slider = (int) evt.getNewValue();
+            String group = panelWithList1.getGroup();
+            setPage(new Page(group, slider));
         }
-        String group = panelWithList1.getGroup();
-        setMarker(new Page(group,slider));
     }//GEN-LAST:event_panelWithSlider1PropertyChange
 
     private void panelWithTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_panelWithTable1PropertyChange
@@ -175,9 +173,9 @@ public class Frame extends javax.swing.JFrame {
         panelWithList1.setJList(defaultListModel);
     }
 
-    private void setMarker(Page marker) {
+    private void setPage(Page page) {
         try {
-            panelWithTable1.setMessages(marker);
+            panelWithTable1.setMessages(page);
         } catch (Exception ex) {
             Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
         }

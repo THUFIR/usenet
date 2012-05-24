@@ -13,9 +13,7 @@ public class MyBoundedRangeModel extends DefaultBoundedRangeModel {
     private Usenet u = Usenet.INSTANCE;
     
     public MyBoundedRangeModel() {
-        int max = u.getMax();
-        this.setMaximum(100);
+        this.setMaximum(u.getMax());
         this.setMinimum(1);
-//        LOG.log(LEVEL, usenet.getMessages(null));
     }
 }
