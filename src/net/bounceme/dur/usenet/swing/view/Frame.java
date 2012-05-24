@@ -104,7 +104,9 @@ public class Frame extends javax.swing.JFrame {
             } catch (Exception ex) {
                 Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            setSliderModel(p);
+            int max = usenet.getMax();
+            Page page = new Page(group, max);
+            setSliderModel(page);
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
 

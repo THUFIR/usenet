@@ -51,7 +51,7 @@ public enum Usenet {
         LOG.fine(page.toString());
         folder = root.getFolder(page.getGroup());
         folder.open(Folder.READ_ONLY);
-        setMax(folder.getMessageCount() - 10);
+        setMax(folder.getMessageCount() - 100);
         messages = Arrays.asList(folder.getMessages(page.getStart(), page.getEnd()));
         return Collections.unmodifiableList(messages);
     }
