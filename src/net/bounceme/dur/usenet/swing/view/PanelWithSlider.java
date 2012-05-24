@@ -25,6 +25,10 @@ public class PanelWithSlider extends javax.swing.JPanel {
 
         jSlider1 = new javax.swing.JSlider();
 
+        jSlider1.setMajorTickSpacing(50);
+        jSlider1.setMinorTickSpacing(10);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setSnapToTicks(true);
         jSlider1.setModel(new MyBoundedRangeModel());
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -48,9 +52,9 @@ public class PanelWithSlider extends javax.swing.JPanel {
             .addGap(0, 498, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(222, Short.MAX_VALUE)
+                    .addContainerGap(218, Short.MAX_VALUE)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(222, Short.MAX_VALUE)))
+                    .addContainerGap(218, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -67,7 +71,7 @@ public class PanelWithSlider extends javax.swing.JPanel {
     }
 
     void setPage(Page page) {
-        LOG.fine(page.toString());
+        LOG.warning(page.toString());
         MyBoundedRangeModel model = new MyBoundedRangeModel();
         jSlider1.setModel(model);
         jSlider1.setValue(model.getMaximum());

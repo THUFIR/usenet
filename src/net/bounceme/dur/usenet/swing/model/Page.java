@@ -15,12 +15,13 @@ public class Page {
     public Page(String group, int start) {
         setGroup(group);
         setStart(start);
+        setEnd(start + 10);
         LOG.fine(toString());
     }
 
     @Override
     public final String toString() {
-        String s = "\n\n****\nmarker is\nstart " + getStart() + "\ngroup " + getGroup() + "\n\n\n****\n";
+        String s = "\n\n****\npage is\nstart " + getStart() + "\ngroup " + getGroup() + "\n" + getEnd() + "\n\n\n****\n";
         return s;
     }
 
@@ -44,7 +45,7 @@ public class Page {
         this.group = group;
     }
 
-    public void setEnd(int end) {
+    private void setEnd(int end) {
         this.end = end;
     }
 
