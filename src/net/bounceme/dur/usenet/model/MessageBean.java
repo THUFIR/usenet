@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
+//dummy comment
+
 public final class MessageBean {
 
     private int id;
