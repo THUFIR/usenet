@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
+import javax.mail.Message;
+
 public final class MessageBean {
 
     private int id;
@@ -9,6 +11,13 @@ public final class MessageBean {
     private String note;
 
     public MessageBean() {
+    }
+
+    public MessageBean(Message message) throws Exception {
+        setId(message.getMessageNumber());
+        setSubject(message.getSubject());
+        setContent(message.getContent().toString());
+        setGroup(message.getFolder().getFullName());
     }
 
     public MessageBean(int id, String subject, String content) {
