@@ -1,7 +1,5 @@
 package net.bounceme.dur.usenet.model;
 
-//dummy comment  now in group_page
-
 public final class MessageBean {
 
     private int id;

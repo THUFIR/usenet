@@ -71,4 +71,8 @@ public enum Usenet {
     public void setMax(int max) {
         this.max = max;
     }
+
+    public Page getFoo(String group) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

@@ -96,9 +96,8 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
-            //int slider = panelWithSlider1.getValue();
-            //LOG.severe("slider " + slider);
-            Page p = new Page(group, 10);
+            Page f = usenet.getFoo(group);
+            /*Page p = new Page(group, 10);
             try {
                 usenet.getMessages(p);
             } catch (Exception ex) {
@@ -106,7 +105,7 @@ public class Frame extends javax.swing.JFrame {
             }
             int max = usenet.getMax();
             Page page = new Page(group, max);
-            setSliderModel(page);
+            setSliderModel(page);*/
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
 
