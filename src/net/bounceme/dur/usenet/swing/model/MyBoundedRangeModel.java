@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.swing.model;
 
+import net.bounceme.dur.usenet.controller.Page;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultBoundedRangeModel;

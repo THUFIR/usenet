@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.swing.model;
+package net.bounceme.dur.usenet.controller;
 
 import java.util.logging.Logger;
 

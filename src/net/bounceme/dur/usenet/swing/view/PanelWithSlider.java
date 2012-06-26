@@ -3,7 +3,7 @@ package net.bounceme.dur.usenet.swing.view;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
-import net.bounceme.dur.usenet.swing.model.Page;
+import net.bounceme.dur.usenet.controller.Page;
 
 public class PanelWithSlider extends javax.swing.JPanel {
 

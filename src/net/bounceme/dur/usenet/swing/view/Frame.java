@@ -9,7 +9,7 @@ import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.MessageBean;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.model.MyBoundedRangeModel;
-import net.bounceme.dur.usenet.swing.model.Page;
+import net.bounceme.dur.usenet.controller.Page;
 
 public class Frame extends javax.swing.JFrame {
 
@@ -96,8 +96,8 @@ public class Frame extends javax.swing.JFrame {
         if (evt.getPropertyName().equals("list")) {
             Object newValue = evt.getNewValue();
             String group = newValue.toString();
-            Page f = usenet.getFoo(group);
-            /*Page p = new Page(group, 10);
+            //Page f = usenet.getFoo(group);
+            Page p = new Page(group, 10);
             try {
                 usenet.getMessages(p);
             } catch (Exception ex) {
@@ -105,7 +105,7 @@ public class Frame extends javax.swing.JFrame {
             }
             int max = usenet.getMax();
             Page page = new Page(group, max);
-            setSliderModel(page);*/
+            setSliderModel(page);
         }
     }//GEN-LAST:event_panelWithList1PropertyChange
 
