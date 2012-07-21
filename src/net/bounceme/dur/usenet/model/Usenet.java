@@ -4,8 +4,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import net.bounceme.dur.usenet.controller.PropertiesReader;
 import net.bounceme.dur.usenet.controller.Page;
+import net.bounceme.dur.usenet.controller.PropertiesReader;
 
 public enum Usenet {
 
@@ -42,7 +42,7 @@ public enum Usenet {
         setFolders(Arrays.asList(root.listSubscribed()));
         Folder f = root.listSubscribed()[0];
         String group = f.getFullName();
-        Page p = new Page(group,getMax());
+        Page p = new Page(group, getMax());
         getMessages(p);
         return true;
     }
@@ -72,4 +72,12 @@ public enum Usenet {
         this.max = max;
     }
 
+    public Page getPage(Folder folder) throws Exception {
+        LOG.fine("connecting to " + folder);
+        folder.open(Folder.READ_ONLY);
+        int count = folder.getMessageCount() - 30;
+        int index = 1;
+        Page page = new Page(folder.getFullName(), index, count);
+        return page;
+    }
 }

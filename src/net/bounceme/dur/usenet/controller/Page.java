@@ -19,6 +19,13 @@ public class Page {
         LOG.fine(toString());
     }
 
+    public Page(String group, int start,int end) {
+        setGroup(group);
+        setStart(start);
+        setEnd(end);
+        LOG.fine(toString());
+    }
+
     public Page(String group, int start) {
         setGroup(group);
         setStart(start);
