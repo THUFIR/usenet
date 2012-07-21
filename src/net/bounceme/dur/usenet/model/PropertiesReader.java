@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.controller;
+package net.bounceme.dur.usenet.model;
 
 
 
@@ -20,8 +20,6 @@ public class PropertiesReader {
         } catch (IOException ex) {
             Logger.getLogger(PropertiesReader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //this.getClass().getResourceAsStream("/nntp.properties");
-        //logger.log(level, props.toString());
         return props;
     }
 }

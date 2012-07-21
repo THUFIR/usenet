@@ -5,8 +5,6 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import net.bounceme.dur.usenet.controller.Page;
-import net.bounceme.dur.usenet.controller.PropertiesReader;
 
 public enum Usenet {
 
