@@ -11,7 +11,6 @@ public enum Usenet {
     private final Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<>();
-    private boolean loaded = false;
     private Folder folder = null;
     private Folder root = null;
     private Store store = null;
@@ -21,16 +20,14 @@ public enum Usenet {
     Usenet() {
         LOG.fine("controller..");
         props = PropertiesReader.getProps();
-        if (!loaded) {
-            try {
-                loaded = connect();
-            } catch (Exception ex) {
-                Logger.getLogger(Usenet.class.getName()).log(Level.SEVERE, "FAILED TO LOAD MESSAGES", ex);
-            }
+        try {
+            connect();
+        } catch (Exception ex) {
+            Logger.getLogger(Usenet.class.getName()).log(Level.SEVERE, "FAILED TO LOAD MESSAGES", ex);
         }
     }
 
-    private boolean connect() throws Exception {
+    private void connect() throws Exception {
         LOG.fine("Usenet.connect..");
         Session session = Session.getDefaultInstance(props);
         session.setDebug(false);
@@ -38,11 +35,10 @@ public enum Usenet {
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
-        Folder f = root.listSubscribed()[0];
+        /*Folder f = root.listSubscribed()[0];
         String group = f.getFullName();
         Page p = new Page(group, getMax());
-        getMessages(p);
-        return true;
+        getMessages(p);*/
     }
 
     public List<Message> getMessages(Page page) throws Exception {

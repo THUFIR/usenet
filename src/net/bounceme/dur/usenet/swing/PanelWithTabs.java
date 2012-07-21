@@ -28,6 +28,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         groupSelect1 = new net.bounceme.dur.usenet.swing.GroupSelect();
+        jPanel1 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout groupSelect1Layout = new javax.swing.GroupLayout(groupSelect1);
         groupSelect1.setLayout(groupSelect1Layout);
@@ -41,6 +42,19 @@ public class PanelWithTabs extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("GroupSelect", groupSelect1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 330, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,6 +79,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
