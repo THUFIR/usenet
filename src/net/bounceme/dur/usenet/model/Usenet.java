@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
+//starting over
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
