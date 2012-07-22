@@ -66,7 +66,7 @@ public class GroupSelect extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
-        LOG.fine("selected: " + groupJList.getSelectedValue());
+        LOG.severe("selected: " + groupJList.getSelectedValue());
         firePropertyChange("GroupSelect", "old value", groupJList.getSelectedValue());
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
