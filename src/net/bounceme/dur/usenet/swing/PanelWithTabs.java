@@ -40,7 +40,6 @@ public class PanelWithTabs extends javax.swing.JPanel {
         if ("GroupSelect".equals(evt.getPropertyName())) {
             LOG.info(evt.getNewValue().toString());
             
-            
         }
     }//GEN-LAST:event_groupSelectPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
