@@ -35,7 +35,11 @@ public class PanelWithTabs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupSelect1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelect1PropertyChange
-        LOG.warning("bog  " + evt);
+        LOG.fine("bog  " + evt);
+        String propertyName = evt.getPropertyName();
+        if ("GroupSelect".equals(evt.getPropertyName())) {
+            LOG.info(evt.getNewValue().toString());
+        }
     }//GEN-LAST:event_groupSelect1PropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect1;
