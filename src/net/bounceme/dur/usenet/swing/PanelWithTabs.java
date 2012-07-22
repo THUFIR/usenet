@@ -28,17 +28,24 @@ public class PanelWithTabs extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         groupSelect1 = new net.bounceme.dur.usenet.swing.GroupSelect();
+        groupSelect2 = new net.bounceme.dur.usenet.swing.GroupSelect();
         jPanel1 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout groupSelect1Layout = new javax.swing.GroupLayout(groupSelect1);
         groupSelect1.setLayout(groupSelect1Layout);
         groupSelect1Layout.setHorizontalGroup(
             groupSelect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, groupSelect1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         groupSelect1Layout.setVerticalGroup(
             groupSelect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGroup(groupSelect1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("GroupSelect", groupSelect1);
@@ -79,6 +86,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect1;
+    private net.bounceme.dur.usenet.swing.GroupSelect groupSelect2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
