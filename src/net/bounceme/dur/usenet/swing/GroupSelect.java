@@ -3,16 +3,22 @@ package net.bounceme.dur.usenet.swing;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
+import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
     private Usenet usenet = Usenet.INSTANCE;
-    private final List<Folder> foo;
+    private final List<Folder> folders;
+    private final DefaultListModel defaultListModel = new DefaultListModel();
 
+    @SuppressWarnings("unchecked")
     public GroupSelect() {
-        foo = usenet.getFolders();
+        folders = usenet.getFolders();
+        for (Folder folder : folders){
+            defaultListModel.addElement(folder);
+        }
         initComponents();
     }
 
@@ -28,11 +34,7 @@ public class GroupSelect extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setModel(defaultListModel);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -48,18 +50,18 @@ public class GroupSelect extends javax.swing.JPanel {
             .addGap(0, 625, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 285, Short.MAX_VALUE)
+                    .addGap(0, 183, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 286, Short.MAX_VALUE)))
+                    .addGap(0, 184, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 426, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 104, Short.MAX_VALUE)
+                    .addGap(0, 148, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 104, Short.MAX_VALUE)))
+                    .addGap(0, 148, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
