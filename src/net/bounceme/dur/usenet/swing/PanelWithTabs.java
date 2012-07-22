@@ -1,18 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.swing;
 
-/**
- *
- * @author thufir
- */
+import java.util.logging.Logger;
+
 public class PanelWithTabs extends javax.swing.JPanel {
 
-    /**
-     * Creates new form NewJPanel
-     */
+    private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
+
     public PanelWithTabs() {
         initComponents();
     }
@@ -27,28 +20,40 @@ public class PanelWithTabs extends javax.swing.JPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        groupSelect1 = new net.bounceme.dur.usenet.swing.GroupSelect();
+        groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
         groupSelect2 = new net.bounceme.dur.usenet.swing.GroupSelect();
         jPanel1 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout groupSelect1Layout = new javax.swing.GroupLayout(groupSelect1);
-        groupSelect1.setLayout(groupSelect1Layout);
-        groupSelect1Layout.setHorizontalGroup(
-            groupSelect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, groupSelect1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        groupSelect.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                groupSelectPropertyChange(evt);
+            }
+        });
+
+        groupSelect2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                groupSelect2PropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout groupSelectLayout = new javax.swing.GroupLayout(groupSelect);
+        groupSelect.setLayout(groupSelectLayout);
+        groupSelectLayout.setHorizontalGroup(
+            groupSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupSelectLayout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
-        groupSelect1Layout.setVerticalGroup(
-            groupSelect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(groupSelect1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        groupSelectLayout.setVerticalGroup(
+            groupSelectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupSelectLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(groupSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("GroupSelect", groupSelect1);
+        jTabbedPane1.addTab("GroupSelect", groupSelect);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,8 +89,16 @@ public class PanelWithTabs extends javax.swing.JPanel {
                     .addContainerGap(32, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void groupSelect2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelect2PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_groupSelect2PropertyChange
+
+    private void groupSelectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelectPropertyChange
+        LOG.warning("bog");
+    }//GEN-LAST:event_groupSelectPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private net.bounceme.dur.usenet.swing.GroupSelect groupSelect1;
+    private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
