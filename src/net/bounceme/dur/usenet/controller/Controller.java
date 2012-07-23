@@ -43,7 +43,7 @@ public class Controller extends Observable {
 
     public void setGroup(String selectedValue) {
         group = selectedValue;
-        LOG.fine(group);
+        LOG.warning(group);
         notifyObservers();
     }
 
