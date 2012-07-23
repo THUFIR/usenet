@@ -9,7 +9,7 @@ import net.bounceme.dur.usenet.controller.Controller;
 public class GroupSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
-        private Controller controller = new Controller();
+    private Controller controller = Controller.getInstance();
     private DefaultListModel defaultListModel;
 
     @SuppressWarnings("unchecked")
@@ -55,6 +55,6 @@ public class GroupSelect extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

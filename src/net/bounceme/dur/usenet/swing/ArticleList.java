@@ -9,10 +9,11 @@ import net.bounceme.dur.usenet.controller.Controller;
 public class ArticleList extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(ArticleList.class.getName());
-    private Controller controller = new Controller();
+    private Controller controller = Controller.getInstance();
     private DefaultListModel defaultListModel;
     
     public ArticleList() {
+        controller.addObserver(this);
         defaultListModel = controller.getArticleList();
         initComponents();
     }
@@ -52,6 +53,7 @@ public class ArticleList extends javax.swing.JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         LOG.severe("trying to observe.." + arg);
+        LOG.severe(controller.getGroup());
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

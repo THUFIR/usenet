@@ -8,33 +8,49 @@ import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.PanelWithTabs;
 
-public class Controller extends Observable  {
+
+/*
+ * public class ClassicSingleton { private static ClassicSingleton instance =
+ * null; protected ClassicSingleton() { // Exists only to defeat instantiation.
+ * } public static ClassicSingleton getInstance() { if(instance == null) {
+ * instance = new ClassicSingleton(); } return instance; } }
+ */
+public class Controller extends Observable {
 
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
-    private  Usenet usenet = Usenet.INSTANCE;
-    private  String group;
+    private Usenet usenet = Usenet.INSTANCE;
+    private String group;
+    private static Controller instance;
 
-    public  DefaultListModel getArticleList() {
+    protected Controller() {
+    }
+
+    public static Controller getInstance() {
+        if (instance == null) {
+            instance = new Controller();
+        }
+        return instance;
+    }
+
+    public DefaultListModel getArticleList() {
         DefaultListModel dlm = new DefaultListModel();
         //List<Message> foo = usenet.getMessages();
         return dlm;
     }
 
-    public  void setGroup(String selectedValue) {
+    public void setGroup(String selectedValue) {
         group = selectedValue;
-        LOG.info(group);
+        LOG.fine(group);
         notifyObservers();
     }
-    
-    public  String getGroup(){
+
+    public String getGroup() {
         return group;
     }
 
-    public Controller() {
-    }
 
     @SuppressWarnings("unchecked")
-    public  DefaultListModel getFolders() {
+    public DefaultListModel getFolders() {
         List<Folder> folders = usenet.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder folder : folders) {
