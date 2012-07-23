@@ -6,13 +6,13 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
-public class ArticleList extends javax.swing.JPanel implements Observer {
+public class ArticleSelect extends javax.swing.JPanel implements Observer {
 
-    private static final Logger LOG = Logger.getLogger(ArticleList.class.getName());
+    private static final Logger LOG = Logger.getLogger(ArticleSelect.class.getName());
     private Controller controller = Controller.getInstance();
     private DefaultListModel defaultListModel = new DefaultListModel();
 
-    public ArticleList() {
+    public ArticleSelect() {
         controller.addObserver(this);
         initComponents();
     }

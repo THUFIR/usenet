@@ -1,8 +1,8 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
+import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
 
 public class GroupSelect extends javax.swing.JPanel {
 
