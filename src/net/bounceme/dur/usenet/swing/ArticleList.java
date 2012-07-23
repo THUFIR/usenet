@@ -1,16 +1,19 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
-public class ArticleList extends javax.swing.JPanel {
+public class ArticleList extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(ArticleList.class.getName());
+    private Controller controller = new Controller();
     private DefaultListModel defaultListModel;
     
     public ArticleList() {
-        defaultListModel = Controller.getArticleList();
+        defaultListModel = controller.getArticleList();
         initComponents();
     }
 
@@ -45,4 +48,10 @@ public class ArticleList extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        LOG.severe("trying to observe..");
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

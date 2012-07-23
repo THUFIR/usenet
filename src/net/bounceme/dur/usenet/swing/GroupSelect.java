@@ -1,17 +1,20 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
-public class GroupSelect extends javax.swing.JPanel {
+public class GroupSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
+        private Controller controller = new Controller();
     private DefaultListModel defaultListModel;
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {
-        defaultListModel = Controller.getFolders();
+        defaultListModel = controller.getFolders();
         initComponents();
     }
 
@@ -43,11 +46,15 @@ public class GroupSelect extends javax.swing.JPanel {
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
         LOG.fine("selected: " + groupJList.getSelectedValue());
-        firePropertyChange("GroupSelect", "old value", groupJList.getSelectedValue());
- 
+        controller.setGroup(groupJList.getSelectedValue().toString());
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

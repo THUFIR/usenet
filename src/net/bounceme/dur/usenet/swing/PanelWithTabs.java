@@ -25,11 +25,6 @@ public class PanelWithTabs extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        groupSelect.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                groupSelectPropertyChange(evt);
-            }
-        });
         jTabbedPane1.addTab("GroupSelect", groupSelect);
         jTabbedPane1.addTab("ArticleList", articleList1);
 
@@ -37,13 +32,6 @@ public class PanelWithTabs extends javax.swing.JPanel {
         jTabbedPane1.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void groupSelectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelectPropertyChange
-        String propertyName = evt.getPropertyName();
-        if ("GroupSelect".equals(evt.getPropertyName())) {
-            LOG.info(evt.getNewValue().toString());
-            
-        }
-    }//GEN-LAST:event_groupSelectPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.ArticleList articleList1;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;

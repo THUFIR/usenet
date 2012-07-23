@@ -11,19 +11,29 @@ import net.bounceme.dur.usenet.swing.PanelWithTabs;
 public class Controller extends Observable  {
 
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
-    private static Usenet usenet = Usenet.INSTANCE;
+    private  Usenet usenet = Usenet.INSTANCE;
+    private  String group;
 
-    public static DefaultListModel getArticleList() {
+    public  DefaultListModel getArticleList() {
         DefaultListModel dlm = new DefaultListModel();
         //List<Message> foo = usenet.getMessages();
         return dlm;
+    }
+
+    public  void setGroup(String selectedValue) {
+        group = selectedValue;
+        notifyObservers(group);
+    }
+    
+    public  String getGroup(){
+        return group;
     }
 
     public Controller() {
     }
 
     @SuppressWarnings("unchecked")
-    public static DefaultListModel getFolders() {
+    public  DefaultListModel getFolders() {
         List<Folder> folders = usenet.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder folder : folders) {
