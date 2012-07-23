@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
+import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
 
@@ -8,7 +9,7 @@ public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    private GroupDefaultListModel groups = new GroupDefaultListModel();
+    private ListModel groups = new GroupDefaultListModel();
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {

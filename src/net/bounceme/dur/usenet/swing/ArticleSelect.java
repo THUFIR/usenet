@@ -3,14 +3,15 @@ package net.bounceme.dur.usenet.swing;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+import net.bounceme.dur.usenet.controller.ArticleDefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
 public class ArticleSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(ArticleSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    private DefaultListModel defaultListModel = new DefaultListModel();
+    private ListModel defaultListModel = new ArticleDefaultListModel();
 
     public ArticleSelect() {
         controller.addObserver(this);
