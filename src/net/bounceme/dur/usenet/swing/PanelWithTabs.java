@@ -21,6 +21,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
+        articleList1 = new net.bounceme.dur.usenet.swing.ArticleList();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -30,6 +31,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
             }
         });
         jTabbedPane1.addTab("GroupSelect", groupSelect);
+        jTabbedPane1.addTab("ArticleList", articleList1);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("GroupSelect");
@@ -43,6 +45,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_groupSelectPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private net.bounceme.dur.usenet.swing.ArticleList articleList1;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

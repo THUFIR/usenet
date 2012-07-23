@@ -22,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelWithTabs1 = new net.bounceme.dur.usenet.swing.PanelWithTabs();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 300));
         getContentPane().add(panelWithTabs1, java.awt.BorderLayout.CENTER);
 
         pack();
