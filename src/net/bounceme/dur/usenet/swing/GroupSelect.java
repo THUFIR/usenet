@@ -8,7 +8,6 @@ public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
     private DefaultListModel defaultListModel;
-    private Controller controller = new Controller();
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {

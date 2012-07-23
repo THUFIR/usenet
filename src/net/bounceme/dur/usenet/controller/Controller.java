@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.PanelWithTabs;
 
