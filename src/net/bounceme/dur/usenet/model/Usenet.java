@@ -51,6 +51,7 @@ public enum Usenet {
     }
 
     public List<Folder> getFolders() {
+        LOG.fine("folders " + folders);
         return Collections.unmodifiableList(folders);
     }
 

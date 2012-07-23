@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.logging.Logger;
@@ -21,8 +22,10 @@ public class Controller extends Observable {
     private Usenet usenet = Usenet.INSTANCE;
     private String group;
     private static Controller instance;
+    private DefaultListModel folders = new DefaultListModel();
 
     protected Controller() {
+        setFolders();
     }
 
     public static Controller getInstance() {
@@ -48,14 +51,16 @@ public class Controller extends Observable {
         return group;
     }
 
-
     @SuppressWarnings("unchecked")
-    public DefaultListModel getFolders() {
-        List<Folder> folders = usenet.getFolders();
-        DefaultListModel defaultListModel = new DefaultListModel();
-        for (Folder folder : folders) {
-            defaultListModel.addElement(folder);
+    private void setFolders() {
+        List<Folder> usenetFolderList = usenet.getFolders();
+        for(Folder folder : usenetFolderList){
+            folders.addElement(folder);
         }
-        return defaultListModel;
+        LOG.fine(folders.toString());
+    }
+
+    public DefaultListModel getFolders() {
+        return folders;
     }
 }

@@ -1,12 +1,10 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
-public class GroupSelect extends javax.swing.JPanel implements Observer {
+public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
     private Controller controller = Controller.getInstance();
@@ -53,8 +51,4 @@ public class GroupSelect extends javax.swing.JPanel implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void update(Observable o, Object arg) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
