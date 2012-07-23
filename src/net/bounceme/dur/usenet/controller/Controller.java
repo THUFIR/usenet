@@ -22,7 +22,8 @@ public class Controller extends Observable  {
 
     public  void setGroup(String selectedValue) {
         group = selectedValue;
-        notifyObservers(group);
+        LOG.info(group);
+        notifyObservers();
     }
     
     public  String getGroup(){

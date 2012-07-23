@@ -51,7 +51,7 @@ public class ArticleList extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        LOG.severe("trying to observe..");
-        throw new UnsupportedOperationException("Not supported yet.");
+        LOG.severe("trying to observe.." + arg);
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }
