@@ -1,24 +1,18 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.util.List;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.model.Usenet;
+import net.bounceme.dur.usenet.controller.Controller;
 
 public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
-    private Usenet usenet = Usenet.INSTANCE;
-    private final List<Folder> folders;
-    private final DefaultListModel defaultListModel = new DefaultListModel();
+    private DefaultListModel defaultListModel;
+    private Controller controller = new Controller();
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {
-        folders = usenet.getFolders();
-        for (Folder folder : folders){
-            defaultListModel.addElement(folder);
-        }
+        defaultListModel = controller.getFolders();
         initComponents();
     }
 
