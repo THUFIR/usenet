@@ -1,14 +1,16 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
-import net.bounceme.dur.usenet.model.Usenet;
+import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.controller.Controller;
 
 public class ArticleList extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(ArticleList.class.getName());
-    private Usenet usenet = Usenet.INSTANCE;
-
+    private DefaultListModel defaultListModel;
+    
     public ArticleList() {
+        defaultListModel = Controller.getArticleList();
         initComponents();
     }
 
@@ -28,11 +30,7 @@ public class ArticleList extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setModel(defaultListModel);
         jScrollPane1.setViewportView(jList1);
 
         add(jScrollPane1, java.awt.BorderLayout.WEST);

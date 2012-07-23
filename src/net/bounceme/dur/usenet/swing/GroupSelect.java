@@ -44,6 +44,7 @@ public class GroupSelect extends javax.swing.JPanel {
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
         LOG.fine("selected: " + groupJList.getSelectedValue());
         firePropertyChange("GroupSelect", "old value", groupJList.getSelectedValue());
+ 
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;

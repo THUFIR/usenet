@@ -41,12 +41,12 @@ public enum Usenet {
         getMessages(p);*/
     }
 
-    public List<Message> getMessages(Page page) throws Exception {
-        LOG.fine(page.toString());
-        folder = root.getFolder(page.getGroup());
+    public List<Message> getMessages() throws Exception {
+        //LOG.fine(page.toString());
+        //folder = root.getFolder(page.getGroup());
         folder.open(Folder.READ_ONLY);
         setMax(folder.getMessageCount() - 100);
-        messages = Arrays.asList(folder.getMessages(page.getStart(), page.getEnd()));
+        //messages = Arrays.asList(folder.getMessages(page.getStart(), page.getEnd()));
         return Collections.unmodifiableList(messages);
     }
 
@@ -74,4 +74,5 @@ public enum Usenet {
         Page page = new Page(folder.getFullName(), index, count);
         return page;
     }
+
 }
