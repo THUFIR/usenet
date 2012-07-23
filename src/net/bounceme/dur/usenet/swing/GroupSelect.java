@@ -12,7 +12,7 @@ public class GroupSelect extends javax.swing.JPanel {
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {
-        defaultListModel = controller.getFolders();
+        defaultListModel = Controller.getFolders();
         initComponents();
     }
 

@@ -11,13 +11,13 @@ import net.bounceme.dur.usenet.swing.PanelWithTabs;
 public class Controller {
 
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
-    private Usenet usenet = Usenet.INSTANCE;
+    private static Usenet usenet = Usenet.INSTANCE;
 
     public Controller() {
     }
 
     @SuppressWarnings("unchecked")
-    public DefaultListModel getFolders() {
+    public static DefaultListModel getFolders() {
         List<Folder> folders = usenet.getFolders();
         DefaultListModel defaultListModel = new DefaultListModel();
         for (Folder folder : folders) {
