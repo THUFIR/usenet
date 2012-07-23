@@ -8,9 +8,6 @@ public class PanelWithTabs extends javax.swing.JPanel {
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
     private Controller controller = Controller.getInstance();
 
-    public Controller getController(){
-        return controller;
-    }
     public PanelWithTabs() {
         initComponents();
     }
@@ -26,18 +23,18 @@ public class PanelWithTabs extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
-        articleList1 = new net.bounceme.dur.usenet.swing.ArticleList();
+        articleSelect = new net.bounceme.dur.usenet.swing.ArticleList();
 
         setLayout(new java.awt.BorderLayout());
 
         jTabbedPane1.addTab("GroupSelect", groupSelect);
-        jTabbedPane1.addTab("ArticleList", articleList1);
+        jTabbedPane1.addTab("ArticleList", articleSelect);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
         jTabbedPane1.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private net.bounceme.dur.usenet.swing.ArticleList articleList1;
+    private net.bounceme.dur.usenet.swing.ArticleList articleSelect;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables

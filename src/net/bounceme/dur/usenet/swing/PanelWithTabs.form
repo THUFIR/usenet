@@ -37,7 +37,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="net.bounceme.dur.usenet.swing.ArticleList" name="articleList1">
+        <Component class="net.bounceme.dur.usenet.swing.ArticleList" name="articleSelect">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="ArticleList">

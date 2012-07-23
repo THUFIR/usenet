@@ -1,6 +1,5 @@
 package net.bounceme.dur.usenet.controller;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.logging.Logger;
@@ -9,13 +8,6 @@ import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.PanelWithTabs;
 
-
-/*
- * public class ClassicSingleton { private static ClassicSingleton instance =
- * null; protected ClassicSingleton() { // Exists only to defeat instantiation.
- * } public static ClassicSingleton getInstance() { if(instance == null) {
- * instance = new ClassicSingleton(); } return instance; } }
- */
 public class Controller extends Observable {
 
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
@@ -23,6 +15,7 @@ public class Controller extends Observable {
     private String group;
     private static Controller instance;
     private DefaultListModel folders = new DefaultListModel();
+    private DefaultListModel articles = new DefaultListModel();
 
     protected Controller() {
         setFolders();
@@ -36,14 +29,13 @@ public class Controller extends Observable {
     }
 
     public DefaultListModel getArticleList() {
-        DefaultListModel dlm = new DefaultListModel();
         //List<Message> foo = usenet.getMessages();
-        return dlm;
+        return articles;
     }
 
     public void setGroup(String selectedValue) {
         group = selectedValue;
-        LOG.warning(group);
+        LOG.fine(group);
         notifyObservers();
     }
 

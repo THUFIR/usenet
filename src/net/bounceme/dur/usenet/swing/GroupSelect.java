@@ -8,11 +8,10 @@ public class GroupSelect extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    private DefaultListModel defaultListModel;
+    private GroupDefaultListModel groups = new GroupDefaultListModel();
 
     @SuppressWarnings("unchecked")
     public GroupSelect() {
-        defaultListModel = controller.getFolders();
         initComponents();
     }
 
@@ -30,7 +29,7 @@ public class GroupSelect extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        groupJList.setModel(defaultListModel);
+        groupJList.setModel(groups);
         groupJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         groupJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
