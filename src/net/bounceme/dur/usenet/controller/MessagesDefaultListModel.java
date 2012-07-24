@@ -24,13 +24,13 @@ public class MessagesDefaultListModel extends DefaultListModel {
     }
 
     private void load(String group) throws Exception {
-        LOG.info("loading.." + group);
+        LOG.fine("loading.." + group);
         this.clear();
         List<Message> messages = usenet.getMessages(group);
         for (Message message : messages) {
             this.addElement(message.getSubject());
             LOG.fine(message.getSubject());
         }
-        LOG.info("..loaded");
+        LOG.fine("..loaded");
     }
 }
