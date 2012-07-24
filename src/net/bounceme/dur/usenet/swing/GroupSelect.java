@@ -14,18 +14,7 @@ public class GroupSelect extends javax.swing.JPanel {
 
     public GroupSelect() {
         initComponents();
-        //groupJList.setSelectedIndex(0);
-        //controller.setGroup(groupJList.getSelectedValue().toString());
-
-        //foo = new ListSelectionEvent();
-        //groupJListValueChanged(foo);
-        /*
-         * ListSelectionEvent(Object source, int firstIndex, int lastIndex,
-         * boolean isAdjusting) Represents a change in selection status between
-         * firstIndex and lastIndex, inclusive.
-         */
-        //ListSelectionEvent evt = new ListSelectionEvent(groupJList.class.getName(),1,1,true);
-        //groupJListValueChanged(evt);
+        groupJList.setModel(groups);
     }
 
     /**
@@ -59,9 +48,10 @@ public class GroupSelect extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
+        LOG.info("trying..");
         String folderFullName = groupJList.getSelectedValue().toString();
         controller.setFolderFullName(folderFullName);
-        LOG.fine("selected: " + folderFullName);
+        LOG.info("selected: " + folderFullName);
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;

@@ -2,7 +2,6 @@ package net.bounceme.dur.usenet.controller;
 
 import java.util.Observable;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.swing.ListModel;
 
 public class Controller extends Observable {

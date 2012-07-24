@@ -7,16 +7,17 @@ import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class GroupDefaultListModel extends DefaultListModel {
-    
+
     private static final Logger LOG = Logger.getLogger(GroupDefaultListModel.class.getName());
     private Usenet usenet = Usenet.INSTANCE;
-    
-    public GroupDefaultListModel(){
+
+    public GroupDefaultListModel() {
         loadFolders();
     }
-    
+
     @SuppressWarnings("unchecked")
     private void loadFolders() {
+        LOG.fine("trying..");
         List<Folder> usenetFolderList = usenet.getFolders();
         for (Folder folder : usenetFolderList) {
             this.addElement(folder.getFullName());
