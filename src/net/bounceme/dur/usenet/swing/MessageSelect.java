@@ -54,5 +54,6 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     public void update(Observable o, Object arg) {
         LOG.fine(controller.getGroup());
         messages = controller.getMessages();
+        LOG.info(messages.toString());
     }
 }

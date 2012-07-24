@@ -30,6 +30,7 @@ public class MessageDefaultListModel extends DefaultListModel {
         List<Message> messages = usenet.getMessages(group);
         for (Message message : messages) {
             this.addElement(message);
+            LOG.fine(message.getSubject());
         }
     }
 }

@@ -42,11 +42,11 @@ public enum Usenet {
     }
 
     public List<Message> getMessages(String group) throws Exception {
-        LOG.info("fetching.." + group);
+        LOG.fine("fetching.." + group);
         folder = root.getFolder(group);
         folder.open(Folder.READ_ONLY);
         List<Message> messages = Arrays.asList(folder.getMessages());
-        LOG.info("..fetched " + group);
+        LOG.fine("..fetched " + group);
         return Collections.unmodifiableList(messages);
     }
 

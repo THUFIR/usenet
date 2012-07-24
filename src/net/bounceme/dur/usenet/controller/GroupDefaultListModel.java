@@ -21,6 +21,6 @@ public class GroupDefaultListModel extends DefaultListModel {
         for (Folder folder : usenetFolderList) {
             this.addElement(folder);
         }
-        LOG.info(this.toString());
+        LOG.fine(this.toString());
     }
 }
