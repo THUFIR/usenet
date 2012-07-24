@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +24,15 @@ public class MessagesDefaultListModel extends DefaultListModel {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void load(String group) throws Exception {
-        LOG.fine("loading.." + group);
+        LOG.fine("loading.." + group); //group should be a folder
         this.clear();
         List<Message> messages = usenet.getMessages(group);
         for (Message message : messages) {
-            this.addElement(message.getSubject());
-            LOG.fine(message.getSubject());
+            MessageBean messageBean = new MessageBean(message);
+            this.addElement(messageBean);
+            LOG.fine(messageBean.toString());
         }
         LOG.fine("..loaded");
     }
