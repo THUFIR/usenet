@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.mail.*;
 
 public enum Usenet {
-
+    
     INSTANCE;
     private final Logger LOG = Logger.getLogger(Usenet.class.getName());
     private Properties props = new Properties();
@@ -16,7 +16,7 @@ public enum Usenet {
     private Store store = null;
     private List<Folder> folders = new ArrayList<>();
     private int max = 100;
-
+    
     Usenet() {
         LOG.fine("controller..");
         props = PropertiesReader.getProps();
@@ -26,7 +26,7 @@ public enum Usenet {
             Logger.getLogger(Usenet.class.getName()).log(Level.SEVERE, "FAILED TO LOAD MESSAGES", ex);
         }
     }
-
+    
     private void connect() throws Exception {
         LOG.fine("Usenet.connect..");
         Session session = Session.getDefaultInstance(props);
@@ -35,36 +35,38 @@ public enum Usenet {
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
-        /*Folder f = root.listSubscribed()[0];
-        String group = f.getFullName();
-        Page p = new Page(group, getMax());
-        getMessages(p);*/
+        /*
+         * Folder f = root.listSubscribed()[0]; String group = f.getFullName();
+         * Page p = new Page(group, getMax());
+        getMessages(p);
+         */
     }
-
+    
     public List<Message> getMessages(String group) throws Exception {
+        LOG.info("fetching.." + group);
         folder = root.getFolder(group);
         folder.open(Folder.READ_ONLY);
         List<Message> messages = Arrays.asList(folder.getMessages());
         return Collections.unmodifiableList(messages);
     }
-
+    
     public List<Folder> getFolders() {
         LOG.fine("folders " + folders);
         return Collections.unmodifiableList(folders);
     }
-
+    
     private void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
-
+    
     public int getMax() {
         return max;
     }
-
+    
     public void setMax(int max) {
         this.max = max;
     }
-
+    
     public Page getPage(Folder folder) throws Exception {
         LOG.fine("connecting to " + folder);
         folder.open(Folder.READ_ONLY);
@@ -73,6 +75,4 @@ public enum Usenet {
         Page page = new Page(folder.getFullName(), index, count);
         return page;
     }
-
-
 }
