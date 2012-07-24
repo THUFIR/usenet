@@ -37,7 +37,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
         setLayout(new java.awt.BorderLayout());
 
-        messageContent.setText("hello world");
+        messageContent.setContentType("text/html"); // NOI18N
         center.setViewportView(messageContent);
 
         add(center, java.awt.BorderLayout.CENTER);
@@ -66,7 +66,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
         MessageBean mb = (MessageBean) messagesJList.getSelectedValue();
-        LOG.info(mb.toString());
+        messageContent.setText(mb.getContent());
     }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
