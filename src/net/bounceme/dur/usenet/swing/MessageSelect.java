@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
+//forking
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
