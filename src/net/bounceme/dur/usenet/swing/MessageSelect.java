@@ -95,7 +95,8 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         LOG.warning("check controller, but getting null pointer sometimes" + arg);
         //messages = controller.getMessages();
         messages = new MessagesDefaultListModel(arg.toString());
-        //messagesJList.setModel(messages);
+        LOG.warning("how many messages? " + messages.getSize());
+        messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
     }
 }
