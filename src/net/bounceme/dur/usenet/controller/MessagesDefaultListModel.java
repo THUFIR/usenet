@@ -16,7 +16,6 @@ public class MessagesDefaultListModel extends DefaultListModel {
     }
 
     public MessagesDefaultListModel(String group) {
-        LOG.fine("new messages");
         try {
             load(group);
         } catch (Exception ex) {
@@ -24,13 +23,14 @@ public class MessagesDefaultListModel extends DefaultListModel {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void load(String group) throws Exception {
+        LOG.info("loading.." + group);
         this.clear();
         List<Message> messages = usenet.getMessages(group);
         for (Message message : messages) {
             this.addElement(message.getSubject());
             LOG.fine(message.getSubject());
         }
+        LOG.info("..loaded");
     }
 }

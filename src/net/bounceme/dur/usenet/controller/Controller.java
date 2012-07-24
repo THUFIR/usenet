@@ -24,7 +24,7 @@ public class Controller extends Observable {
     public void setGroup(String selectedValue) {
         group = selectedValue;
         LOG.fine(group);
-        this.setChanged();
+        setChanged();
         notifyObservers();
     }
 
@@ -35,5 +35,10 @@ public class Controller extends Observable {
     public ListModel getMessages() {
         ListModel articles = new MessagesDefaultListModel(group);
         return articles;
+    }
+
+    public String getContent() {
+        String c = "some content";
+        return c;
     }
 }

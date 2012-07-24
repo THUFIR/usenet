@@ -64,7 +64,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.info("value changed " + evt);
+        LOG.fine("value changed " + messagesJList.getSelectedValue());       
     }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton commentJButton;
