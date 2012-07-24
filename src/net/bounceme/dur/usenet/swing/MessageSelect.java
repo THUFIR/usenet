@@ -13,6 +13,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
     private ListModel messages = new MessagesDefaultListModel();
+    private MessageBean mb = new MessageBean();
 
     public MessageSelect() {
         controller.addObserver(this);
@@ -45,6 +46,11 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         south.setLayout(new java.awt.BorderLayout());
 
         commentJButton.setText("comment");
+        commentJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commentJButtonActionPerformed(evt);
+            }
+        });
         south.add(commentJButton, java.awt.BorderLayout.CENTER);
 
         add(south, java.awt.BorderLayout.SOUTH);
@@ -65,9 +71,13 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        MessageBean mb = (MessageBean) messagesJList.getSelectedValue();
+        mb = (MessageBean) messagesJList.getSelectedValue();
         messageContent.setText(mb.getContent());
     }//GEN-LAST:event_messagesJListValueChanged
+
+    private void commentJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentJButtonActionPerformed
+        LOG.info("button clicked" + mb);
+    }//GEN-LAST:event_commentJButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
     private javax.swing.JButton commentJButton;

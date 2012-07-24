@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
@@ -28,6 +29,10 @@ public class MessageBean {
         } catch (IOException | MessagingException ex) {
             Logger.getLogger(MessageBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public MessageBean(Folder folder) {
+        group = folder.getFullName();
     }
 
     @Override
