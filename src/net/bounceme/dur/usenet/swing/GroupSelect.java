@@ -12,7 +12,6 @@ public class GroupSelect extends javax.swing.JPanel {
     private Controller controller = Controller.getInstance();
     private ListModel groups = new GroupDefaultListModel();
 
-    @SuppressWarnings("unchecked")
     public GroupSelect() {
         initComponents();
         //groupJList.setSelectedIndex(0);
@@ -43,7 +42,11 @@ public class GroupSelect extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        groupJList.setModel(groups);
+        groupJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "1", "2", "3", "4", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         groupJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         groupJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
