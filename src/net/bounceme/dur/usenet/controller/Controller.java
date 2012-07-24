@@ -22,9 +22,9 @@ public class Controller extends Observable {
 
     public void setGroup(String selectedValue) {
         group = selectedValue;
-        LOG.fine(group);
         setChanged();
         notifyObservers();
+        LOG.info(group);
     }
 
     public String getGroup() {

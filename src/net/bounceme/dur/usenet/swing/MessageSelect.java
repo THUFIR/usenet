@@ -78,7 +78,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.fine(controller.getGroup());
+        LOG.info("whatsup?");
         messages = controller.getMessages();
         messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
