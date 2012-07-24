@@ -92,10 +92,9 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.warning("check controller, but getting null pointer sometimes");
-        LOG.info(arg.toString());
+        LOG.warning("check controller, but getting null pointer sometimes" + arg);
         //messages = controller.getMessages();
-        //messages = new MessagesDefaultListModel(folderFullName);
+        messages = new MessagesDefaultListModel(arg.toString());
         //messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
     }

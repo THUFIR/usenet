@@ -22,7 +22,7 @@ public class Controller extends Observable {
     }
 
     public ListModel getMessages() {
-        LOG.info(folderFullName);
+        LOG.fine(folderFullName);
         ListModel articles = new MessagesDefaultListModel(folderFullName);
         return articles;
     }
