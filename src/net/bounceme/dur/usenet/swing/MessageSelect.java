@@ -28,26 +28,30 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        messagesJList = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        messageContent = new javax.swing.JTextPane();
 
         setLayout(new java.awt.BorderLayout());
 
-        jList1.setModel(messages);
-        jScrollPane1.setViewportView(jList1);
+        messagesJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "1", "2", "3", "4", "" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(messagesJList);
 
         add(jScrollPane1, java.awt.BorderLayout.WEST);
 
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(messageContent);
 
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane messageContent;
+    private javax.swing.JList messagesJList;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -57,6 +61,6 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         messages = controller.getMessages();
         LOG.info("loaded messages..");
         //jList1.revalidate();
-        jList1.setModel(messages);
+        messagesJList.setModel(messages);
     }
 }
