@@ -27,11 +27,11 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        west = new javax.swing.JScrollPane();
         messagesJList = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        east = new javax.swing.JScrollPane();
         messageContent = new javax.swing.JTextPane();
-        jPanel1 = new javax.swing.JPanel();
+        south = new javax.swing.JPanel();
         commentJButton = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -46,21 +46,21 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
                 messagesJListValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(messagesJList);
+        west.setViewportView(messagesJList);
 
-        add(jScrollPane1, java.awt.BorderLayout.WEST);
+        add(west, java.awt.BorderLayout.WEST);
 
         messageContent.setText("hello world");
-        jScrollPane2.setViewportView(messageContent);
+        east.setViewportView(messageContent);
 
-        add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        add(east, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        south.setLayout(new java.awt.BorderLayout());
 
         commentJButton.setText("comment");
-        jPanel1.add(commentJButton, java.awt.BorderLayout.CENTER);
+        south.add(commentJButton, java.awt.BorderLayout.CENTER);
 
-        add(jPanel1, java.awt.BorderLayout.SOUTH);
+        add(south, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
@@ -68,11 +68,11 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton commentJButton;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane east;
     private javax.swing.JTextPane messageContent;
     private javax.swing.JList messagesJList;
+    private javax.swing.JPanel south;
+    private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
 
     @Override
