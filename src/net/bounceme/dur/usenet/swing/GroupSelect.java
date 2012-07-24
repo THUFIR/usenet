@@ -14,6 +14,8 @@ public class GroupSelect extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     public GroupSelect() {
         initComponents();
+        groupJList.setSelectedIndex(0);
+        controller.setGroup(groupJList.getSelectedValue().toString());
     }
 
     /**
@@ -50,5 +52,4 @@ public class GroupSelect extends javax.swing.JPanel {
     private javax.swing.JList groupJList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
 }
