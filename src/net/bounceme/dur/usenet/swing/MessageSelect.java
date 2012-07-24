@@ -4,16 +4,16 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.controller.ArticleDefaultListModel;
+import net.bounceme.dur.usenet.controller.MessageDefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 
-public class ArticleSelect extends javax.swing.JPanel implements Observer {
+public class MessageSelect extends javax.swing.JPanel implements Observer {
 
-    private static final Logger LOG = Logger.getLogger(ArticleSelect.class.getName());
+    private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    private ListModel defaultListModel = new ArticleDefaultListModel();
+    private ListModel messages = new MessageDefaultListModel();
 
-    public ArticleSelect() {
+    public MessageSelect() {
         controller.addObserver(this);
         initComponents();
     }
@@ -34,7 +34,7 @@ public class ArticleSelect extends javax.swing.JPanel implements Observer {
 
         setLayout(new java.awt.BorderLayout());
 
-        jList1.setModel(defaultListModel);
+        jList1.setModel(messages);
         jScrollPane1.setViewportView(jList1);
 
         add(jScrollPane1, java.awt.BorderLayout.WEST);
@@ -52,8 +52,7 @@ public class ArticleSelect extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        LOG.info("trying to observe.." + arg);
-        LOG.info(controller.getGroup());
-        //update defaultListModel
+        LOG.fine(controller.getGroup());
+        messages = controller.getMessages();
     }
 }
