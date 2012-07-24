@@ -5,6 +5,7 @@ import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
+import net.bounceme.dur.usenet.controller.MessageBean;
 import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
 
 public class MessageSelect extends javax.swing.JPanel implements Observer {
@@ -12,7 +13,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
     private ListModel messages = new MessagesDefaultListModel();
-    
+
     public MessageSelect() {
         controller.addObserver(this);
         initComponents();
@@ -64,9 +65,9 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.warning("message text goes here");
+        MessageBean mb = (MessageBean) messagesJList.getSelectedValue();
+        LOG.info(mb.toString());
     }//GEN-LAST:event_messagesJListValueChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
     private javax.swing.JButton commentJButton;
