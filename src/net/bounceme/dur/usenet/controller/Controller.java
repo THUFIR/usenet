@@ -24,7 +24,7 @@ public class Controller extends Observable {
         group = selectedValue;
         setChanged();
         notifyObservers();
-        LOG.info(group);
+        LOG.fine(group);
     }
 
     public String getGroup() {

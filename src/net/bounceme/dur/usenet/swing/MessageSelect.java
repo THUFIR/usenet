@@ -64,7 +64,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.info("value changed " + messagesJList.getSelectedValue());       
+        LOG.fine("value changed " + messagesJList.getSelectedValue());       
     }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton commentJButton;
@@ -78,7 +78,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.info("whatsup?");
+        LOG.fine("whatsup?");
         messages = controller.getMessages();
         messagesJList.setModel(messages);
         LOG.fine("loaded messages..");

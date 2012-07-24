@@ -26,7 +26,7 @@ public class GroupSelect extends javax.swing.JPanel {
          */
         //ListSelectionEvent evt = new ListSelectionEvent(groupJList.class.getName(),1,1,true);
         //groupJListValueChanged(evt);
-        LOG.info("should be changed!");
+        LOG.fine("should be changed!");
     }
 
     /**
