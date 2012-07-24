@@ -3,7 +3,6 @@ package net.bounceme.dur.usenet.controller;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.mail.Message;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
@@ -16,7 +15,7 @@ public class MessagesDefaultListModel extends DefaultListModel {
     public MessagesDefaultListModel() {
     }
 
-    public MessagesDefaultListModel(Folder folder) {
+    public MessagesDefaultListModel(String folder) {
         try {
             load(folder);
         } catch (Exception ex) {
@@ -25,10 +24,10 @@ public class MessagesDefaultListModel extends DefaultListModel {
     }
 
     @SuppressWarnings("unchecked")
-    private void load(Folder folder) throws Exception {
-        LOG.fine("loading.." + folder.getFullName()); //group should be a folder
+    private void load(String folder) throws Exception {
+        LOG.fine("loading.." + folder);
         this.clear();
-        List<Message> messages = usenet.getMessages(folder.getFullName());
+        List<Message> messages = usenet.getMessages(folder);
         for (Message message : messages) {
             MessageBean messageBean = new MessageBean(message);
             this.addElement(messageBean);

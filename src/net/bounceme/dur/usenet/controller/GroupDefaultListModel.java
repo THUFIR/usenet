@@ -19,7 +19,7 @@ public class GroupDefaultListModel extends DefaultListModel {
     private void loadFolders() {
         List<Folder> usenetFolderList = usenet.getFolders();
         for (Folder folder : usenetFolderList) {
-            this.addElement(folder);
+            this.addElement(folder.getFullName());
         }
         LOG.fine(this.toString());
     }

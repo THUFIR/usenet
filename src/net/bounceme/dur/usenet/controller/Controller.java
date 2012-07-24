@@ -8,9 +8,9 @@ import javax.swing.ListModel;
 public class Controller extends Observable {
 
     private static final Logger LOG = Logger.getLogger(Controller.class.getName());
-    //private String group = null;  //should be a javax.mail.Folder
+    private String folderFullName = null;
     private static Controller instance;
-    private Folder folder = null;
+    //private Folder folder = null;
 
     protected Controller() {
     }
@@ -23,7 +23,7 @@ public class Controller extends Observable {
     }
 
     public ListModel getMessages() {
-        ListModel articles = new MessagesDefaultListModel(folder);
+        ListModel articles = new MessagesDefaultListModel(folderFullName);
         return articles;
     }
 
@@ -44,12 +44,23 @@ public class Controller extends Observable {
     }
      */
     
+    /*
     public Folder getFolder() {
         return folder;
     }
 
     public void setFolder(Folder folder) {
         this.folder = folder;
+        setChanged();
+        notifyObservers();
+    }*/
+
+    public String getFolderFullName() {
+        return folderFullName;
+    }
+
+    public void setFolderFullName(String folderFullName) {
+        this.folderFullName = folderFullName;
         setChanged();
         notifyObservers();
     }
