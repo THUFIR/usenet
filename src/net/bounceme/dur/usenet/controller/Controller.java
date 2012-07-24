@@ -7,7 +7,7 @@ import javax.swing.ListModel;
 public class Controller extends Observable {
 
     private static final Logger LOG = Logger.getLogger(Controller.class.getName());
-    private String group = null;
+    private String group = null;  //should be a javax.mail.Folder
     private static Controller instance;
 
     protected Controller() {

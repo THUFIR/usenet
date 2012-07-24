@@ -1,8 +1,8 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.swing.ListModel;
-import javax.swing.event.ListSelectionEvent;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
 
@@ -17,12 +17,13 @@ public class GroupSelect extends javax.swing.JPanel {
         initComponents();
         //groupJList.setSelectedIndex(0);
         //controller.setGroup(groupJList.getSelectedValue().toString());
-        
+
         //foo = new ListSelectionEvent();
         //groupJListValueChanged(foo);
         /*
-         * ListSelectionEvent(Object source, int firstIndex, int lastIndex, boolean isAdjusting)
-        Represents a change in selection status between firstIndex and lastIndex, inclusive.
+         * ListSelectionEvent(Object source, int firstIndex, int lastIndex,
+         * boolean isAdjusting) Represents a change in selection status between
+         * firstIndex and lastIndex, inclusive.
          */
         //ListSelectionEvent evt = new ListSelectionEvent(groupJList.class.getName(),1,1,true);
         //groupJListValueChanged(evt);
@@ -56,9 +57,9 @@ public class GroupSelect extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
-        LOG.fine(evt.toString());
         LOG.fine("selected: " + groupJList.getSelectedValue());
         controller.setGroup(groupJList.getSelectedValue().toString());
+        Folder foo = (Folder) groupJList.getSelectedValue();
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;
