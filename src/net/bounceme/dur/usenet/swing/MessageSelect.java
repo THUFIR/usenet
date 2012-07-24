@@ -11,7 +11,6 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    //private TableModel messages = new MessagesDefaultTableModel();
     private ListModel messages = new MessagesDefaultListModel();
     
     public MessageSelect() {
@@ -54,10 +53,19 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        messagesJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                messagesJListValueChanged(evt);
+            }
+        });
         west.setViewportView(messagesJList);
 
         add(west, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
+        LOG.warning("message text goes here");
+    }//GEN-LAST:event_messagesJListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
