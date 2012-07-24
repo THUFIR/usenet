@@ -11,8 +11,9 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
+    //private TableModel messages = new MessagesDefaultTableModel();
     private ListModel messages = new MessagesDefaultListModel();
-
+    
     public MessageSelect() {
         controller.addObserver(this);
         initComponents();
@@ -27,33 +28,19 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        west = new javax.swing.JScrollPane();
-        messagesJList = new javax.swing.JList();
-        east = new javax.swing.JScrollPane();
+        center = new javax.swing.JScrollPane();
         messageContent = new javax.swing.JTextPane();
         south = new javax.swing.JPanel();
         commentJButton = new javax.swing.JButton();
+        west = new javax.swing.JScrollPane();
+        messagesJList = new javax.swing.JList();
 
         setLayout(new java.awt.BorderLayout());
 
-        messagesJList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "1", "2", "3", "4", "" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        messagesJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                messagesJListValueChanged(evt);
-            }
-        });
-        west.setViewportView(messagesJList);
-
-        add(west, java.awt.BorderLayout.WEST);
-
         messageContent.setText("hello world");
-        east.setViewportView(messageContent);
+        center.setViewportView(messageContent);
 
-        add(east, java.awt.BorderLayout.CENTER);
+        add(center, java.awt.BorderLayout.CENTER);
 
         south.setLayout(new java.awt.BorderLayout());
 
@@ -61,14 +48,20 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         south.add(commentJButton, java.awt.BorderLayout.CENTER);
 
         add(south, java.awt.BorderLayout.SOUTH);
+
+        messagesJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        west.setViewportView(messagesJList);
+
+        add(west, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.fine("value changed " + messagesJList.getSelectedValue());       
-    }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane center;
     private javax.swing.JButton commentJButton;
-    private javax.swing.JScrollPane east;
     private javax.swing.JTextPane messageContent;
     private javax.swing.JList messagesJList;
     private javax.swing.JPanel south;
