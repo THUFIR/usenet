@@ -20,6 +20,7 @@ public class MessagesDefaultListModel extends DefaultListModel {
             load(folder);
         } catch (Exception ex) {
             Logger.getLogger(MessagesDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
+            dummy(folder);
         }
     }
 
@@ -34,5 +35,11 @@ public class MessagesDefaultListModel extends DefaultListModel {
             LOG.fine(messageBean.toString());
         }
         LOG.fine("..loaded");
+    }
+
+    private void dummy(String folder) {
+        for (int i = 1; i < 9; i++) {
+            this.addElement(i);
+        }
     }
 }

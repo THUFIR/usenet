@@ -22,6 +22,7 @@ public class Controller extends Observable {
     }
 
     public ListModel getMessages() {
+        LOG.info(folderFullName);
         ListModel articles = new MessagesDefaultListModel(folderFullName);
         return articles;
     }
@@ -61,6 +62,6 @@ public class Controller extends Observable {
     public void setFolderFullName(String folderFullName) {
         this.folderFullName = folderFullName;
         setChanged();
-        notifyObservers();
+        notifyObservers(folderFullName);
     }
 }

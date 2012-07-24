@@ -71,14 +71,14 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.info("trying to get MessageBean..");
+        LOG.fine("trying to get MessageBean..");
         messageBean = (MessageBean) messagesJList.getSelectedValue();
         messageContent.setText(messageBean.getContent());
-        LOG.info("..got MessageBean: " + messageBean);
+        LOG.fine("..got MessageBean: " + messageBean);
     }//GEN-LAST:event_messagesJListValueChanged
 
     private void commentJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentJButtonActionPerformed
-        LOG.info("button clicked" + messageBean);
+        LOG.fine("button clicked" + messageBean);
     }//GEN-LAST:event_commentJButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
@@ -92,9 +92,11 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.info("problem might be here..");
-        messages = controller.getMessages();
-        messagesJList.setModel(messages);
+        LOG.warning("check controller, but getting null pointer sometimes");
+        LOG.info(arg.toString());
+        //messages = controller.getMessages();
+        //messages = new MessagesDefaultListModel(folderFullName);
+        //messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
     }
 }

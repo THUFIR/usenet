@@ -48,10 +48,10 @@ public class GroupSelect extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
-        LOG.info("trying..");
+        LOG.fine("trying..");
         String folderFullName = groupJList.getSelectedValue().toString();
         controller.setFolderFullName(folderFullName);
-        LOG.info("selected: " + folderFullName);
+        LOG.fine("selected: " + folderFullName);
     }//GEN-LAST:event_groupJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;
