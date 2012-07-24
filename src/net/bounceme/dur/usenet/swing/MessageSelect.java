@@ -71,8 +71,17 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        LOG.fine("trying to get MessageBean..");
+        /*
+         * ok, this shouldn't be a value changed listener!  try something else!
+         * when this gets nulled or whatever by a change of group, it's in an
+         * indeterminate state, neither one group nor another, and hence the
+         * errors.
+         * 
+         * or so I infer.
+         */
+        LOG.warning("trying to get MessageBean..");
         messageBean = (MessageBean) messagesJList.getSelectedValue();
+        LOG.warning(messageBean.toString());
         messageContent.setText(messageBean.getContent());
         LOG.fine("..got MessageBean: " + messageBean);
     }//GEN-LAST:event_messagesJListValueChanged
