@@ -4,14 +4,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.controller.MessageDefaultListModel;
 import net.bounceme.dur.usenet.controller.Controller;
+import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
 
 public class MessageSelect extends javax.swing.JPanel implements Observer {
 
     private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
     private Controller controller = Controller.getInstance();
-    private ListModel messages = new MessageDefaultListModel();
+    private ListModel messages = new MessagesDefaultListModel();
 
     public MessageSelect() {
         controller.addObserver(this);
@@ -31,6 +31,8 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         messagesJList = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         messageContent = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
+        commentJButton = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -39,15 +41,34 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        messagesJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                messagesJListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(messagesJList);
 
         add(jScrollPane1, java.awt.BorderLayout.WEST);
 
+        messageContent.setText("hello world");
         jScrollPane2.setViewportView(messageContent);
 
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        commentJButton.setText("comment");
+        jPanel1.add(commentJButton, java.awt.BorderLayout.CENTER);
+
+        add(jPanel1, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
+        LOG.info("value changed " + evt);
+    }//GEN-LAST:event_messagesJListValueChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton commentJButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane messageContent;
@@ -59,8 +80,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     public void update(Observable o, Object arg) {
         LOG.fine(controller.getGroup());
         messages = controller.getMessages();
-        LOG.info("loaded messages..");
-        //jList1.revalidate();
         messagesJList.setModel(messages);
+        LOG.info("loaded messages..");
     }
 }

@@ -33,7 +33,7 @@ public class Controller extends Observable {
     }
 
     public ListModel getMessages() {
-        ListModel articles = new MessageDefaultListModel(group);
+        ListModel articles = new MessagesDefaultListModel(group);
         return articles;
     }
 }

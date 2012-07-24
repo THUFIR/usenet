@@ -7,20 +7,20 @@ import javax.mail.Message;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.model.Usenet;
 
-public class MessageDefaultListModel extends DefaultListModel {
+public class MessagesDefaultListModel extends DefaultListModel {
 
-    private static final Logger LOG = Logger.getLogger(MessageDefaultListModel.class.getName());
+    private static final Logger LOG = Logger.getLogger(MessagesDefaultListModel.class.getName());
     private Usenet usenet = Usenet.INSTANCE;
 
-    public MessageDefaultListModel() {
+    public MessagesDefaultListModel() {
     }
 
-    public MessageDefaultListModel(String group) {
+    public MessagesDefaultListModel(String group) {
         LOG.fine("new messages");
         try {
             load(group);
         } catch (Exception ex) {
-            Logger.getLogger(MessageDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MessagesDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -29,7 +29,7 @@ public class MessageDefaultListModel extends DefaultListModel {
         this.clear();
         List<Message> messages = usenet.getMessages(group);
         for (Message message : messages) {
-            this.addElement(message);
+            this.addElement(message.getSubject());
             LOG.fine(message.getSubject());
         }
     }
