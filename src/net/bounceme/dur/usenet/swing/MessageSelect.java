@@ -51,9 +51,12 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     // End of variables declaration//GEN-END:variables
 
     @Override
+    @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
         LOG.fine(controller.getGroup());
         messages = controller.getMessages();
-        LOG.info(messages.toString());
+        LOG.info("loaded messages..");
+        //jList1.revalidate();
+        jList1.setModel(messages);
     }
 }
