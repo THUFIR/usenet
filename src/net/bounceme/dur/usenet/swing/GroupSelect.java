@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
@@ -65,8 +66,8 @@ public class GroupSelect extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void userSelectedRow() {
-        String folderFullName = groupJList.getSelectedValue().toString();
-        controller.setFolderFullName(folderFullName);
-        LOG.fine("selected: " + folderFullName);
+        Folder folder = (Folder) groupJList.getSelectedValue();
+        controller.setFolderFullName(folder);
+        LOG.fine("selected: " + folder);
     }
 }

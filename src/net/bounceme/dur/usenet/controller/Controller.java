@@ -2,12 +2,13 @@ package net.bounceme.dur.usenet.controller;
 
 import java.util.Observable;
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.swing.ListModel;
 
 public class Controller extends Observable {
 
     private static final Logger LOG = Logger.getLogger(Controller.class.getName());
-    private String folderFullName = null;
+    private Folder folder = null;
     private static Controller instance;
     //private Folder folder = null;
 
@@ -22,8 +23,8 @@ public class Controller extends Observable {
     }
 
     public ListModel getMessages() {
-        LOG.fine(folderFullName);
-        ListModel articles = new MessagesDefaultListModel(folderFullName);
+        LOG.fine(folder.getFullName());
+        ListModel articles = new MessagesDefaultListModel(folder.getFullName());
         return articles;
     }
 
@@ -55,13 +56,13 @@ public class Controller extends Observable {
         notifyObservers();
     }*/
 
-    public String getFolderFullName() {
-        return folderFullName;
+    public Folder getFolderFullName() {
+        return folder;
     }
 
-    public void setFolderFullName(String folderFullName) {
-        this.folderFullName = folderFullName;
+    public void setFolderFullName(Folder folder) {
+        this.folder = folder;
         setChanged();
-        notifyObservers(folderFullName);
+        notifyObservers(folder);
     }
 }

@@ -89,12 +89,12 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
          *
          * or so I infer.
          */
-        LOG.warning("trying to get MessageBean..");
+        LOG.fine("trying to get MessageBean..");
         /*
          * move this to another method where it's just click listeners
          *
          * messageBean = (MessageBean) messagesJList.getSelectedValue();
-         * LOG.warning(messageBean.toString());
+         * LOG.fine(messageBean.toString());
          * messageContent.setText(messageBean.getContent()); LOG.fine("..got
          * MessageBean: " + messageBean);
          *
@@ -124,17 +124,17 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.warning("check controller, but getting null pointer sometimes" + arg);
+        LOG.fine("check controller, but getting null pointer sometimes" + arg);
         //messages = controller.getMessages();
         messages = new MessagesDefaultListModel(arg.toString());
-        LOG.warning("how many messages? " + messages.getSize());
+        LOG.fine("how many messages? " + messages.getSize());
         messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
     }
 
     private void userSelectedRow() {
           messageBean = (MessageBean) messagesJList.getSelectedValue();
-          LOG.warning(messageBean.toString());
+          LOG.fine(messageBean.toString());
           messageContent.setText(messageBean.getContent()); 
           LOG.fine("..gotMessageBean: " + messageBean);
     }
