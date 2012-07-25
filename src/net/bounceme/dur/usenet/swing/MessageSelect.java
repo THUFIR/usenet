@@ -60,9 +60,19 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        messagesJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                messagesJListMouseReleased(evt);
+            }
+        });
         messagesJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 messagesJListValueChanged(evt);
+            }
+        });
+        messagesJList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                messagesJListKeyReleased(evt);
             }
         });
         west.setViewportView(messagesJList);
@@ -72,23 +82,36 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
     private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
         /*
-         * ok, this shouldn't be a value changed listener!  try something else!
+         * ok, this shouldn't be a value changed listener! try something else!
          * when this gets nulled or whatever by a change of group, it's in an
          * indeterminate state, neither one group nor another, and hence the
          * errors.
-         * 
+         *
          * or so I infer.
          */
         LOG.warning("trying to get MessageBean..");
-        messageBean = (MessageBean) messagesJList.getSelectedValue();
-        LOG.warning(messageBean.toString());
-        messageContent.setText(messageBean.getContent());
-        LOG.fine("..got MessageBean: " + messageBean);
+        /*
+         * move this to another method where it's just click listeners
+         *
+         * messageBean = (MessageBean) messagesJList.getSelectedValue();
+         * LOG.warning(messageBean.toString());
+         * messageContent.setText(messageBean.getContent()); LOG.fine("..got
+         * MessageBean: " + messageBean);
+         *
+         */
     }//GEN-LAST:event_messagesJListValueChanged
 
     private void commentJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentJButtonActionPerformed
         LOG.fine("button clicked" + messageBean);
     }//GEN-LAST:event_commentJButtonActionPerformed
+
+    private void messagesJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_messagesJListKeyReleased
+        userSelectedRow();
+    }//GEN-LAST:event_messagesJListKeyReleased
+
+    private void messagesJListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_messagesJListMouseReleased
+        userSelectedRow();
+    }//GEN-LAST:event_messagesJListMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane center;
     private javax.swing.JButton commentJButton;
@@ -107,5 +130,12 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
         LOG.warning("how many messages? " + messages.getSize());
         messagesJList.setModel(messages);
         LOG.fine("loaded messages..");
+    }
+
+    private void userSelectedRow() {
+          messageBean = (MessageBean) messagesJList.getSelectedValue();
+          LOG.warning(messageBean.toString());
+          messageContent.setText(messageBean.getContent()); 
+          LOG.fine("..gotMessageBean: " + messageBean);
     }
 }
