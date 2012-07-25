@@ -1,7 +1,6 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
@@ -12,6 +11,7 @@ public class GroupSelect extends javax.swing.JPanel {
     private Controller controller = Controller.getInstance();
     private ListModel groups = new GroupDefaultListModel();
 
+    @SuppressWarnings("unchecked")
     public GroupSelect() {
         initComponents();
         groupJList.setModel(groups);
@@ -42,11 +42,6 @@ public class GroupSelect extends javax.swing.JPanel {
                 groupJListMouseReleased(evt);
             }
         });
-        groupJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                groupJListValueChanged(evt);
-            }
-        });
         groupJList.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 groupJListKeyReleased(evt);
@@ -56,13 +51,6 @@ public class GroupSelect extends javax.swing.JPanel {
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
-        //LOG.fine("trying..");
-        //String folderFullName = groupJList.getSelectedValue().toString();
-        //controller.setFolderFullName(folderFullName);
-        //LOG.fine("selected: " + folderFullName);
-    }//GEN-LAST:event_groupJListValueChanged
 
     private void groupJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupJListKeyReleased
         userSelectedRow();
