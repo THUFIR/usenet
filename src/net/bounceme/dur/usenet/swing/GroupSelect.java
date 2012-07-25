@@ -37,9 +37,19 @@ public class GroupSelect extends javax.swing.JPanel {
             public Object getElementAt(int i) { return strings[i]; }
         });
         groupJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        groupJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                groupJListMouseReleased(evt);
+            }
+        });
         groupJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 groupJListValueChanged(evt);
+            }
+        });
+        groupJList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                groupJListKeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(groupJList);
@@ -48,13 +58,27 @@ public class GroupSelect extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_groupJListValueChanged
-        LOG.fine("trying..");
-        String folderFullName = groupJList.getSelectedValue().toString();
-        controller.setFolderFullName(folderFullName);
-        LOG.fine("selected: " + folderFullName);
+        //LOG.fine("trying..");
+        //String folderFullName = groupJList.getSelectedValue().toString();
+        //controller.setFolderFullName(folderFullName);
+        //LOG.fine("selected: " + folderFullName);
     }//GEN-LAST:event_groupJListValueChanged
+
+    private void groupJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupJListKeyReleased
+        userSelectedRow();
+    }//GEN-LAST:event_groupJListKeyReleased
+
+    private void groupJListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_groupJListMouseReleased
+        userSelectedRow();
+    }//GEN-LAST:event_groupJListMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList groupJList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void userSelectedRow() {
+        String folderFullName = groupJList.getSelectedValue().toString();
+        controller.setFolderFullName(folderFullName);
+        LOG.fine("selected: " + folderFullName);
+    }
 }
