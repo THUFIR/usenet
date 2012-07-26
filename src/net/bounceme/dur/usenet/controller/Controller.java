@@ -24,7 +24,7 @@ public class Controller extends Observable {
 
     public ListModel getMessages() {
         LOG.fine(folder.getFullName());
-        ListModel articles = new MessagesDefaultListModel(folder.getFullName());
+        ListModel articles = new MessagesDefaultListModel(folder);
         return articles;
     }
 

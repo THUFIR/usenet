@@ -3,6 +3,7 @@ package net.bounceme.dur.usenet.swing;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.MessageBean;
@@ -18,6 +19,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     public MessageSelect() {
         controller.addObserver(this);
         initComponents();
+        messageContent.setText("hello world");
     }
 
     /**
@@ -124,18 +126,23 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
-        LOG.fine("check controller, but getting null pointer sometimes" + arg);
-        //messages = controller.getMessages();
-        messages = new MessagesDefaultListModel(arg.toString());
-        LOG.fine("how many messages? " + messages.getSize());
-        messagesJList.setModel(messages);
-        LOG.fine("loaded messages..");
+        LOG.fine("trying folder:  " + arg);
+        Folder folder = null;
+        try {
+            folder = (Folder) arg;
+            messages = new MessagesDefaultListModel(folder);
+            LOG.fine("how many messages? " + messages.getSize());
+            messagesJList.setModel(messages);
+            LOG.fine("loaded messages..");
+        } catch (Exception e) {
+            LOG.fine("not a valid folder " + arg);
+        }
     }
 
     private void userSelectedRow() {
-          messageBean = (MessageBean) messagesJList.getSelectedValue();
-          LOG.fine(messageBean.toString());
-          messageContent.setText(messageBean.getContent()); 
-          LOG.fine("..gotMessageBean: " + messageBean);
+        messageBean = (MessageBean) messagesJList.getSelectedValue();
+        LOG.fine(messageBean.toString());
+        messageContent.setText(messageBean.getContent());
+        LOG.fine("..gotMessageBean: " + messageBean);
     }
 }
