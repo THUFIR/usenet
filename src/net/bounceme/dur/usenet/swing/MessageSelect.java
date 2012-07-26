@@ -20,8 +20,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     public MessageSelect() {
         controller.addObserver(this);
         initComponents();
-        messageContent.setText("hello world");
-        this.messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxx");
+        messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     /**
