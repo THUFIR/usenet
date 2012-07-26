@@ -43,7 +43,7 @@ public class PanelWithTabs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void groupSelectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelectPropertyChange
-        LOG.info("property change.." + evt);
+        LOG.fine("property change.." + evt);
         if ("group".equals(evt.getPropertyName())){
             Folder folder = (Folder) evt.getNewValue();
             articleSelect.foo(folder);

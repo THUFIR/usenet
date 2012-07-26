@@ -1,8 +1,8 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.util.Observable;
 import java.util.logging.Logger;
 import javax.mail.Folder;
+import javax.mail.Message;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.MessageBean;
 import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
@@ -10,17 +10,13 @@ import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
 public class Messages extends javax.swing.JPanel /*implements Observer*/ {
 
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
-    //private Controller controller = Controller.getInstance();
     private ListModel messages = new MessagesDefaultListModel();
     private MessageBean messageBean = new MessageBean();
 
     @SuppressWarnings("unchecked")
     public Messages() {
-        //controller.addObserver(this);
         initComponents();
         messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        messagesJList.setSelectedIndex(0);
-        //userSelectedRow();
     }
 
     /**
@@ -102,32 +98,18 @@ public class Messages extends javax.swing.JPanel /*implements Observer*/ {
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
 
-    /*
-    @Override
-    @SuppressWarnings("unchecked")
-    public void update(Observable o, Object arg) {
-        LOG.fine("trying folder:  " + arg);
-        //Folder folder = null;
-        try {
-            Folder folder = (Folder) arg;
-            messages = new MessagesDefaultListModel(folder);
-            LOG.fine("how many messages? " + messages.getSize());
-            messagesJList.setModel(messages);
-            LOG.fine("loaded messages..");
-        } catch (Exception e) {  //err, class cast exception?
-            LOG.fine("not a valid folder " + arg);
-        }
-    }
-    * 
-    */
 
     private void userSelectedRow() {
-        messageBean = (MessageBean) messagesJList.getSelectedValue();
+        //Message message = (Message) messagesJList.getSelectedValue();
+        //messageBean = new MessageBean(message);
+        messageBean =  (MessageBean) messagesJList.getSelectedValue();
         LOG.fine(messageBean.toString());
         messageContent.setText(messageBean.getContent());
+        this.firePropertyChange("messageBean", null, messageBean);
         LOG.fine("..gotMessageBean: " + messageBean);
     }
 
+    @SuppressWarnings("unchecked")
     void foo(Folder folder) {
         messages = new MessagesDefaultListModel(folder);
         messagesJList.setModel(messages);

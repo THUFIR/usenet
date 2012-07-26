@@ -3,13 +3,11 @@ package net.bounceme.dur.usenet.swing;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
 
 public class Groups extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(Groups.class.getName());
-    private Controller controller = Controller.getInstance();
     private ListModel groups = new GroupDefaultListModel();
     
     @SuppressWarnings("unchecked")
