@@ -38,7 +38,7 @@ public class CommentsDefaultListModel extends DefaultListModel {
     private void load(MessageBean messageBean) throws Exception {
         LOG.severe("loading.." + messageBean);
 
-        emf = Persistence.createEntityManagerFactory("examplePersistenceUnit");
+        emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
 
     }
