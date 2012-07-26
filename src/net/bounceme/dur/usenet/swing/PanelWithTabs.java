@@ -1,14 +1,10 @@
 package net.bounceme.dur.usenet.swing;
 
-//time to pass objects around in view
-
 import java.util.logging.Logger;
-import net.bounceme.dur.usenet.controller.Controller;
 
 public class PanelWithTabs extends javax.swing.JPanel {
 
     private static final Logger LOG = Logger.getLogger(PanelWithTabs.class.getName());
-    private Controller controller = Controller.getInstance();
 
     public PanelWithTabs() {
         initComponents();
