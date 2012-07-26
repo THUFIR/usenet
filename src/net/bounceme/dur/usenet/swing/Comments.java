@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
+import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.controller.CommentsDefaultListModel;
 import net.bounceme.dur.usenet.controller.MessageBean;
 
 public class Comments extends javax.swing.JPanel {
@@ -76,7 +78,10 @@ public class Comments extends javax.swing.JPanel {
     private javax.swing.JPanel south;
     // End of variables declaration//GEN-END:variables
 
+    @SuppressWarnings("unchecked")
     void setMessageBean(MessageBean messageBean) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        DefaultListModel dlm = new CommentsDefaultListModel(messageBean);
+        commentJList.setModel(dlm);
     }
+
 }
