@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
+import net.bounceme.dur.usenet.controller.MessageBean;
+
 public class Comments extends javax.swing.JPanel {
 
     /**
@@ -73,4 +75,8 @@ public class Comments extends javax.swing.JPanel {
     private javax.swing.JTextArea newCommentJTextArea;
     private javax.swing.JPanel south;
     // End of variables declaration//GEN-END:variables
+
+    void setMessageBean(MessageBean messageBean) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

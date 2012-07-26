@@ -2,6 +2,7 @@ package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
 import javax.mail.Folder;
+import net.bounceme.dur.usenet.controller.MessageBean;
 
 public class PanelWithTabs extends javax.swing.JPanel {
 
@@ -35,6 +36,12 @@ public class PanelWithTabs extends javax.swing.JPanel {
             }
         });
         groupArticleDatabase.addTab("GroupSelect", groupSelect);
+
+        articleSelect.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                articleSelectPropertyChange(evt);
+            }
+        });
         groupArticleDatabase.addTab("ArticleList", articleSelect);
         groupArticleDatabase.addTab("Database", databaseJPanel);
 
@@ -46,9 +53,17 @@ public class PanelWithTabs extends javax.swing.JPanel {
         LOG.fine("property change.." + evt);
         if ("group".equals(evt.getPropertyName())){
             Folder folder = (Folder) evt.getNewValue();
-            articleSelect.foo(folder);
+            articleSelect.setFolder(folder);
         }
     }//GEN-LAST:event_groupSelectPropertyChange
+
+    private void articleSelectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_articleSelectPropertyChange
+        if ("messageBean".equals(evt.getPropertyName())){
+            MessageBean messageBean = (MessageBean) evt.getNewValue();
+            databaseJPanel.setMessageBean(messageBean);
+        }
+    }//GEN-LAST:event_articleSelectPropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.Messages articleSelect;
     private net.bounceme.dur.usenet.swing.Comments databaseJPanel;

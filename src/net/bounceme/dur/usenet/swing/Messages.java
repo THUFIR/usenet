@@ -108,7 +108,7 @@ public class Messages extends javax.swing.JPanel /*implements Observer*/ {
     }
 
     @SuppressWarnings("unchecked")
-    void foo(Folder folder) {
+    void setFolder(Folder folder) {
         messages = new MessagesDefaultListModel(folder);
         messagesJList.setModel(messages);
     }

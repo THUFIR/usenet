@@ -15,7 +15,6 @@ public class Groups extends javax.swing.JPanel {
         initComponents();
         groupJList.setModel(groups);
         groupJList.setSelectedIndex(0);
-        userSelectedRow();
     }
 
     /**
