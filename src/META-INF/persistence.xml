@@ -3,6 +3,9 @@
   <persistence-unit name="USENETPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>net.bounceme.dur.usenet.swing.Notes</class>
+    <class>net.bounceme.dur.usenet.controller.Data</class>
+    <class>net.bounceme.dur.usenet.controller.Comments</class>
+    <class>net.bounceme.dur.usenet.controller.Messages</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nntp"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
