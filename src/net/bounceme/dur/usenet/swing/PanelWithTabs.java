@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
+//time to pass objects around in view
+
 import java.util.logging.Logger;
 import net.bounceme.dur.usenet.controller.Controller;
 
