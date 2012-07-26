@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Logger;
+import javax.mail.Folder;
 
 public class PanelWithTabs extends javax.swing.JPanel {
 
@@ -27,6 +28,12 @@ public class PanelWithTabs extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         groupArticleDatabase.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+
+        groupSelect.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                groupSelectPropertyChange(evt);
+            }
+        });
         groupArticleDatabase.addTab("GroupSelect", groupSelect);
         groupArticleDatabase.addTab("ArticleList", articleSelect);
         groupArticleDatabase.addTab("Database", databaseJPanel);
@@ -34,6 +41,14 @@ public class PanelWithTabs extends javax.swing.JPanel {
         add(groupArticleDatabase, java.awt.BorderLayout.CENTER);
         groupArticleDatabase.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void groupSelectPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_groupSelectPropertyChange
+        LOG.info("property change.." + evt);
+        if ("group".equals(evt.getPropertyName())){
+            Folder folder = (Folder) evt.getNewValue();
+            articleSelect.foo(folder);
+        }
+    }//GEN-LAST:event_groupSelectPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.Messages articleSelect;
     private net.bounceme.dur.usenet.swing.Comments databaseJPanel;

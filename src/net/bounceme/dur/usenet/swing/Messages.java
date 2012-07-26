@@ -1,24 +1,22 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.MessageBean;
 import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
 
-public class Messages extends javax.swing.JPanel implements Observer {
+public class Messages extends javax.swing.JPanel /*implements Observer*/ {
 
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
-    private Controller controller = Controller.getInstance();
+    //private Controller controller = Controller.getInstance();
     private ListModel messages = new MessagesDefaultListModel();
     private MessageBean messageBean = new MessageBean();
 
     @SuppressWarnings("unchecked")
     public Messages() {
-        controller.addObserver(this);
+        //controller.addObserver(this);
         initComponents();
         messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         messagesJList.setSelectedIndex(0);
@@ -104,6 +102,7 @@ public class Messages extends javax.swing.JPanel implements Observer {
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
 
+    /*
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
@@ -119,11 +118,18 @@ public class Messages extends javax.swing.JPanel implements Observer {
             LOG.fine("not a valid folder " + arg);
         }
     }
+    * 
+    */
 
     private void userSelectedRow() {
         messageBean = (MessageBean) messagesJList.getSelectedValue();
         LOG.fine(messageBean.toString());
         messageContent.setText(messageBean.getContent());
         LOG.fine("..gotMessageBean: " + messageBean);
+    }
+
+    void foo(Folder folder) {
+        messages = new MessagesDefaultListModel(folder);
+        messagesJList.setModel(messages);
     }
 }
