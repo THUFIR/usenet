@@ -21,21 +21,22 @@ public class PanelWithTabs extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        groupArticleJTabPane = new javax.swing.JTabbedPane();
         groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
         articleSelect = new net.bounceme.dur.usenet.swing.MessageSelect();
 
         setLayout(new java.awt.BorderLayout());
 
-        jTabbedPane1.addTab("GroupSelect", groupSelect);
-        jTabbedPane1.addTab("ArticleList", articleSelect);
+        groupArticleJTabPane.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+        groupArticleJTabPane.addTab("GroupSelect", groupSelect);
+        groupArticleJTabPane.addTab("ArticleList", articleSelect);
 
-        add(jTabbedPane1, java.awt.BorderLayout.CENTER);
-        jTabbedPane1.getAccessibleContext().setAccessibleName("GroupSelect");
+        add(groupArticleJTabPane, java.awt.BorderLayout.CENTER);
+        groupArticleJTabPane.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.MessageSelect articleSelect;
+    private javax.swing.JTabbedPane groupArticleJTabPane;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
