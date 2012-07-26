@@ -1,5 +1,8 @@
 package net.bounceme.dur.usenet.controller;
 
+
+//changing to a drop down menu
+
 import java.util.Observable;
 import java.util.logging.Logger;
 import javax.mail.Folder;
