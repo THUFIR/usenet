@@ -16,10 +16,12 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     private ListModel messages = new MessagesDefaultListModel();
     private MessageBean messageBean = new MessageBean();
 
+    @SuppressWarnings("unchecked")
     public MessageSelect() {
         controller.addObserver(this);
         initComponents();
         messageContent.setText("hello world");
+        this.messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     /**
@@ -44,6 +46,7 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
         messageContent.setContentType("text/html"); // NOI18N
         messageContent.setMinimumSize(new java.awt.Dimension(180, 80));
+        messageContent.setPreferredSize(new java.awt.Dimension(210, 105));
         center.setViewportView(messageContent);
 
         add(center, java.awt.BorderLayout.CENTER);
