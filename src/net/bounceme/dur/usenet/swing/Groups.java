@@ -67,8 +67,7 @@ public class Groups extends javax.swing.JPanel {
 
     private void userSelectedRow() {
         Folder folder = (Folder) groupJList.getSelectedValue();
-        //controller.setFolderFullName(folder);
         this.firePropertyChange("group", null, folder);
-        LOG.fine("selected: " + folder);
+        LOG.info("selected: " + folder);
     }
 }

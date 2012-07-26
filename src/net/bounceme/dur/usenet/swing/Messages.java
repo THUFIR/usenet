@@ -100,8 +100,6 @@ public class Messages extends javax.swing.JPanel /*implements Observer*/ {
 
 
     private void userSelectedRow() {
-        //Message message = (Message) messagesJList.getSelectedValue();
-        //messageBean = new MessageBean(message);
         messageBean =  (MessageBean) messagesJList.getSelectedValue();
         LOG.fine(messageBean.toString());
         messageContent.setText(messageBean.getContent());
