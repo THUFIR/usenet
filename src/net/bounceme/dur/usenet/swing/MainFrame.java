@@ -19,11 +19,24 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelWithTabs1 = new net.bounceme.dur.usenet.swing.PanelWithTabs();
+        messagesJPanel = new net.bounceme.dur.usenet.swing.PanelWithTabs();
+        jMenu = new javax.swing.JMenuBar();
+        jMenuGroup = new javax.swing.JMenu();
+        groupsJCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 300));
-        getContentPane().add(panelWithTabs1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(messagesJPanel, java.awt.BorderLayout.CENTER);
+
+        jMenuGroup.setText("Newsgroup");
+
+        groupsJCheckBoxMenuItem1.setSelected(true);
+        groupsJCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+        jMenuGroup.add(groupsJCheckBoxMenuItem1);
+
+        jMenu.add(jMenuGroup);
+
+        setJMenuBar(jMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -58,12 +71,16 @@ public class MainFrame extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new MainFrame().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private net.bounceme.dur.usenet.swing.PanelWithTabs panelWithTabs1;
+    private javax.swing.JCheckBoxMenuItem groupsJCheckBoxMenuItem1;
+    private javax.swing.JMenuBar jMenu;
+    private javax.swing.JMenu jMenuGroup;
+    private net.bounceme.dur.usenet.swing.PanelWithTabs messagesJPanel;
     // End of variables declaration//GEN-END:variables
 }
