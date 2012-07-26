@@ -1,19 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.swing;
 
-/**
- *
- * @author thufir
- */
-public class DatabaseJPanel extends javax.swing.JPanel {
+public class Comments extends javax.swing.JPanel {
 
     /**
      * Creates new form DatabaseJPanel
      */
-    public DatabaseJPanel() {
+    public Comments() {
         initComponents();
     }
 

@@ -9,18 +9,20 @@ import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.MessageBean;
 import net.bounceme.dur.usenet.controller.MessagesDefaultListModel;
 
-public class MessageSelect extends javax.swing.JPanel implements Observer {
+public class Messages extends javax.swing.JPanel implements Observer {
 
-    private static final Logger LOG = Logger.getLogger(MessageSelect.class.getName());
+    private static final Logger LOG = Logger.getLogger(Messages.class.getName());
     private Controller controller = Controller.getInstance();
     private ListModel messages = new MessagesDefaultListModel();
     private MessageBean messageBean = new MessageBean();
 
     @SuppressWarnings("unchecked")
-    public MessageSelect() {
+    public Messages() {
         controller.addObserver(this);
         initComponents();
         messagesJList.setPrototypeCellValue("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        messagesJList.setSelectedIndex(0);
+        //userSelectedRow();
     }
 
     /**

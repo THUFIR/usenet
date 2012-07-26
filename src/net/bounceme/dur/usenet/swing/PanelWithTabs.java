@@ -22,9 +22,9 @@ public class PanelWithTabs extends javax.swing.JPanel {
     private void initComponents() {
 
         groupArticleDatabase = new javax.swing.JTabbedPane();
-        groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
-        articleSelect = new net.bounceme.dur.usenet.swing.MessageSelect();
-        databaseJPanel = new net.bounceme.dur.usenet.swing.DatabaseJPanel();
+        groupSelect = new net.bounceme.dur.usenet.swing.Groups();
+        articleSelect = new net.bounceme.dur.usenet.swing.Messages();
+        databaseJPanel = new net.bounceme.dur.usenet.swing.Comments();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -37,9 +37,9 @@ public class PanelWithTabs extends javax.swing.JPanel {
         groupArticleDatabase.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private net.bounceme.dur.usenet.swing.MessageSelect articleSelect;
-    private net.bounceme.dur.usenet.swing.DatabaseJPanel databaseJPanel;
+    private net.bounceme.dur.usenet.swing.Messages articleSelect;
+    private net.bounceme.dur.usenet.swing.Comments databaseJPanel;
     private javax.swing.JTabbedPane groupArticleDatabase;
-    private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
+    private net.bounceme.dur.usenet.swing.Groups groupSelect;
     // End of variables declaration//GEN-END:variables
 }

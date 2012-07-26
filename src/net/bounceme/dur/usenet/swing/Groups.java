@@ -6,16 +6,18 @@ import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.Controller;
 import net.bounceme.dur.usenet.controller.GroupDefaultListModel;
 
-public class GroupSelect extends javax.swing.JPanel {
+public class Groups extends javax.swing.JPanel {
 
-    private static final Logger LOG = Logger.getLogger(GroupSelect.class.getName());
+    private static final Logger LOG = Logger.getLogger(Groups.class.getName());
     private Controller controller = Controller.getInstance();
     private ListModel groups = new GroupDefaultListModel();
-
+    
     @SuppressWarnings("unchecked")
-    public GroupSelect() {
+    public Groups() {
         initComponents();
         groupJList.setModel(groups);
+        groupJList.setSelectedIndex(0);
+        userSelectedRow();
     }
 
     /**
