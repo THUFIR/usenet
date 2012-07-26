@@ -16,7 +16,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="groupArticleJTabPane">
+    <Container class="javax.swing.JTabbedPane" name="groupArticleDatabase">
       <Properties>
         <Property name="tabPlacement" type="int" value="4"/>
       </Properties>
@@ -45,6 +45,15 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="ArticleList">
                 <Property name="tabTitle" type="java.lang.String" value="ArticleList"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="net.bounceme.dur.usenet.swing.DatabaseJPanel" name="databaseJPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Database">
+                <Property name="tabTitle" type="java.lang.String" value="Database"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

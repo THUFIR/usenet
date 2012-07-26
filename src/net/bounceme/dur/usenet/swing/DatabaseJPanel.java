@@ -26,32 +26,59 @@ public class DatabaseJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        northJPanel = new javax.swing.JPanel();
-        center = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        north = new javax.swing.JScrollPane();
+        center = new javax.swing.JPanel();
+        commentWest = new javax.swing.JScrollPane();
+        commentJList = new javax.swing.JList();
+        commentCenter = new javax.swing.JScrollPane();
+        commentJTextArea = new javax.swing.JTextArea();
+        south = new javax.swing.JPanel();
+        newCommentJButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
-        northJPanel.setLayout(new java.awt.BorderLayout());
-        add(northJPanel, java.awt.BorderLayout.CENTER);
+        center.setLayout(new java.awt.BorderLayout());
 
-        center.setViewportView(jTextPane1);
+        commentJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        commentWest.setViewportView(commentJList);
 
-        add(center, java.awt.BorderLayout.CENTER);
+        center.add(commentWest, java.awt.BorderLayout.CENTER);
+
+        commentJTextArea.setColumns(20);
+        commentJTextArea.setRows(5);
+        commentCenter.setViewportView(commentJTextArea);
+
+        center.add(commentCenter, java.awt.BorderLayout.PAGE_START);
+
+        south.setLayout(new java.awt.BorderLayout());
+
+        newCommentJButton.setText("jButton1");
+        south.add(newCommentJButton, java.awt.BorderLayout.EAST);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        north.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(jTextArea1);
 
-        add(north, java.awt.BorderLayout.NORTH);
+        south.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        center.add(south, java.awt.BorderLayout.PAGE_END);
+
+        add(center);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane center;
+    private javax.swing.JPanel center;
+    private javax.swing.JScrollPane commentCenter;
+    private javax.swing.JList commentJList;
+    private javax.swing.JTextArea commentJTextArea;
+    private javax.swing.JScrollPane commentWest;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JScrollPane north;
-    private javax.swing.JPanel northJPanel;
+    private javax.swing.JButton newCommentJButton;
+    private javax.swing.JPanel south;
     // End of variables declaration//GEN-END:variables
 }

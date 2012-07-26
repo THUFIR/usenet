@@ -21,22 +21,25 @@ public class PanelWithTabs extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        groupArticleJTabPane = new javax.swing.JTabbedPane();
+        groupArticleDatabase = new javax.swing.JTabbedPane();
         groupSelect = new net.bounceme.dur.usenet.swing.GroupSelect();
         articleSelect = new net.bounceme.dur.usenet.swing.MessageSelect();
+        databaseJPanel = new net.bounceme.dur.usenet.swing.DatabaseJPanel();
 
         setLayout(new java.awt.BorderLayout());
 
-        groupArticleJTabPane.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-        groupArticleJTabPane.addTab("GroupSelect", groupSelect);
-        groupArticleJTabPane.addTab("ArticleList", articleSelect);
+        groupArticleDatabase.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
+        groupArticleDatabase.addTab("GroupSelect", groupSelect);
+        groupArticleDatabase.addTab("ArticleList", articleSelect);
+        groupArticleDatabase.addTab("Database", databaseJPanel);
 
-        add(groupArticleJTabPane, java.awt.BorderLayout.CENTER);
-        groupArticleJTabPane.getAccessibleContext().setAccessibleName("GroupSelect");
+        add(groupArticleDatabase, java.awt.BorderLayout.CENTER);
+        groupArticleDatabase.getAccessibleContext().setAccessibleName("GroupSelect");
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private net.bounceme.dur.usenet.swing.MessageSelect articleSelect;
-    private javax.swing.JTabbedPane groupArticleJTabPane;
+    private net.bounceme.dur.usenet.swing.DatabaseJPanel databaseJPanel;
+    private javax.swing.JTabbedPane groupArticleDatabase;
     private net.bounceme.dur.usenet.swing.GroupSelect groupSelect;
     // End of variables declaration//GEN-END:variables
 }
