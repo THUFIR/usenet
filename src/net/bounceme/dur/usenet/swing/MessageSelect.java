@@ -40,7 +40,10 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
         setLayout(new java.awt.BorderLayout());
 
+        center.setMinimumSize(new java.awt.Dimension(200, 100));
+
         messageContent.setContentType("text/html"); // NOI18N
+        messageContent.setMinimumSize(new java.awt.Dimension(180, 80));
         center.setViewportView(messageContent);
 
         add(center, java.awt.BorderLayout.CENTER);
@@ -67,11 +70,6 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
                 messagesJListMouseReleased(evt);
             }
         });
-        messagesJList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                messagesJListValueChanged(evt);
-            }
-        });
         messagesJList.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 messagesJListKeyReleased(evt);
@@ -81,27 +79,6 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
 
         add(west, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void messagesJListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_messagesJListValueChanged
-        /*
-         * ok, this shouldn't be a value changed listener! try something else!
-         * when this gets nulled or whatever by a change of group, it's in an
-         * indeterminate state, neither one group nor another, and hence the
-         * errors.
-         *
-         * or so I infer.
-         */
-        LOG.fine("trying to get MessageBean..");
-        /*
-         * move this to another method where it's just click listeners
-         *
-         * messageBean = (MessageBean) messagesJList.getSelectedValue();
-         * LOG.fine(messageBean.toString());
-         * messageContent.setText(messageBean.getContent()); LOG.fine("..got
-         * MessageBean: " + messageBean);
-         *
-         */
-    }//GEN-LAST:event_messagesJListValueChanged
 
     private void commentJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentJButtonActionPerformed
         LOG.fine("button clicked" + messageBean);
@@ -127,14 +104,14 @@ public class MessageSelect extends javax.swing.JPanel implements Observer {
     @SuppressWarnings("unchecked")
     public void update(Observable o, Object arg) {
         LOG.fine("trying folder:  " + arg);
-        Folder folder = null;
+        //Folder folder = null;
         try {
-            folder = (Folder) arg;
+            Folder folder = (Folder) arg;
             messages = new MessagesDefaultListModel(folder);
             LOG.fine("how many messages? " + messages.getSize());
             messagesJList.setModel(messages);
             LOG.fine("loaded messages..");
-        } catch (Exception e) {
+        } catch (Exception e) {  //err, class cast exception?
             LOG.fine("not a valid folder " + arg);
         }
     }
