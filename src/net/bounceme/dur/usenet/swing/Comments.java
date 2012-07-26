@@ -26,7 +26,7 @@ public class Comments extends javax.swing.JPanel {
         south = new javax.swing.JPanel();
         newCommentJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        newCommentJTextArea = new javax.swing.JTextArea();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -52,9 +52,9 @@ public class Comments extends javax.swing.JPanel {
         newCommentJButton.setText("jButton1");
         south.add(newCommentJButton, java.awt.BorderLayout.EAST);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        newCommentJTextArea.setColumns(20);
+        newCommentJTextArea.setRows(5);
+        jScrollPane1.setViewportView(newCommentJTextArea);
 
         south.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -69,8 +69,8 @@ public class Comments extends javax.swing.JPanel {
     private javax.swing.JTextArea commentJTextArea;
     private javax.swing.JScrollPane commentWest;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton newCommentJButton;
+    private javax.swing.JTextArea newCommentJTextArea;
     private javax.swing.JPanel south;
     // End of variables declaration//GEN-END:variables
 }
