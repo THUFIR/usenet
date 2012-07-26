@@ -20,23 +20,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         messagesJPanel = new net.bounceme.dur.usenet.swing.PanelWithTabs();
-        jMenu = new javax.swing.JMenuBar();
-        jMenuGroup = new javax.swing.JMenu();
-        groupsJCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 300));
         getContentPane().add(messagesJPanel, java.awt.BorderLayout.CENTER);
-
-        jMenuGroup.setText("Newsgroup");
-
-        groupsJCheckBoxMenuItem1.setSelected(true);
-        groupsJCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-        jMenuGroup.add(groupsJCheckBoxMenuItem1);
-
-        jMenu.add(jMenuGroup);
-
-        setJMenuBar(jMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,9 +65,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem groupsJCheckBoxMenuItem1;
-    private javax.swing.JMenuBar jMenu;
-    private javax.swing.JMenu jMenuGroup;
     private net.bounceme.dur.usenet.swing.PanelWithTabs messagesJPanel;
     // End of variables declaration//GEN-END:variables
 }
