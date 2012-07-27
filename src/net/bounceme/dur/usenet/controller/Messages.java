@@ -25,6 +25,7 @@ public class Messages implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @Basic(optional = false)
     @Lob
@@ -52,6 +53,14 @@ public class Messages implements Serializable {
         this.id = id;
     }
 
+    public Messages(MessageBean mb) {
+        newsgroup = mb.getGroup();
+        subject = mb.getSubject();
+        content = mb.getContent().toString();
+        number = Integer.toString(mb.getNumber());
+    }
+    
+    
     public Messages(Integer id, String newsgroup, String subject, String content, String number) {
         this.id = id;
         this.newsgroup = newsgroup;

@@ -28,18 +28,23 @@ public class CommentsDefaultListModel extends DefaultListModel {
 
     public CommentsDefaultListModel(MessageBean messageBean) {
         try {
-            load(messageBean);
+            persist(messageBean);
         } catch (Exception ex) {
             Logger.getLogger(CommentsDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private void load(MessageBean messageBean) throws Exception {
-        LOG.severe("loading.." + messageBean);
+    
+    private void persist(MessageBean messageBean) throws Exception {
+        LOG.info("loading.." + messageBean);
 
+        Messages message = new Messages(messageBean);
+        
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
 
+        em.getTransaction().begin();
+        em.persist(message);
+        em.getTransaction().commit();
     }
 }
