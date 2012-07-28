@@ -8,6 +8,8 @@ package net.bounceme.dur.usenet.model;
 
 //hmm, can I push to the master?
 
+//doh, use merge
+
 
 import java.io.Serializable;
 import java.util.Collection;
