@@ -67,12 +67,4 @@ public enum Usenet {
         this.max = max;
     }
 
-    public Page getPage(Folder folder) throws Exception {
-        LOG.fine("connecting to " + folder);
-        folder.open(Folder.READ_ONLY);
-        int count = folder.getMessageCount() - 30;
-        int index = 1;
-        Page page = new Page(folder.getFullName(), index, count);
-        return page;
-    }
 }
