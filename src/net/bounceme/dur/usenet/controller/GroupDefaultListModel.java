@@ -1,12 +1,15 @@
 package net.bounceme.dur.usenet.controller;
 
+import com.mysql.jdbc.StringUtils;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.DefaultListModel;
+import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
@@ -36,12 +39,19 @@ public class GroupDefaultListModel extends DefaultListModel {
     }
 
     private void persist(Folder folder) {
-        LOG.info("insert to database.." + folder);
+        Newsgroup newNewsgroup = new Newsgroup(folder);
+        LOG.info("insert to database.." + newNewsgroup);
 
-        Newsgroup newsgroup = new Newsgroup(folder);
 
         em.getTransaction().begin();
-        em.persist(newsgroup);
+        em.persist(newNewsgroup);
         em.getTransaction().commit();
     }
+    /*
+     * public List<Article> getArticles(String lastName) { String queryString =
+     * "SELECT a FROM Articles a "; Query query = em.createQuery(queryString);
+     * query.setParameter("lastName", StringUtils.lowerCase(lastName)); return
+     * query.getResultList();
+}
+     */
 }
