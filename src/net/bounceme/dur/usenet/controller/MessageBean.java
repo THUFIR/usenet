@@ -1,8 +1,5 @@
 package net.bounceme.dur.usenet.controller;
 
-//hmm, which branch am I in?
-//should be in branch 1
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;

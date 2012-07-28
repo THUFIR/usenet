@@ -1,42 +1,35 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package net.bounceme.dur.usenet.model;
-
-//article has the wrong structure.
-//newsgroup should be a foreign key
-//there needs to be some mechanism for unique messages
-//message id!
-
-
-//hmm, can I push to the master?
-
-//doh, use merge
-
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import net.bounceme.dur.usenet.controller.MessageBean;
 
+/**
+ *
+ * @author thufir
+ */
 @Entity
 @Table(name = "articles", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Article a"),
-    @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Article a WHERE a.id = :id"),
-    @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Article a WHERE a.number = :number")})
-public class Article implements Serializable {
-
+    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Articles a"),
+    @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Articles a WHERE a.id = :id"),
+    @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Articles a WHERE a.number = :number"),
+    @NamedQuery(name = "Articles.findBySent", query = "SELECT a FROM Articles a WHERE a.sent = :sent")})
+public class Articles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "newsgroup", nullable = false, length = 65535)
-    private String newsgroup;
     @Basic(optional = false)
     @Lob
     @Column(name = "subject", nullable = false, length = 65535)
@@ -48,29 +41,31 @@ public class Article implements Serializable {
     @Basic(optional = false)
     @Column(name = "number", nullable = false)
     private int number;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "messageId")
-    private Collection<Comment> commentsCollection;
+    @Basic(optional = false)
+    @Column(name = "sent", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date sent;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "header_id_string", nullable = false, length = 65535)
+    private String headerIdString;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "newsgroupId")
+    private Collection<NewsgroupsArticles> newsgroupsArticlesCollection;
 
-    public Article() {
+    public Articles() {
     }
 
-    public Article(MessageBean messageBean) {
-        newsgroup = messageBean.getGroup();
-        subject = messageBean.getSubject();
-        content = messageBean.getContent();
-        number = messageBean.getNumber();
-    }
-
-    public Article(Integer id) {
+    public Articles(Integer id) {
         this.id = id;
     }
 
-    public Article(Integer id, String newsgroup, String subject, String content, int number) {
+    public Articles(Integer id, String subject, String content, int number, Date sent, String headerIdString) {
         this.id = id;
-        this.newsgroup = newsgroup;
         this.subject = subject;
         this.content = content;
         this.number = number;
+        this.sent = sent;
+        this.headerIdString = headerIdString;
     }
 
     public Integer getId() {
@@ -79,14 +74,6 @@ public class Article implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNewsgroup() {
-        return newsgroup;
-    }
-
-    public void setNewsgroup(String newsgroup) {
-        this.newsgroup = newsgroup;
     }
 
     public String getSubject() {
@@ -113,13 +100,29 @@ public class Article implements Serializable {
         this.number = number;
     }
 
-    @XmlTransient
-    public Collection<Comment> getCommentsCollection() {
-        return commentsCollection;
+    public Date getSent() {
+        return sent;
     }
 
-    public void setCommentsCollection(Collection<Comment> commentsCollection) {
-        this.commentsCollection = commentsCollection;
+    public void setSent(Date sent) {
+        this.sent = sent;
+    }
+
+    public String getHeaderIdString() {
+        return headerIdString;
+    }
+
+    public void setHeaderIdString(String headerIdString) {
+        this.headerIdString = headerIdString;
+    }
+
+    @XmlTransient
+    public Collection<NewsgroupsArticles> getNewsgroupsArticlesCollection() {
+        return newsgroupsArticlesCollection;
+    }
+
+    public void setNewsgroupsArticlesCollection(Collection<NewsgroupsArticles> newsgroupsArticlesCollection) {
+        this.newsgroupsArticlesCollection = newsgroupsArticlesCollection;
     }
 
     @Override
@@ -132,10 +135,10 @@ public class Article implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Article)) {
+        if (!(object instanceof Articles)) {
             return false;
         }
-        Article other = (Article) object;
+        Articles other = (Articles) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -146,4 +149,5 @@ public class Article implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Articles[ id=" + id + " ]";
     }
+    
 }

@@ -10,6 +10,10 @@
     <class>net.bounceme.dur.usenet.model.Flat</class>
     <class>net.bounceme.dur.usenet.model.Comment</class>
     <class>net.bounceme.dur.usenet.model.Article</class>
+    <class>net.bounceme.dur.usenet.model.NewsgroupsArticles</class>
+    <class>net.bounceme.dur.usenet.model.Newsgroup</class>
+    <class>net.bounceme.dur.usenet.model.Newsgroups</class>
+    <class>net.bounceme.dur.usenet.model.Articles</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nntp"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
