@@ -13,6 +13,7 @@ public enum Usenet {
     private Folder root = null;
     private Store store = null;
     private List<Folder> folders = new ArrayList<>();
+    private Folder folder = null;
 
     Usenet() {
         LOG.fine("controller..");
@@ -27,18 +28,24 @@ public enum Usenet {
     private void connect() throws Exception {
         LOG.fine("Usenet.connect..");
         Session session = Session.getDefaultInstance(props);
-        session.setDebug(false);
+        session.setDebug(true);
         store = session.getStore(new URLName(props.getProperty("nntp.host")));
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
     }
-
-    public List<Message> getMessages(Folder folder) throws Exception {
-        LOG.fine("fetching.." + folder);
+   
+    public List<Message> getMessages(Folder f) throws Exception {
+        LOG.severe("fetching.." + f);
+        
+        folder = root.getFolder(f.getFullName());
+        LOG.severe("opened the folder!!!!!");
         folder.open(Folder.READ_ONLY);
+        LOG.severe("opened: " + folder.getFullName());
+        LOG.severe("opened: " + folder.getFullName());
+        LOG.severe("opened: " + folder.getFullName());
         List<Message> messages = Arrays.asList(folder.getMessages());
-        LOG.fine("..fetched " + folder);
+        LOG.severe("..fetched " + folder);
         return messages;
     }
 
@@ -50,5 +57,4 @@ public enum Usenet {
     private void setFolders(List<Folder> folders) {
         this.folders = folders;
     }
-
 }

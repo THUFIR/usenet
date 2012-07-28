@@ -23,16 +23,18 @@ public class MessagesDefaultListModel extends DefaultListModel {
     }
 
     public MessagesDefaultListModel(Folder folder) {
+        LOG.severe("hmm.." + folder);
         try {
             load(folder);
         } catch (Exception ex) {
+            LOG.severe("why would this be null????????");
             Logger.getLogger(MessagesDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @SuppressWarnings("unchecked")
     private void load(Folder folder) throws Exception {
-        LOG.fine("loading.." + folder);
+        LOG.warning("loading.." + folder);
         this.clear();
         List<Message> messages = usenet.getMessages(folder);
         for (Message message : messages) {
