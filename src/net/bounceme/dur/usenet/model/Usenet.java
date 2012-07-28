@@ -41,13 +41,13 @@ public enum Usenet {
          */
     }
 
-    public List<Message> getMessages(String group) throws Exception {
+    public List<javax.mail.Message> getMessages(String group) throws Exception {
         LOG.fine("fetching.." + group);
         folder = root.getFolder(group);
         folder.open(Folder.READ_ONLY);
-        List<Message> messages = Arrays.asList(folder.getMessages());
+        List<javax.mail.Message> messages = Arrays.asList(folder.getMessages());
         LOG.fine("..fetched " + group);
-        return Collections.unmodifiableList(messages);
+        return messages;
     }
 
     public List<Folder> getFolders() {

@@ -79,4 +79,5 @@ public class MessageBean {
     public void setSent(Date sent) {
         this.sent = sent;
     }
+
 }

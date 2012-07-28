@@ -1,18 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import net.bounceme.dur.usenet.controller.MessageBean;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "flat", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -23,9 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Flat.findByPosted", query = "SELECT f FROM Flat f WHERE f.posted = :posted"),
     @NamedQuery(name = "Flat.findByStamp", query = "SELECT f FROM Flat f WHERE f.stamp = :stamp")})
 public class Flat implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue//(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -58,6 +52,34 @@ public class Flat implements Serializable {
     private String comment;
 
     public Flat() {
+    }
+
+    /*
+     * mysql> describe flat;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| id        | int(11) | NO   | PRI | NULL    | auto_increment |
+| newsgroup | text    | NO   |     | NULL    |                |
+| subject   | text    | NO   |     | NULL    |                |
+| content   | text    | NO   |     | NULL    |                |
+| number    | int(11) | NO   |     | NULL    |                |
+| posted    | date    | NO   |     | NULL    |                |
+| stamp     | date    | NO   |     | NULL    |                |
+| comment   | text    | NO   |     | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+
+     */
+    public Flat(MessageBean mb) {
+        newsgroup = mb.getGroup();
+        subject = mb.getSubject();
+        content = mb.getContent().toString();
+        number = mb.getNumber();
+        posted = mb.getSent();
+        stamp = new Date();
+        comment = "dummy comment";
     }
 
     public Flat(Integer id) {
@@ -163,5 +185,4 @@ public class Flat implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Flat[ id=" + id + " ]";
     }
-    
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
@@ -9,11 +5,8 @@ import java.util.Collection;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import net.bounceme.dur.usenet.controller.MessageBean;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "message", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -21,9 +14,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m"),
     @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.id = :id")})
 public class Message implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue//(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -47,6 +41,13 @@ public class Message implements Serializable {
     private Collection<Comment> commentCollection;
 
     public Message() {
+    }
+
+    public Message(MessageBean mb) {
+        newsgroup = mb.getGroup();
+        subject = mb.getSubject();
+        content = mb.getContent().toString();
+        number = Integer.toString(mb.getNumber());
     }
 
     public Message(Integer id) {
@@ -134,5 +135,4 @@ public class Message implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Message[ id=" + id + " ]";
     }
-    
 }
