@@ -38,6 +38,7 @@ public class MessagesDefaultListModel extends DefaultListModel {
         for (Message message : messages) {
             MessageBean messageBean = new MessageBean(message);
             this.addElement(messageBean);
+            persist(messageBean);
             LOG.fine(messageBean.toString());
         }
         LOG.fine("..loaded");

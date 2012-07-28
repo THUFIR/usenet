@@ -19,7 +19,7 @@ public class CommentsDefaultListModel extends DefaultListModel {
 
     public CommentsDefaultListModel(MessageBean messageBean) {
         try {
-            persist(messageBean);
+            //persist(messageBean);
         } catch (Exception ex) {
             Logger.getLogger(CommentsDefaultListModel.class.getName()).log(Level.SEVERE, null, ex);
         }
