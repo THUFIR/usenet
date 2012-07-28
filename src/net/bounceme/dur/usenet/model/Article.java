@@ -1,5 +1,11 @@
 package net.bounceme.dur.usenet.model;
 
+//article has the wrong structure.
+//newsgroup should be a foreign key
+//there needs to be some mechanism for unique messages
+//message id!
+
+
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
