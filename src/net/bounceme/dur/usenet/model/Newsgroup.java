@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import javax.mail.Folder;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,8 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "newsgroups", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
-    @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id")})
+    @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroup n"),
+    @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroup n WHERE n.id = :id")})
 public class Newsgroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,6 +24,10 @@ public class Newsgroup implements Serializable {
     private String newsgroup;
 
     public Newsgroup() {
+    }
+    
+    public Newsgroup(Folder f){
+        newsgroup = f.getFullName();
     }
 
     public Newsgroup(Integer id) {

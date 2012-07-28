@@ -12,10 +12,10 @@ import net.bounceme.dur.usenet.controller.MessageBean;
 @Table(name = "articles", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Articles a"),
-    @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Articles a WHERE a.id = :id"),
-    @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Articles a WHERE a.number = :number"),
-    @NamedQuery(name = "Articles.findBySent", query = "SELECT a FROM Articles a WHERE a.sent = :sent")})
+    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Article a"),
+    @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Article a WHERE a.id = :id"),
+    @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Article a WHERE a.number = :number"),
+    @NamedQuery(name = "Articles.findBySent", query = "SELECT a FROM Article a WHERE a.sent = :sent")})
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +52,7 @@ public class Article implements Serializable {
     public Article(MessageBean messageBean) {
         subject = messageBean.getSubject();
         content = messageBean.getContent();
+        sent = messageBean.getSent();
         number = messageBean.getNumber();
         headerIdString = "dummy";
     }
