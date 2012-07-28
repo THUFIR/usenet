@@ -6,18 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.model.Flat;
+import net.bounceme.dur.usenet.model.Message;
 
-/*
- * public void persist(Msg message) { LOG.info("\t" + message);
- * LOG.info("isOpen?" + em.isOpen()); em.getTransaction().begin(); int id =
- * message.getId(); Query q = em.createQuery("SELECT n " + "FROM Notes n WHERE
- * n.messageId = :messageId " + "AND n.group = :group"); List results =
- * q.getResultList(); em.getTransaction().commit(); for (Object o : results) {
- * LOG.info("object is \n\n" + o); } }
- *
- * }
- */
 public class CommentsDefaultListModel extends DefaultListModel {
 
     private static final Logger LOG = Logger.getLogger(CommentsDefaultListModel.class.getName());
@@ -35,18 +25,17 @@ public class CommentsDefaultListModel extends DefaultListModel {
         }
     }
 
-    
     private void persist(MessageBean messageBean) throws Exception {
         LOG.info("loading.." + messageBean);
 
-        //Messages message = new Messages(messageBean);
+        Message message = new Message(messageBean);
+        //Flat flat = new Flat(messageBean);
         
-        Flat flat = new Flat(messageBean);
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        em.persist(flat);
+        em.persist(message);
         em.getTransaction().commit();
     }
 }
