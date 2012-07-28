@@ -6,6 +6,9 @@
     <class>net.bounceme.dur.usenet.controller.Data</class>
     <class>net.bounceme.dur.usenet.controller.Comments</class>
     <class>net.bounceme.dur.usenet.controller.Messages</class>
+    <class>net.bounceme.dur.usenet.model.Message</class>
+    <class>net.bounceme.dur.usenet.model.Flat</class>
+    <class>net.bounceme.dur.usenet.model.Comment</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nntp"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
