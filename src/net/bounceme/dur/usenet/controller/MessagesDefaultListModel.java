@@ -29,7 +29,7 @@ public class MessagesDefaultListModel extends DefaultListModel {
     private void load(Folder folder) throws Exception {
         LOG.fine("loading.." + folder);
         this.clear();
-        List<Message> messages = usenet.getMessages(folder.getFullName());
+        List<Message> messages = usenet.getMessages(folder);
         for (Message message : messages) {
             MessageBean messageBean = new MessageBean(message);
             this.addElement(messageBean);
