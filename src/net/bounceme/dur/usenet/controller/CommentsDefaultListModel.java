@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.model.Message;
+import net.bounceme.dur.usenet.model.Article;
 
 public class CommentsDefaultListModel extends DefaultListModel {
 
@@ -26,16 +26,15 @@ public class CommentsDefaultListModel extends DefaultListModel {
     }
 
     private void persist(MessageBean messageBean) throws Exception {
-        LOG.info("loading.." + messageBean);
+        LOG.info("insert to database.." + messageBean);
 
-        Message message = new Message(messageBean);
-        //Flat flat = new Flat(messageBean);
-        
+        Article article = new Article(messageBean);
+
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        em.persist(message);
+        em.persist(article);
         em.getTransaction().commit();
     }
 }

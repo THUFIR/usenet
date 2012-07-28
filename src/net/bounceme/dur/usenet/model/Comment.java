@@ -6,12 +6,12 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table(name = "comment", catalog = "nntp", schema = "")
+@Table(name = "comments", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
-    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
-    @NamedQuery(name = "Comment.findByStamp", query = "SELECT c FROM Comment c WHERE c.stamp = :stamp")})
+    @NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comment c"),
+    @NamedQuery(name = "Comments.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
+    @NamedQuery(name = "Comments.findByStamp", query = "SELECT c FROM Comment c WHERE c.stamp = :stamp")})
 public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -29,7 +29,7 @@ public class Comment implements Serializable {
     private Date stamp;
     @JoinColumn(name = "message_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private Message messageId;
+    private Article messageId;
 
     public Comment() {
     }
@@ -68,11 +68,11 @@ public class Comment implements Serializable {
         this.stamp = stamp;
     }
 
-    public Message getMessageId() {
+    public Article getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Message messageId) {
+    public void setMessageId(Article messageId) {
         this.messageId = messageId;
     }
 
@@ -98,7 +98,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.model.Comment[ id=" + id + " ]";
+        return "net.bounceme.dur.usenet.model.Comments[ id=" + id + " ]";
     }
     
 }

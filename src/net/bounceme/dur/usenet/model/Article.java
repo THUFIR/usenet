@@ -8,12 +8,13 @@ import javax.xml.bind.annotation.XmlTransient;
 import net.bounceme.dur.usenet.controller.MessageBean;
 
 @Entity
-@Table(name = "message", catalog = "nntp", schema = "")
+@Table(name = "articles", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Message.findAll", query = "SELECT m FROM Message m"),
-    @NamedQuery(name = "Message.findById", query = "SELECT m FROM Message m WHERE m.id = :id")})
-public class Message implements Serializable {
+    @NamedQuery(name = "Articles.findAll", query = "SELECT a FROM Article a"),
+    @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Article a WHERE a.id = :id"),
+    @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Article a WHERE a.number = :number")})
+public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,27 +35,26 @@ public class Message implements Serializable {
     @Column(name = "content", nullable = false, length = 65535)
     private String content;
     @Basic(optional = false)
-    @Lob
-    @Column(name = "number", nullable = false, length = 65535)
-    private String number;
+    @Column(name = "number", nullable = false)
+    private int number;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "messageId")
-    private Collection<Comment> commentCollection;
+    private Collection<Comment> commentsCollection;
 
-    public Message() {
+    public Article() {
     }
 
-    public Message(MessageBean mb) {
-        newsgroup = mb.getGroup();
-        subject = mb.getSubject();
-        content = mb.getContent().toString();
-        number = Integer.toString(mb.getNumber());
+    public Article(MessageBean messageBean) {
+        newsgroup = messageBean.getGroup();
+        subject = messageBean.getSubject();
+        content = messageBean.getContent();
+        number = messageBean.getNumber();
     }
 
-    public Message(Integer id) {
+    public Article(Integer id) {
         this.id = id;
     }
 
-    public Message(Integer id, String newsgroup, String subject, String content, String number) {
+    public Article(Integer id, String newsgroup, String subject, String content, int number) {
         this.id = id;
         this.newsgroup = newsgroup;
         this.subject = subject;
@@ -94,21 +94,21 @@ public class Message implements Serializable {
         this.content = content;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
     @XmlTransient
-    public Collection<Comment> getCommentCollection() {
-        return commentCollection;
+    public Collection<Comment> getCommentsCollection() {
+        return commentsCollection;
     }
 
-    public void setCommentCollection(Collection<Comment> commentCollection) {
-        this.commentCollection = commentCollection;
+    public void setCommentsCollection(Collection<Comment> commentsCollection) {
+        this.commentsCollection = commentsCollection;
     }
 
     @Override
@@ -121,10 +121,10 @@ public class Message implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Message)) {
+        if (!(object instanceof Article)) {
             return false;
         }
-        Message other = (Message) object;
+        Article other = (Article) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,6 +133,6 @@ public class Message implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.model.Message[ id=" + id + " ]";
+        return "net.bounceme.dur.usenet.model.Articles[ id=" + id + " ]";
     }
 }
