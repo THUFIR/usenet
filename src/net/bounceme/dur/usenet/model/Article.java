@@ -6,6 +6,9 @@ package net.bounceme.dur.usenet.model;
 //message id!
 
 
+//hmm, can I push to the master?
+
+
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
