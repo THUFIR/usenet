@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.controller;
 
 import java.io.Serializable;
@@ -9,10 +5,6 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "comments", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -21,10 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Comments.findById", query = "SELECT c FROM Comments c WHERE c.id = :id"),
     @NamedQuery(name = "Comments.findByStamp", query = "SELECT c FROM Comments c WHERE c.stamp = :stamp")})
 public class Comments implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Integer id;
     @Basic(optional = false)
     @Lob
@@ -107,5 +101,4 @@ public class Comments implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.controller.Comments[ id=" + id + " ]";
     }
-    
 }

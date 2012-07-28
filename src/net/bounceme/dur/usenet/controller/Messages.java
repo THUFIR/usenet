@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.controller;
 
 import java.io.Serializable;
@@ -10,10 +6,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "messages", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -25,7 +17,7 @@ public class Messages implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
     @Basic(optional = false)
     @Lob
