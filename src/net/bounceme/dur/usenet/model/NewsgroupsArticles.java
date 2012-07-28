@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "newsgroups_articles", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -31,7 +23,7 @@ public class NewsgroupsArticles implements Serializable {
     private int articleId;
     @JoinColumn(name = "newsgroup_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
-    private Articles newsgroupId;
+    private Article newsgroupId;
 
     public NewsgroupsArticles() {
     }
@@ -61,11 +53,11 @@ public class NewsgroupsArticles implements Serializable {
         this.articleId = articleId;
     }
 
-    public Articles getNewsgroupId() {
+    public Article getNewsgroupId() {
         return newsgroupId;
     }
 
-    public void setNewsgroupId(Articles newsgroupId) {
+    public void setNewsgroupId(Article newsgroupId) {
         this.newsgroupId = newsgroupId;
     }
 

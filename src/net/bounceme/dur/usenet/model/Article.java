@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
@@ -10,11 +6,8 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import net.bounceme.dur.usenet.controller.MessageBean;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "articles", catalog = "nntp", schema = "")
 @XmlRootElement
@@ -23,7 +16,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Articles.findById", query = "SELECT a FROM Articles a WHERE a.id = :id"),
     @NamedQuery(name = "Articles.findByNumber", query = "SELECT a FROM Articles a WHERE a.number = :number"),
     @NamedQuery(name = "Articles.findBySent", query = "SELECT a FROM Articles a WHERE a.sent = :sent")})
-public class Articles implements Serializable {
+public class Article implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,14 +46,21 @@ public class Articles implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "newsgroupId")
     private Collection<NewsgroupsArticles> newsgroupsArticlesCollection;
 
-    public Articles() {
+    public Article() {
     }
 
-    public Articles(Integer id) {
+    public Article(MessageBean messageBean) {
+        subject = messageBean.getSubject();
+        content = messageBean.getContent();
+        number = messageBean.getNumber();
+        headerIdString = "dummy";
+    }
+
+    public Article(Integer id) {
         this.id = id;
     }
 
-    public Articles(Integer id, String subject, String content, int number, Date sent, String headerIdString) {
+    public Article(Integer id, String subject, String content, int number, Date sent, String headerIdString) {
         this.id = id;
         this.subject = subject;
         this.content = content;
@@ -135,10 +136,10 @@ public class Articles implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Articles)) {
+        if (!(object instanceof Article)) {
             return false;
         }
-        Articles other = (Articles) object;
+        Article other = (Article) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -149,5 +150,4 @@ public class Articles implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Articles[ id=" + id + " ]";
     }
-    
 }

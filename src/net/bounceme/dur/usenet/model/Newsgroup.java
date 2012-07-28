@@ -1,24 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author thufir
- */
 @Entity
 @Table(name = "newsgroups", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
     @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id")})
-public class Newsgroups implements Serializable {
+public class Newsgroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +22,14 @@ public class Newsgroups implements Serializable {
     @Column(name = "newsgroup", nullable = false, length = 65535)
     private String newsgroup;
 
-    public Newsgroups() {
+    public Newsgroup() {
     }
 
-    public Newsgroups(Integer id) {
+    public Newsgroup(Integer id) {
         this.id = id;
     }
 
-    public Newsgroups(Integer id, String newsgroup) {
+    public Newsgroup(Integer id, String newsgroup) {
         this.id = id;
         this.newsgroup = newsgroup;
     }
@@ -68,10 +60,10 @@ public class Newsgroups implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Newsgroups)) {
+        if (!(object instanceof Newsgroup)) {
             return false;
         }
-        Newsgroups other = (Newsgroups) object;
+        Newsgroup other = (Newsgroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
