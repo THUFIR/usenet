@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.controller;
 
+//hmm, which branch am I in?
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -15,8 +17,10 @@ public class MessageBean {
     private String content;
     private int number;
     private Date sent;
+    
 
     public MessageBean() {
+        
     }
 
     public MessageBean(Message message) {
