@@ -28,12 +28,10 @@ public class NewMain {
 
     private void folders() {
         List<Folder> folders = u.getFolders();
-        List<Newsgroups> ng = new ArrayList<>();
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
         for (Folder folder : folders) {
             Newsgroups n = new Newsgroups(folder);
-            ng.add(n);
             em.getTransaction().begin();
             em.persist(n);
             em.getTransaction().commit();

@@ -3,11 +3,10 @@ package net.bounceme.dur.usenet.model;
 import java.io.Serializable;
 import javax.mail.Folder;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
+/*@Table(name = "newsgroups", catalog = "usenet", schema = "")
+@XmlRootElement*/
 @Entity
-@Table(name = "newsgroups", catalog = "usenet", schema = "")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
     @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id")})
