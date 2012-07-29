@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
+//fixing schema
+
 import java.io.Serializable;
 import javax.mail.Folder;
 import javax.persistence.*;
