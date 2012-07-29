@@ -1,16 +1,25 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author thufir
+ */
 @Entity
 @Table(name = "newsgroups_articles", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "NewsgroupsArticles.findAll", query = "SELECT n FROM NewsgroupsArticles n"),
     @NamedQuery(name = "NewsgroupsArticles.findById", query = "SELECT n FROM NewsgroupsArticles n WHERE n.id = :id"),
-    @NamedQuery(name = "NewsgroupsArticles.findByArticleId", query = "SELECT n FROM NewsgroupsArticles n WHERE n.articleId = :articleId")})
+    @NamedQuery(name = "NewsgroupsArticles.findByArticleId", query = "SELECT n FROM NewsgroupsArticles n WHERE n.articleId = :articleId"),
+    @NamedQuery(name = "NewsgroupsArticles.findByNewsgroupId", query = "SELECT n FROM NewsgroupsArticles n WHERE n.newsgroupId = :newsgroupId")})
 public class NewsgroupsArticles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -21,9 +30,9 @@ public class NewsgroupsArticles implements Serializable {
     @Basic(optional = false)
     @Column(name = "article_id", nullable = false)
     private int articleId;
-    @JoinColumn(name = "newsgroup_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private Article newsgroupId;
+    @Basic(optional = false)
+    @Column(name = "newsgroup_id", nullable = false)
+    private int newsgroupId;
 
     public NewsgroupsArticles() {
     }
@@ -32,9 +41,10 @@ public class NewsgroupsArticles implements Serializable {
         this.id = id;
     }
 
-    public NewsgroupsArticles(Integer id, int articleId) {
+    public NewsgroupsArticles(Integer id, int articleId, int newsgroupId) {
         this.id = id;
         this.articleId = articleId;
+        this.newsgroupId = newsgroupId;
     }
 
     public Integer getId() {
@@ -53,11 +63,11 @@ public class NewsgroupsArticles implements Serializable {
         this.articleId = articleId;
     }
 
-    public Article getNewsgroupId() {
+    public int getNewsgroupId() {
         return newsgroupId;
     }
 
-    public void setNewsgroupId(Article newsgroupId) {
+    public void setNewsgroupId(int newsgroupId) {
         this.newsgroupId = newsgroupId;
     }
 

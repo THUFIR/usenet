@@ -1,19 +1,27 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package net.bounceme.dur.usenet.model;
-
-//fixing schema
 
 import java.io.Serializable;
 import javax.mail.Folder;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author thufir
+ */
 @Entity
 @Table(name = "newsgroups", catalog = "nntp", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroup n"),
-    @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroup n WHERE n.id = :id")})
-public class Newsgroup implements Serializable {
+    @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
+    @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id"),
+    @NamedQuery(name = "Newsgroups.findByHash", query = "SELECT n FROM Newsgroups n WHERE n.hash = :hash")})
+public class Newsgroups implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,23 +29,27 @@ public class Newsgroup implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
+    @Column(name = "hash", nullable = false, length = 32)
+    private String hash;
+    @Basic(optional = false)
     @Lob
-    @Column(name = "newsgroup", nullable = false, length = 65535)
+    @Column(name = "newsgroup", nullable = false, length = 2147483647)
     private String newsgroup;
 
-    public Newsgroup() {
+    public Newsgroups() {
     }
-    
-    public Newsgroup(Folder f){
+
+    public Newsgroups(Folder f) {
         newsgroup = f.getFullName();
     }
 
-    public Newsgroup(Integer id) {
+    public Newsgroups(Integer id) {
         this.id = id;
     }
 
-    public Newsgroup(Integer id, String newsgroup) {
+    public Newsgroups(Integer id, String hash, String newsgroup) {
         this.id = id;
+        this.hash = hash;
         this.newsgroup = newsgroup;
     }
 
@@ -47,6 +59,14 @@ public class Newsgroup implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
     public String getNewsgroup() {
@@ -67,10 +87,10 @@ public class Newsgroup implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Newsgroup)) {
+        if (!(object instanceof Newsgroups)) {
             return false;
         }
-        Newsgroup other = (Newsgroup) object;
+        Newsgroups other = (Newsgroups) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -81,5 +101,4 @@ public class Newsgroup implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Newsgroups[ id=" + id + " ]";
     }
-    
 }

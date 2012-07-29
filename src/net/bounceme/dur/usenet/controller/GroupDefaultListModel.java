@@ -1,16 +1,13 @@
 package net.bounceme.dur.usenet.controller;
 
-import com.mysql.jdbc.StringUtils;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.model.Article;
-import net.bounceme.dur.usenet.model.Newsgroup;
+import net.bounceme.dur.usenet.model.Newsgroups;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class GroupDefaultListModel extends DefaultListModel {
@@ -39,7 +36,7 @@ public class GroupDefaultListModel extends DefaultListModel {
     }
 
     private void persist(Folder folder) {
-        Newsgroup newNewsgroup = new Newsgroup(folder);
+        Newsgroups newNewsgroup = new Newsgroups(folder);
         LOG.info("insert to database.." + newNewsgroup);
 
 

@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.model.Article;
+import net.bounceme.dur.usenet.model.Articles;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class MessagesDefaultListModel extends DefaultListModel {
@@ -50,7 +50,7 @@ public class MessagesDefaultListModel extends DefaultListModel {
     private void persist(MessageBean messageBean) throws Exception {
         LOG.info("insert to database.." + messageBean);
 
-        Article article = new Article(messageBean);
+        Articles article = new Articles(messageBean);
 
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
