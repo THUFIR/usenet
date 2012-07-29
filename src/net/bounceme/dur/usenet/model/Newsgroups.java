@@ -41,16 +41,7 @@ public class Newsgroups implements Serializable {
 
     public Newsgroups(Folder f) {
         newsgroup = f.getFullName();
-    }
-
-    public Newsgroups(Integer id) {
-        this.id = id;
-    }
-
-    public Newsgroups(Integer id, String hash, String newsgroup) {
-        this.id = id;
-        this.hash = hash;
-        this.newsgroup = newsgroup;
+        hash = "dummy hash";
     }
 
     public Integer getId() {

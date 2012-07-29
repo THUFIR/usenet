@@ -38,17 +38,8 @@ public class GroupDefaultListModel extends DefaultListModel {
     private void persist(Folder folder) {
         Newsgroups newNewsgroup = new Newsgroups(folder);
         LOG.info("insert to database.." + newNewsgroup);
-
-
         em.getTransaction().begin();
         em.persist(newNewsgroup);
         em.getTransaction().commit();
     }
-    /*
-     * public List<Article> getArticles(String lastName) { String queryString =
-     * "SELECT a FROM Articles a "; Query query = em.createQuery(queryString);
-     * query.setParameter("lastName", StringUtils.lowerCase(lastName)); return
-     * query.getResultList();
-}
-     */
 }
