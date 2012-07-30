@@ -8,7 +8,9 @@ import javax.persistence.*;
 public class Foos implements Serializable {
 
     private static final long serialVersionUID = 1L;
-        private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Set<Articles> articles;
 
     public Foos() {
@@ -20,7 +22,6 @@ public class Foos implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
