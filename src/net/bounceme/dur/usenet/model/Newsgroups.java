@@ -4,8 +4,6 @@ import java.io.Serializable;
 import javax.mail.Folder;
 import javax.persistence.*;
 
-/*@Table(name = "newsgroups", catalog = "usenet", schema = "")
-@XmlRootElement*/
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
@@ -18,7 +16,8 @@ public class Newsgroups implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column
+    //@Column
+    @Column(unique = true)
     private String newsgroup;
 
     public Newsgroups() {
@@ -58,6 +57,14 @@ public class Newsgroups implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.model.Newsgroups[ id=" + id + " ]";
+        return newsgroup;
+    }
+
+    public String getNewsgroup() {
+        return newsgroup;
+    }
+
+    public void setNewsgroup(String newsgroup) {
+        this.newsgroup = newsgroup;
     }
 }
