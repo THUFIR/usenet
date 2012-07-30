@@ -33,7 +33,7 @@ public class Main {
     }
 
     private void persist(EntityManager em, Newsgroups newNewsgroup) {
-        LOG.info(newNewsgroup.toString());
+        LOG.fine(newNewsgroup.toString());
         TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroups.class);
         List<Newsgroups> results = query.getResultList();
         if (isUnique(newNewsgroup, results)) {
@@ -44,22 +44,14 @@ public class Main {
     }
 
     private boolean isUnique(Newsgroups newNewsgroup, Iterable<Newsgroups> results) {
-        LOG.info(results.toString());
+        LOG.fine(results.toString());
         for (Newsgroups existingNewsgroup : results) {
             if ((existingNewsgroup.getNewsgroup().equals(newNewsgroup.getNewsgroup()))) {
                 return false;
             }
         }
-        LOG.info(newNewsgroup + "\tnew");
+        LOG.fine(newNewsgroup + "\tnew");
         return true;
-    }
-
-    private boolean queryDB2(EntityManager em, Newsgroups ng) {
-        String newsgroup = ng.getNewsgroup();
-        TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n WHERE n.newsgroup = :newsgroup", Newsgroups.class);
-        Newsgroups result = query.getSingleResult();
-        LOG.info("query result:\n" + result + "\ncompared to\n" + ng);
-        return false;
     }
 
     private List<Newsgroups> getFolders() {
@@ -69,7 +61,7 @@ public class Main {
             Newsgroups newsgroup = new Newsgroups(folder);
             newsgroups.add(newsgroup);
         }
-        LOG.info(newsgroups.toString());
+        LOG.fine(newsgroups.toString());
         return newsgroups;
     }
 }
