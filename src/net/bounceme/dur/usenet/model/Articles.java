@@ -18,6 +18,7 @@ public class Articles implements Serializable {
     private Long id;
     @Column
     private String subject;
+    @ManyToMany(mappedBy = "foos")
     private Set<Foos> foos;
 
     public Articles() {
@@ -31,8 +32,7 @@ public class Articles implements Serializable {
         }
     }
 
-    @ManyToMany(mappedBy = "foos")
-    public Set<Foos> getFoos() {
+        public Set<Foos> getFoos() {
         return foos;
     }
 

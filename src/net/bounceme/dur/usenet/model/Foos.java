@@ -11,18 +11,17 @@ public class Foos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToMany(mappedBy = "articles")
     private Set<Articles> articles;
 
     public Foos() {
     }
 
-    @ManyToMany(mappedBy = "articles")
-    public Set<Articles> getArticles() {
+        public Set<Articles> getArticles() {
         return articles;
     }
 
-    @Id
-    public Long getId() {
+        public Long getId() {
         return id;
     }
 
