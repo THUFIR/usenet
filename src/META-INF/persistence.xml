@@ -3,12 +3,13 @@
   <persistence-unit name="USENETPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>net.bounceme.dur.usenet.model.Subscribed</class>
-    <class>net.bounceme.dur.usenet.model.Headers</class>
     <class>net.bounceme.dur.usenet.model.Newsgroups</class>
     <class>net.bounceme.dur.usenet.model.Articles</class>
     <class>net.bounceme.dur.usenet.model.ArticlesHeaders</class>
     <class>net.bounceme.dur.usenet.model.HeadersNewsgroups</class>
     <class>net.bounceme.dur.usenet.model.Subscriptions</class>
+    <class>net.bounceme.dur.usenet.model.MyHeaders</class>
+    <class>net.bounceme.dur.usenet.model.Foos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/usenet"/>
       <property name="javax.persistence.jdbc.password" value="password"/>

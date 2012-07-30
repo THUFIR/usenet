@@ -1,8 +1,10 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
@@ -15,9 +17,11 @@ public class Articles implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column
     private String subject;
+
+    @OneToMany(mappedBy="articles")  //a wrapper for Header is needed?
+    private List<Header> headers;
     
     public Articles() {
     }
