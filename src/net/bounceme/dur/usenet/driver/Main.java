@@ -32,7 +32,29 @@ public class Main {
         em.close();
     }
 
-    private boolean queryDB(EntityManager em, Newsgroups ng) {
+    private void persist(EntityManager em, Newsgroups newNewsgroup) {
+        LOG.info(newNewsgroup.toString());
+        TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroups.class);
+        List<Newsgroups> results = query.getResultList();
+        if (isUnique(newNewsgroup, results)) {
+            em.getTransaction().begin();
+            em.persist(newNewsgroup);
+            em.getTransaction().commit();
+        }
+    }
+
+    private boolean isUnique(Newsgroups newNewsgroup, Iterable<Newsgroups> results) {
+        LOG.info(results.toString());
+        for (Newsgroups existingNewsgroup : results) {
+            if ((existingNewsgroup.getNewsgroup().equals(newNewsgroup.getNewsgroup()))) {
+                return false;
+            }
+        }
+        LOG.info(newNewsgroup + "\tnew");
+        return true;
+    }
+
+    private boolean queryDB2(EntityManager em, Newsgroups ng) {
         String newsgroup = ng.getNewsgroup();
         TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n WHERE n.newsgroup = :newsgroup", Newsgroups.class);
         Newsgroups result = query.getSingleResult();
@@ -49,13 +71,5 @@ public class Main {
         }
         LOG.info(newsgroups.toString());
         return newsgroups;
-    }
-
-    private void persist(EntityManager em, Newsgroups n) {
-        if (queryDB(em, n)) {
-            em.getTransaction().begin();
-            em.persist(n);
-            em.getTransaction().commit();
-        }
     }
 }
