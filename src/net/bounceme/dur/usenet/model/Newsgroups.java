@@ -19,8 +19,6 @@ public class Newsgroups implements Serializable {
     //@Column
     @Column(unique = true)
     private String newsgroup;
-    @Column
-    private boolean subscribed;
 
     public Newsgroups() {
     }
@@ -70,11 +68,4 @@ public class Newsgroups implements Serializable {
         this.newsgroup = newsgroup;
     }
 
-    public boolean isSubscribed() {
-        return subscribed;
-    }
-
-    public void setSubscribed(boolean subscribed) {
-        this.subscribed = subscribed;
-    }
 }

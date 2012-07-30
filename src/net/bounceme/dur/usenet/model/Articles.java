@@ -5,10 +5,13 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
+import javax.mail.Message;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import net.bounceme.dur.usenet.driver.Main;
 
 /**
  *
@@ -16,10 +19,19 @@ import javax.persistence.Id;
  */
 @Entity
 public class Articles implements Serializable {
+
     private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(Articles.class.getName());
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Articles() {
+    }
+
+    public Articles(Message message) {
+        LOG.info("new article");
+    }
 
     public Long getId() {
         return id;
@@ -53,5 +65,4 @@ public class Articles implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Articles[ id=" + id + " ]";
     }
-    
 }

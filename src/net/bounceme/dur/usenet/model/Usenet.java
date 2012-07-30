@@ -34,11 +34,10 @@ public enum Usenet {
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
     }
-   
-    public List<Message> getMessages(Folder f) throws Exception {
-        LOG.severe("fetching.." + f);
-        
-        folder = root.getFolder(f.getFullName());
+
+    public List<Message> getMessages(String newsgroup) throws Exception {
+        LOG.severe("fetching.." + newsgroup);
+        folder = root.getFolder(newsgroup);
         LOG.severe("opened the folder!!!!!");
         folder.open(Folder.READ_ONLY);
         LOG.severe("opened: " + folder.getFullName());
