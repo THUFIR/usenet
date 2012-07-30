@@ -20,8 +20,8 @@ public class Articles implements Serializable {
     @Column
     private String subject;
 
-    @OneToMany(mappedBy="articles")  //a wrapper for Header is needed?
-    private List<Header> headers;
+    //@OneToMany(mappedBy="articles")  //a wrapper for Header is needed?
+    //private List<Header> headers;
     
     public Articles() {
     }
