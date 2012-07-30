@@ -1,35 +1,26 @@
-
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.*;
 
-/*
-
-    // In PhoneNumber class:
-
-    @ManyToMany(mappedBy="phones")
-    public Set<Customer> getCustomers() { return customers; }
-
- */
-
 @Entity
 public class Foos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Set<Articles> articles;
 
-    public Foos(){}
-    
-        @ManyToMany(mappedBy = "articles")
+    public Foos() {
+    }
+
+    @ManyToMany(mappedBy = "articles")
     public Set<Articles> getArticles() {
         return articles;
     }
 
-    
     public Long getId() {
         return id;
     }
@@ -62,5 +53,4 @@ public class Foos implements Serializable {
     public String toString() {
         return "net.bounceme.dur.usenet.model.Foos[ id=" + id + " ]";
     }
-    
 }

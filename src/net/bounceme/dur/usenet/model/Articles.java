@@ -1,11 +1,9 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
@@ -20,32 +18,8 @@ public class Articles implements Serializable {
     private Long id;
     @Column
     private String subject;
-
-    //@OneToMany(mappedBy="articles")  //a wrapper for Header is needed?
-    //private List<Header> headers;
-    
-    /*
-     *     Example 1:
-
-    // In Customer class:
-
-    @ManyToMany
-    @JoinTable(name="CUST_PHONES")
-    public Set<PhoneNumber> getPhones() { return phones; }
-
-    // In PhoneNumber class:
-
-    @ManyToMany(mappedBy="phones")
-    public Set<Customer> getCustomers() { return customers; }
-     */
-    
-       // @ManyToMany
-    //@JoinTable(name="ARTICLES_FOOS")
-       // private List<Foos> foos;
-    //public List<Foos> getPhones() { return phones; }
     private Set<Foos> foos;
 
-    
     public Articles() {
     }
 
@@ -57,10 +31,11 @@ public class Articles implements Serializable {
         }
     }
 
-    
-    @ManyToMany(mappedBy="foos")
-    public Set<Foos> getFoos() { return foos; }
-    
+    @ManyToMany(mappedBy = "foos")
+    public Set<Foos> getFoos() {
+        return foos;
+    }
+
     public Long getId() {
         return id;
     }
