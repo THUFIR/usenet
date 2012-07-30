@@ -21,6 +21,7 @@ public class Foos implements Serializable {
         return articles;
     }
 
+    @Id
     public Long getId() {
         return id;
     }
