@@ -5,19 +5,19 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-public class Foos implements Serializable {
+public class Foo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToMany(mappedBy = "articles")
-    private Set<Articles> articles;
+    private Set<Article> articles;
 
-    public Foos() {
+    public Foo() {
     }
 
-        public Set<Articles> getArticles() {
+        public Set<Article> getArticles() {
         return articles;
     }
 
@@ -39,10 +39,10 @@ public class Foos implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Foos)) {
+        if (!(object instanceof Foo)) {
             return false;
         }
-        Foos other = (Foos) object;
+        Foo other = (Foo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -9,30 +9,30 @@ import javax.mail.MessagingException;
 import javax.persistence.*;
 
 @Entity
-public class Articles implements Serializable {
+public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(Articles.class.getName());
+    private static final Logger LOG = Logger.getLogger(Article.class.getName());
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
     private String subject;
     @ManyToMany(mappedBy = "foos")
-    private Set<Foos> foos;
+    private Set<Foo> foos;
 
-    public Articles() {
+    public Article() {
     }
 
-    public Articles(Message message) {
+    public Article(Message message) {
         try {
             subject = message.getSubject();
         } catch (MessagingException ex) {
-            Logger.getLogger(Articles.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-        public Set<Foos> getFoos() {
+        public Set<Foo> getFoos() {
         return foos;
     }
 
@@ -54,10 +54,10 @@ public class Articles implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Articles)) {
+        if (!(object instanceof Article)) {
             return false;
         }
-        Articles other = (Articles) object;
+        Article other = (Article) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

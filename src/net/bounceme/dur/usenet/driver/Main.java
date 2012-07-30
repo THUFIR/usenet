@@ -10,8 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import net.bounceme.dur.usenet.model.Articles;
-import net.bounceme.dur.usenet.model.Newsgroups;
+import net.bounceme.dur.usenet.model.Article;
+import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class Main {
@@ -28,30 +28,30 @@ public class Main {
     }
 
     public Main() throws Exception {
-        List<Newsgroups> subscribed = getFolders();
+        List<Newsgroup> subscribed = getFolders();
         EntityManagerFactory emf;
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
-        for (Newsgroups newsgroup : subscribed) {
+        for (Newsgroup newsgroup : subscribed) {
             persistNewsgroups(em, newsgroup);
         }
-        for (Newsgroups n : subscribed) {
+        for (Newsgroup n : subscribed) {
             LOG.fine("******" + n);
             List<Message> messages = u.getMessages(n.getNewsgroup());
             LOG.fine(messages.size() + " messages");
             for (Message message : messages) {
                 LOG.fine("message " + message.getMessageNumber());
-                Articles article = new Articles(message);
+                Article article = new Article(message);
                 persistArticle(em, article);
             }
         }
         em.close();
     }
 
-    private boolean isUniqueArticle(Articles article, List<Articles> articles) {
+    private boolean isUniqueArticle(Article article, List<Article> articles) {
         LOG.info(articles.toString());
-        for (Articles a : articles) {
+        for (Article a : articles) {
             if (a.getSubject().equalsIgnoreCase(article.getSubject())) {
                 return false;
             }
@@ -60,10 +60,10 @@ public class Main {
         return true;
     }
 
-    private void persistArticle(EntityManager em, Articles article) {
+    private void persistArticle(EntityManager em, Article article) {
         LOG.fine(article.toString());
-        TypedQuery<Articles> query = em.createQuery("SELECT a FROM Articles a", Articles.class);
-        List<Articles> results = query.getResultList();
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Articles a", Article.class);
+        List<Article> results = query.getResultList();
         if (isUniqueArticle(article, results)) {
             em.getTransaction().begin();
             em.persist(article);
@@ -71,10 +71,10 @@ public class Main {
         }
     }
 
-    private void persistNewsgroups(EntityManager em, Newsgroups newNewsgroup) {
+    private void persistNewsgroups(EntityManager em, Newsgroup newNewsgroup) {
         LOG.fine(newNewsgroup.toString());
-        TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroups.class);
-        List<Newsgroups> results = query.getResultList();
+        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroup.class);
+        List<Newsgroup> results = query.getResultList();
         if (isUniqueNewsgroup(newNewsgroup, results)) {
             em.getTransaction().begin();
             em.persist(newNewsgroup);
@@ -82,9 +82,9 @@ public class Main {
         }
     }
 
-    private boolean isUniqueNewsgroup(Newsgroups newNewsgroup, Iterable<Newsgroups> results) {
+    private boolean isUniqueNewsgroup(Newsgroup newNewsgroup, Iterable<Newsgroup> results) {
         LOG.fine(results.toString());
-        for (Newsgroups existingNewsgroup : results) {
+        for (Newsgroup existingNewsgroup : results) {
             if ((existingNewsgroup.getNewsgroup().equals(newNewsgroup.getNewsgroup()))) {
                 return false;
             }
@@ -93,11 +93,11 @@ public class Main {
         return true;
     }
 
-    private List<Newsgroups> getFolders() {
+    private List<Newsgroup> getFolders() {
         List<Folder> folders = u.getFolders();
-        List<Newsgroups> newsgroups = new ArrayList<>();
+        List<Newsgroup> newsgroups = new ArrayList<>();
         for (Folder folder : folders) {
-            Newsgroups newsgroup = new Newsgroups(folder);
+            Newsgroup newsgroup = new Newsgroup(folder);
             newsgroups.add(newsgroup);
         }
         LOG.fine(newsgroups.toString());

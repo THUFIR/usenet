@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NamedQueries({
     @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
     @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id")})
-public class Newsgroups implements Serializable {
+public class Newsgroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -20,10 +20,10 @@ public class Newsgroups implements Serializable {
     @Column(unique = true)
     private String newsgroup;
 
-    public Newsgroups() {
+    public Newsgroup() {
     }
 
-    public Newsgroups(Folder folder) {
+    public Newsgroup(Folder folder) {
         newsgroup = folder.getFullName();
     }
 
@@ -45,10 +45,10 @@ public class Newsgroups implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Newsgroups)) {
+        if (!(object instanceof Newsgroup)) {
             return false;
         }
-        Newsgroups other = (Newsgroups) object;
+        Newsgroup other = (Newsgroup) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
