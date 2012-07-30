@@ -1,22 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import net.bounceme.dur.usenet.driver.Main;
+import javax.mail.MessagingException;
+import javax.persistence.*;
 
-/**
- *
- * @author thufir
- */
 @Entity
 public class Articles implements Serializable {
 
@@ -26,11 +16,18 @@ public class Articles implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
+    private String subject;
+    
     public Articles() {
     }
 
     public Articles(Message message) {
-        LOG.fine("" + toString());
+        try {
+            subject = message.getSubject();
+        } catch (MessagingException ex) {
+            Logger.getLogger(Articles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Long getId() {
@@ -63,6 +60,14 @@ public class Articles implements Serializable {
 
     @Override
     public String toString() {
-        return "hmm, no id";
+        return subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

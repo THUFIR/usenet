@@ -37,19 +37,30 @@ public class Main {
             persistNewsgroups(em, newsgroup);
         }
         for (Newsgroups n : subscribed) {
-            LOG.info("******" + n);
+            LOG.fine("******" + n);
             List<Message> messages = u.getMessages(n.getNewsgroup());
-            LOG.info(messages.size()+ " messages");
+            LOG.fine(messages.size() + " messages");
             for (Message message : messages) {
-                LOG.info("message "+ message.getMessageNumber());
-                Articles article = new Articles(message);                
-                persistArticles(em, article);
+                LOG.fine("message " + message.getMessageNumber());
+                Articles article = new Articles(message);
+                persistArticle(em, article);
             }
         }
         em.close();
     }
 
-    private void persistArticles(EntityManager em, Articles article) {
+    private boolean isUniqueArticle(Articles article, List<Articles> articles) {
+        LOG.info(articles.toString());
+        for (Articles a : articles) {
+            if (a.getSubject().equalsIgnoreCase(article.getSubject())) {
+                return false;
+            }
+        }
+        LOG.info("new\t\t" + article);
+        return true;
+    }
+
+    private void persistArticle(EntityManager em, Articles article) {
         LOG.fine(article.toString());
         TypedQuery<Articles> query = em.createQuery("SELECT a FROM Articles a", Articles.class);
         List<Articles> results = query.getResultList();
@@ -91,16 +102,5 @@ public class Main {
         }
         LOG.fine(newsgroups.toString());
         return newsgroups;
-    }
-
-    private boolean isUniqueArticle(Articles article, List<Articles> articles) {
-        LOG.fine(articles.toString());
-        for (Articles a : articles) {
-            if (a.getId().equals(article.getId())) {
-                return false;
-            }
-        }
-        LOG.fine(article + "\tnew");
-        return true;
     }
 }
