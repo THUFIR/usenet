@@ -30,7 +30,7 @@ public class Articles implements Serializable {
     }
 
     public Articles(Message message) {
-        LOG.info("new article");
+        LOG.fine("" + toString());
     }
 
     public Long getId() {
@@ -63,6 +63,6 @@ public class Articles implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.model.Articles[ id=" + id + " ]";
+        return "hmm, no id";
     }
 }

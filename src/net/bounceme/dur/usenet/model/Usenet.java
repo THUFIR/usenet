@@ -36,15 +36,15 @@ public enum Usenet {
     }
 
     public List<Message> getMessages(String newsgroup) throws Exception {
-        LOG.severe("fetching.." + newsgroup);
+        LOG.fine("fetching.." + newsgroup);
         folder = root.getFolder(newsgroup);
-        LOG.severe("opened the folder!!!!!");
+        LOG.fine("opened the folder!!!!!");
         folder.open(Folder.READ_ONLY);
-        LOG.severe("opened: " + folder.getFullName());
-        LOG.severe("opened: " + folder.getFullName());
-        LOG.severe("opened: " + folder.getFullName());
+        LOG.fine("opened: " + folder.getFullName());
+        LOG.fine("opened: " + folder.getFullName());
+        LOG.fine("opened: " + folder.getFullName());
         List<Message> messages = Arrays.asList(folder.getMessages());
-        LOG.severe("..fetched " + folder);
+        LOG.fine("..fetched " + folder);
         return messages;
     }
 

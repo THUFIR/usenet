@@ -34,29 +34,33 @@ public class Main {
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
         for (Newsgroups newsgroup : subscribed) {
-            persistNewsGroups(em, newsgroup);
+            persistNewsgroups(em, newsgroup);
         }
         for (Newsgroups n : subscribed) {
+            LOG.info("******" + n);
             List<Message> messages = u.getMessages(n.getNewsgroup());
+            LOG.info(messages.size()+ " messages");
             for (Message message : messages) {
-                Articles article = new Articles(message);
+                LOG.info("message "+ message.getMessageNumber());
+                Articles article = new Articles(message);                
+                persistArticles(em, article);
             }
         }
         em.close();
     }
 
-    private void persistMessages(EntityManager em, Articles newArticle) {
-        LOG.fine(newArticle.toString());
+    private void persistArticles(EntityManager em, Articles article) {
+        LOG.fine(article.toString());
         TypedQuery<Articles> query = em.createQuery("SELECT a FROM Articles a", Articles.class);
         List<Articles> results = query.getResultList();
-        if (isUniqueArticle(newArticle, results)) {
+        if (isUniqueArticle(article, results)) {
             em.getTransaction().begin();
-            em.persist(newArticle);
+            em.persist(article);
             em.getTransaction().commit();
         }
     }
 
-    private void persistNewsGroups(EntityManager em, Newsgroups newNewsgroup) {
+    private void persistNewsgroups(EntityManager em, Newsgroups newNewsgroup) {
         LOG.fine(newNewsgroup.toString());
         TypedQuery<Newsgroups> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroups.class);
         List<Newsgroups> results = query.getResultList();
