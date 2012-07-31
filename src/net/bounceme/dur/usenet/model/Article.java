@@ -2,7 +2,8 @@ package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -19,26 +20,23 @@ public class Article implements Serializable {
     private Long id;
     @Column
     private String subject;
-    //@ManyToMany(mappedBy = "articles")
-    //private Set<Foo> foos;
     @ManyToMany
-    private Collection<Foo> foos = new ArrayList<>();
+    private List<HeaderField> headerField = new ArrayList<>();
 
-    
     public Article() {
     }
 
     public Article(Message message) {
         try {
             subject = message.getSubject();
+            Enumeration e = message.getAllHeaders();
+            HeaderField hf = new HeaderField(e);
+            headerField.add(hf);
         } catch (MessagingException ex) {
             Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    //public Set<Foo> getFoos() {
-    //return foos;
-    //}
     public Long getId() {
         return id;
     }

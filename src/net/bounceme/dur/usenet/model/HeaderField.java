@@ -3,19 +3,30 @@ package net.bounceme.dur.usenet.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
+import java.util.logging.Logger;
+import javax.mail.Header;
 import javax.persistence.*;
 
 @Entity
-public class Foo implements Serializable {
+public class HeaderField implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(HeaderField.class.getName());
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToMany(mappedBy = "foos")
+    @ManyToMany(mappedBy = "headerField")
     private Collection<Article> Articles = new ArrayList<>();
 
-    public Foo() {
+    public HeaderField() {
+    }
+
+    public HeaderField(Enumeration e) {
+        while (e.hasMoreElements()) {
+            Header h = (Header) e.nextElement();
+            LOG.fine(h.getName());
+        }
     }
 
     public Long getId() {
@@ -36,10 +47,10 @@ public class Foo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Foo)) {
+        if (!(object instanceof HeaderField)) {
             return false;
         }
-        Foo other = (Foo) object;
+        HeaderField other = (HeaderField) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -48,6 +59,6 @@ public class Foo implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.usenet.model.Foos[ id=" + id + " ]";
+        return "net.bounceme.dur.usenet.model.HeaderField[ id=" + id + " ]";
     }
 }

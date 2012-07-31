@@ -28,18 +28,15 @@ public class Main {
     }
 
     public Main() throws Exception {
-        List<Newsgroup> subscribed = getFolders();
         EntityManagerFactory emf;
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
+        List<Newsgroup> subscribed = getFolders();
         em = emf.createEntityManager();
         for (Newsgroup newsgroup : subscribed) {
             persistNewsgroups(em, newsgroup);
-        }
-        for (Newsgroup n : subscribed) {
-            LOG.fine("" + n);
-            List<Message> messages = u.getMessages(n.getNewsgroup());
-            LOG.fine(messages.size() + " messages");
+            List<Message> messages = u.getMessages(newsgroup.getNewsgroup());
+            LOG.fine(newsgroup + "  " + messages.size() + " messages");
             for (Message message : messages) {
                 LOG.fine("message " + message.getMessageNumber());
                 Article article = new Article(message);
@@ -50,13 +47,13 @@ public class Main {
     }
 
     private boolean isUniqueArticle(Article article, List<Article> articles) {
-        LOG.info(articles.toString());
+        LOG.fine(articles.toString());
         for (Article a : articles) {
             if (a.getSubject().equalsIgnoreCase(article.getSubject())) {
                 return false;
             }
         }
-        LOG.info("new\t\t" + article);
+        LOG.fine("new\t\t" + article);
         return true;
     }
 
@@ -72,7 +69,7 @@ public class Main {
     }
 
     private void persistNewsgroups(EntityManager em, Newsgroup newNewsgroup) {
-        LOG.info(newNewsgroup.toString());
+        LOG.fine(newNewsgroup.toString());
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n", Newsgroup.class);
         List<Newsgroup> results = query.getResultList();
         if (isUniqueNewsgroup(newNewsgroup, results)) {
