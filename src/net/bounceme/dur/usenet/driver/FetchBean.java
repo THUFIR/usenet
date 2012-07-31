@@ -14,20 +14,20 @@ import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
-public class Main {
+public class FetchBean {
 
-    private static final Logger LOG = Logger.getLogger(Main.class.getName());
+    private static final Logger LOG = Logger.getLogger(FetchBean.class.getName());
     private Usenet u = Usenet.INSTANCE;
 
     public static void main(String[] args) {
         try {
-            Main main = new Main();
+            FetchBean main = new FetchBean();
         } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public Main() throws Exception {
+    public FetchBean() throws Exception {
         EntityManagerFactory emf;
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
