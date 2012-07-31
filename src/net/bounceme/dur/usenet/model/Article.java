@@ -1,13 +1,12 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Header;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
@@ -21,6 +20,13 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    private String newsgroup;
+    @Column
+    private int messageNumber;
+    @Column
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date posted;
+    @Column
     private String subject;
     @OneToMany(mappedBy = "article", cascade = CascadeType.PERSIST)
     private List<HeaderField> headerFields = new ArrayList<>();
@@ -28,22 +34,30 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(Message message) {
+    public Article(Message message,Folder folder) {
         try {
+            newsgroup = folder.getFullName();
+            messageNumber = message.getMessageNumber();
+            posted = message.getSentDate();
             subject = message.getSubject();
-            Enumeration e = message.getAllHeaders();
-            while (e.hasMoreElements()) {
-                Header header = (Header) e.nextElement();
-                @SuppressWarnings("unchecked")
-                SimpleEntry nameValue = new SimpleEntry(header.getName(), header.getValue());
-                HeaderField headerField = new HeaderField(nameValue);
-                headerFields.add(headerField);
-                LOG.info(toString());
-            }
-        } catch (MessagingException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+                /*try {
+                Enumeration e = message.getAllHeaders();
+                while (e.hasMoreElements()) {
+                    Header header = (Header) e.nextElement();
+                    @SuppressWarnings("unchecked")
+                    SimpleEntry nameValue = new SimpleEntry(header.getName(), header.getValue());
+                    HeaderField headerField = new HeaderField(nameValue);
+                    headerFields.add(headerField);
+                    LOG.info(toString());
+                }
+            } catch (MessagingException ex) {
+                Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
 
     public Long getId() {
         return id;
@@ -75,7 +89,23 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return subject+ "\n" + headerFields;
+        return id + "\n" + getHeaderFields();
+    }
+
+    public int getMessageNumber() {
+        return messageNumber;
+    }
+
+    public void setMessageNumber(int messageNumber) {
+        this.messageNumber = messageNumber;
+    }
+
+    public Date getPosted() {
+        return posted;
+    }
+
+    public void setPosted(Date posted) {
+        this.posted = posted;
     }
 
     public String getSubject() {
@@ -84,5 +114,21 @@ public class Article implements Serializable {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public List<HeaderField> getHeaderFields() {
+        return headerFields;
+    }
+
+    public void setHeaderFields(List<HeaderField> headerFields) {
+        this.headerFields = headerFields;
+    }
+
+    public String getNewsgroup() {
+        return newsgroup;
+    }
+
+    public void setNewsgroup(String newsgroup) {
+        this.newsgroup = newsgroup;
     }
 }

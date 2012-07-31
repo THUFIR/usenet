@@ -35,6 +35,12 @@ public enum Usenet {
         setFolders(Arrays.asList(root.listSubscribed()));
     }
 
+    public void foo(String ng) throws Exception {
+        folder = root.getFolder(ng);
+        LOG.fine("opened the folder!!!!!");
+        folder.open(Folder.READ_ONLY);
+    }
+
     public List<Message> getMessages(String newsgroup) throws Exception {
         LOG.fine("fetching.." + newsgroup);
         folder = root.getFolder(newsgroup);
@@ -55,5 +61,12 @@ public enum Usenet {
 
     private void setFolders(List<Folder> folders) {
         this.folders = folders;
+    }
+
+    public Message getMessage(String newsgroup, int i) throws Exception {
+        LOG.fine("fetching.." + newsgroup);
+        folder = root.getFolder(newsgroup);
+        folder.open(Folder.READ_ONLY);
+        return folder.getMessage(i);
     }
 }
