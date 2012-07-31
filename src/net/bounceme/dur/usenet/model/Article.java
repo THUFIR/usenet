@@ -1,11 +1,13 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Header;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
@@ -16,12 +18,12 @@ public class Article implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Article.class.getName());
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String subject;
-    @ManyToMany
-    private List<HeaderField> headerField = new ArrayList<>();
+    @OneToMany(mappedBy = "article", cascade = CascadeType.PERSIST)
+    private List<HeaderField> headerFields = new ArrayList<>();
 
     public Article() {
     }
@@ -30,8 +32,14 @@ public class Article implements Serializable {
         try {
             subject = message.getSubject();
             Enumeration e = message.getAllHeaders();
-            HeaderField hf = new HeaderField(e);
-            headerField.add(hf);
+            while (e.hasMoreElements()) {
+                Header header = (Header) e.nextElement();
+                @SuppressWarnings("unchecked")
+                SimpleEntry nameValue = new SimpleEntry(header.getName(), header.getValue());
+                HeaderField headerField = new HeaderField(nameValue);
+                headerFields.add(headerField);
+                LOG.info(toString());
+            }
         } catch (MessagingException ex) {
             Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +75,7 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return subject;
+        return subject+ "\n" + headerFields;
     }
 
     public String getSubject() {
