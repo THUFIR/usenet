@@ -63,10 +63,20 @@ public enum Usenet {
         this.folders = folders;
     }
 
-    public Message getMessage(String newsgroup, int i) throws Exception {
-        LOG.fine("fetching.." + newsgroup);
-        folder = root.getFolder(newsgroup);
-        folder.open(Folder.READ_ONLY);
-        return folder.getMessage(i);
+    public Message getMessage(String newsgroup, int i) {
+        Message message = null;
+        try {
+            LOG.fine("fetching.." + newsgroup);
+            folder = root.getFolder(newsgroup);
+            folder.open(Folder.READ_ONLY);
+            LOG.info("" + message.getSubject().toString());
+            return folder.getMessage(i);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
+        } finally {
+            LOG.info(newsgroup + "\t\tnull message ");
+            return message;//crummy
+
+        }
     }
 }

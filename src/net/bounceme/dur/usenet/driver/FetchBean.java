@@ -27,7 +27,7 @@ public class FetchBean {
         }
     }
 
-    public FetchBean() {
+    public FetchBean() throws Exception {
         EntityManagerFactory emf;
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
@@ -35,20 +35,15 @@ public class FetchBean {
         List<Folder> subscribed = u.getFolders();
         LOG.info(subscribed.toString());
         for (Folder folder : subscribed) {
-            for (int i = 1; i < 9; i++) {
-                Message message;
-                try {
-                    message = u.getMessage(folder.getFullName(), i);
-                    Article article = new Article(message,folder);
-                    em.getTransaction().begin();
-                    em.persist(article);
-                    em.getTransaction().commit();
-                } catch (Exception ex) {
-                    Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+            List<Message> messages = u.getMessages(folder.getFullName());
+            for (Message message : messages) {
+                Article article = new Article(message, folder);
+                em.getTransaction().begin();
+                em.persist(article);
+                em.getTransaction().commit();
             }
         }
         em.close();
+        LOG.info("**************************done");
     }
 }
