@@ -1,7 +1,8 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
@@ -11,17 +12,13 @@ public class Foo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToMany(mappedBy = "articles")
-    private Set<Article> articles;
+    @ManyToMany(mappedBy = "foos")
+    private Collection<Article> Articles = new ArrayList<>();
 
     public Foo() {
     }
 
-        public Set<Article> getArticles() {
-        return articles;
-    }
-
-        public Long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -5,9 +5,6 @@ import javax.mail.Folder;
 import javax.persistence.*;
 
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Newsgroups.findAll", query = "SELECT n FROM Newsgroups n"),
-    @NamedQuery(name = "Newsgroups.findById", query = "SELECT n FROM Newsgroups n WHERE n.id = :id")})
 public class Newsgroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,7 +13,6 @@ public class Newsgroup implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
-    //@Column
     @Column(unique = true)
     private String newsgroup;
 

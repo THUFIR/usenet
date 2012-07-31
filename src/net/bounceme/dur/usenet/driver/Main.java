@@ -37,7 +37,7 @@ public class Main {
             persistNewsgroups(em, newsgroup);
         }
         for (Newsgroup n : subscribed) {
-            LOG.fine("******" + n);
+            LOG.fine("" + n);
             List<Message> messages = u.getMessages(n.getNewsgroup());
             LOG.fine(messages.size() + " messages");
             for (Message message : messages) {
@@ -62,7 +62,7 @@ public class Main {
 
     private void persistArticle(EntityManager em, Article article) {
         LOG.fine(article.toString());
-        TypedQuery<Article> query = em.createQuery("SELECT a FROM Articles a", Article.class);
+        TypedQuery<Article> query = em.createQuery("SELECT a FROM Article a", Article.class);
         List<Article> results = query.getResultList();
         if (isUniqueArticle(article, results)) {
             em.getTransaction().begin();
@@ -72,8 +72,8 @@ public class Main {
     }
 
     private void persistNewsgroups(EntityManager em, Newsgroup newNewsgroup) {
-        LOG.fine(newNewsgroup.toString());
-        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroups n", Newsgroup.class);
+        LOG.info(newNewsgroup.toString());
+        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n", Newsgroup.class);
         List<Newsgroup> results = query.getResultList();
         if (isUniqueNewsgroup(newNewsgroup, results)) {
             em.getTransaction().begin();

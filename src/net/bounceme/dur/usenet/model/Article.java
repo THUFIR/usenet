@@ -1,7 +1,8 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -18,9 +19,12 @@ public class Article implements Serializable {
     private Long id;
     @Column
     private String subject;
-    @ManyToMany(mappedBy = "foos")
-    private Set<Foo> foos;
+    //@ManyToMany(mappedBy = "articles")
+    //private Set<Foo> foos;
+    @ManyToMany
+    private Collection<Foo> foos = new ArrayList<>();
 
+    
     public Article() {
     }
 
@@ -32,10 +36,9 @@ public class Article implements Serializable {
         }
     }
 
-        public Set<Foo> getFoos() {
-        return foos;
-    }
-
+    //public Set<Foo> getFoos() {
+    //return foos;
+    //}
     public Long getId() {
         return id;
     }
