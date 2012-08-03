@@ -36,11 +36,11 @@ public class FetchBean {
             //for (Message message : messages) {
             for (int i = 1; i < 9; i++) {
                 Message message = messages.get(i);//just a few
+                LOG.info(message.getSubject());
                 Article article = new Article(message, folder);
                 em.getTransaction().begin();
                 em.persist(article);
                 em.getTransaction().commit();
-                LOG.info(article.toString());
             }
         }
         em.close();
