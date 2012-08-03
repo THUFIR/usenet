@@ -33,11 +33,14 @@ public class FetchBean {
         LOG.info(subscribed.toString());
         for (Folder folder : subscribed) {
             List<Message> messages = u.getMessages(folder.getFullName());
-            for (Message message : messages) {
+            //for (Message message : messages) {
+            for (int i = 1; i < 9; i++) {
+                Message message = messages.get(i);//just a few
                 Article article = new Article(message, folder);
                 em.getTransaction().begin();
                 em.persist(article);
                 em.getTransaction().commit();
+                LOG.info(article.toString());
             }
         }
         em.close();
