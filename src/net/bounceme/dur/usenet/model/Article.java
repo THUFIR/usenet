@@ -1,17 +1,17 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.persistence.*;
+import net.bounceme.dur.usenet.driver.FetchBean;
 
 @Entity
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(Article.class.getName());
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +25,16 @@ public class Article implements Serializable {
 
     public Article(Message message, Folder folder) {
         messageNumber = message.getMessageNumber();
-        newsgroup = new Newsgroup(folder); //need to ensure uniqueness
+        EntityManagerFactory emf;
+        EntityManager em;
+        emf = Persistence.createEntityManagerFactory("USENETPU");
+        em = emf.createEntityManager();
+        String ng = folder.getFullName();
+        Query query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :ng", Newsgroup.class);
+        query.setParameter(ng, newsgroup);//newsgroup object
+        Newsgroup result = (Newsgroup) query.getSingleResult();
+        LOG.info(result.toString());
+        newsgroup = (result == null) ? new Newsgroup(folder) : result;
     }
 
     public Long getId() {

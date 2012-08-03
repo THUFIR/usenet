@@ -15,7 +15,7 @@ public class Newsgroup implements Serializable {
     private Long id;
     @Column //@Unique @UniqueConstraint interface..?
     private String newsgroup;
-    @OneToMany(mappedBy = "newsgroup")//, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "newsgroup")//, cascade = CascadeType.MERGE)
     private Set<Article> articles = new HashSet<>();
 
     public Newsgroup() {
