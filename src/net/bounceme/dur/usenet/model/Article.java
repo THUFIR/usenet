@@ -30,9 +30,9 @@ public class Article implements Serializable {
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
         String ng = folder.getFullName();
-        Query query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :ng", Newsgroup.class);
-        query.setParameter(ng, newsgroup);//newsgroup object
-        Newsgroup result = (Newsgroup) query.getSingleResult();
+        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :foo", Newsgroup.class);
+        query.setParameter("foo", ng);
+        Newsgroup result = query.getSingleResult();
         LOG.info(result.toString());
         newsgroup = (result == null) ? new Newsgroup(folder) : result;
     }
