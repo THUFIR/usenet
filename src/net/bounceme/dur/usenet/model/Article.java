@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -32,9 +33,12 @@ public class Article implements Serializable {
         String ng = folder.getFullName();
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :foo", Newsgroup.class);
         query.setParameter("foo", ng);
-        Newsgroup result = query.getSingleResult();
-        LOG.info(result.toString());
-        newsgroup = (result == null) ? new Newsgroup(folder) : result;
+        //Newsgroup result = query.getSingleResult();
+        //LOG.info(result.toString());
+        List<Newsgroup> result = query.getResultList();
+        LOG.info("got result " + result.size());
+        newsgroup = (result.size() > 0) ? new Newsgroup(folder) : new Newsgroup(folder);  // result.get(1);
+        LOG.info("wheeeeeeeeeeeeeeeeeeeee");
     }
 
     public Long getId() {
