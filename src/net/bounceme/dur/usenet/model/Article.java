@@ -17,18 +17,15 @@ public class Article implements Serializable {
     private Long id;
     @Column
     private int messageNumber;
-    //@OneToMany(mappedBy = "article", cascade = CascadeType.PERSIST)
-    //private List<Newsgroup> newsgroups = new ArrayList<>();// = new HashSet<>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Newsgroup newsgroup;
-    
+
     public Article() {
     }
 
     public Article(Message message, Folder folder) {
         messageNumber = message.getMessageNumber();
         newsgroup = new Newsgroup(folder);
-        //newsgroups.add(newsgroup);
     }
 
     public Long getId() {

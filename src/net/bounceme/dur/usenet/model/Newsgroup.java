@@ -1,8 +1,8 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.mail.Folder;
 import javax.persistence.*;
 
@@ -15,11 +15,9 @@ public class Newsgroup implements Serializable {
     private Long id;
     @Column
     private String newsgroup;
-    //@ManyToOne(cascade = CascadeType.PERSIST)
-    //private Article article;
     @OneToMany(mappedBy = "newsgroup", cascade = CascadeType.PERSIST)
-    private List<Article> articles = new ArrayList<>();// = new HashSet<>();
-    
+    private Set<Article> articles = new HashSet<>();
+
     public Newsgroup() {
     }
 

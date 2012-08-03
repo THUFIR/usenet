@@ -4,7 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>net.bounceme.dur.usenet.model.Article</class>
     <class>net.bounceme.dur.usenet.model.Newsgroup</class>
-    <class>net.bounceme.dur.usenet.model.HeaderField</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/usenet"/>
       <property name="javax.persistence.jdbc.password" value="password"/>
