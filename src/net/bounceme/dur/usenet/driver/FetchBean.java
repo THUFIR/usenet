@@ -1,16 +1,13 @@
 package net.bounceme.dur.usenet.driver;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Usenet;
 
