@@ -25,7 +25,7 @@ public class Article implements Serializable {
 
     public Article(Message message, Folder folder) {
         messageNumber = message.getMessageNumber();
-        newsgroup = new Newsgroup(folder);
+        newsgroup = new Newsgroup(folder); //need to ensure uniqueness
     }
 
     public Long getId() {

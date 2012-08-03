@@ -13,16 +13,16 @@ public class Newsgroup implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column //@Unique @UniqueConstraint interface..?
     private String newsgroup;
-    @OneToMany(mappedBy = "newsgroup", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "newsgroup")//, cascade = CascadeType.PERSIST)
     private Set<Article> articles = new HashSet<>();
 
     public Newsgroup() {
     }
 
     public Newsgroup(Folder folder) {
-        newsgroup = folder.getFullName();
+        newsgroup = folder.getFullName();//if row already exists, then what?
     }
 
     public Long getId() {

@@ -34,7 +34,8 @@ public class FetchBean {
         for (Folder folder : subscribed) {
             List<Message> messages = u.getMessages(folder.getFullName());
             //for (Message message : messages) {
-            for (int i = 1; i < 9; i++) {
+            int max = (messages.size() > 9) ? 9 : messages.size();
+            for (int i = 1; i < max; i++) {
                 Message message = messages.get(i);//just a few
                 LOG.info(message.getSubject());
                 Article article = new Article(message, folder);
