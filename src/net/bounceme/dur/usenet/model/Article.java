@@ -1,12 +1,10 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.persistence.*;
-import net.bounceme.dur.usenet.driver.FetchBean;
 
 @Entity
 public class Article implements Serializable {
@@ -30,21 +28,15 @@ public class Article implements Serializable {
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
         em = emf.createEntityManager();
-        String ng = folder.getFullName();
-        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :foo", Newsgroup.class);
-        query.setParameter("foo", ng);
-        List<Newsgroup> results = query.getResultList();
-        LOG.fine("got result " + results.size());
-        for (Newsgroup n : results) {
-            LOG.info(n.toString());
-        }
-        //newsgroup = (result.size() > 0) ? new Newsgroup(folder) : new Newsgroup(folder);  // result.get(1);
-        if (results.size() > 0) {
-            newsgroup = results.get(0);
-            LOG.fine("using result " + results.get(0).toString());
-        } else {
+        String fullNewsgroupName = folder.getFullName();
+        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
+        query.setParameter("newsGroupParam", fullNewsgroupName);
+        try {
+            newsgroup = query.getSingleResult();
+            LOG.info("found " + query.getSingleResult());
+        } catch (javax.persistence.NoResultException | NonUniqueResultException e) {
             newsgroup = new Newsgroup(folder);
-            LOG.fine("new " + folder.getFullName());
+            LOG.info("could not find " + fullNewsgroupName);
         }
     }
 

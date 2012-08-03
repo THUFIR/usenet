@@ -37,7 +37,7 @@ public class FetchBean {
             int max = (messages.size() > 9) ? 9 : messages.size();
             for (int i = 1; i < max; i++) {
                 Message message = messages.get(i);//just a few
-                LOG.info(message.getSubject());
+                LOG.fine(message.getSubject());
                 Article article = new Article(message, folder);
                 em.getTransaction().begin();
                 em.persist(article);
