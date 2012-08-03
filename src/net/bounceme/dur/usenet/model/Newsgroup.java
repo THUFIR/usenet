@@ -14,9 +14,10 @@ public class Newsgroup implements Serializable {
     private Long id;
     @Column
     private String newsgroup;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private  Article article;
 
+    
     public Newsgroup() {
     }
 
