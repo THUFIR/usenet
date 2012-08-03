@@ -33,12 +33,19 @@ public class Article implements Serializable {
         String ng = folder.getFullName();
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :foo", Newsgroup.class);
         query.setParameter("foo", ng);
-        //Newsgroup result = query.getSingleResult();
-        //LOG.info(result.toString());
-        List<Newsgroup> result = query.getResultList();
-        LOG.info("got result " + result.size());
-        newsgroup = (result.size() > 0) ? new Newsgroup(folder) : new Newsgroup(folder);  // result.get(1);
-        LOG.info("wheeeeeeeeeeeeeeeeeeeee");
+        List<Newsgroup> results = query.getResultList();
+        LOG.fine("got result " + results.size());
+        for (Newsgroup n : results) {
+            LOG.info(n.toString());
+        }
+        //newsgroup = (result.size() > 0) ? new Newsgroup(folder) : new Newsgroup(folder);  // result.get(1);
+        if (results.size() > 0) {
+            newsgroup = results.get(0);
+            LOG.fine("using result " + results.get(0).toString());
+        } else {
+            newsgroup = new Newsgroup(folder);
+            LOG.fine("new " + folder.getFullName());
+        }
     }
 
     public Long getId() {
