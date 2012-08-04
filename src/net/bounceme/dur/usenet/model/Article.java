@@ -2,7 +2,6 @@ package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.mail.Message;
 import javax.persistence.*;
 

@@ -26,6 +26,7 @@ public class FetchBean {
     public FetchBean() throws Exception {
         List<Folder> subscribed = u.getFolders();
         LOG.info(subscribed.toString());
+        DatabaseUtils database = new DatabaseUtils();
         for (Folder folder : subscribed) {
             List<Message> messages = u.getMessages(folder.getFullName());
             //for (Message message : messages) {
@@ -33,10 +34,10 @@ public class FetchBean {
             for (int i = 1; i < max; i++) {
                 Message message = messages.get(i);
                 LOG.fine(message.getSubject());
-                DatabaseUtils factory = new DatabaseUtils();
-                factory.persistArticle(message, folder);
+                database.persistArticle(message, folder);
             }
         }
+        database.close();
         LOG.info("**************************done");
     }
 }
