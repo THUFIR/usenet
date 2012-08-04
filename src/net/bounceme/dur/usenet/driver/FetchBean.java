@@ -33,8 +33,8 @@ public class FetchBean {
             for (int i = 1; i < max; i++) {
                 Message message = messages.get(i);
                 LOG.fine(message.getSubject());
-                ArtFact factory = new ArtFact();
-                factory.getArticle(message, folder);
+                DatabaseUtils factory = new DatabaseUtils();
+                factory.persistArticle(message, folder);
             }
         }
         LOG.info("**************************done");

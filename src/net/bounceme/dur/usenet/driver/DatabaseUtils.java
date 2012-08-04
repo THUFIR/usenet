@@ -7,11 +7,11 @@ import javax.persistence.*;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
-class ArtFact {
+class DatabaseUtils {
 
-    private static final Logger LOG = Logger.getLogger(ArtFact.class.getName());
+    private static final Logger LOG = Logger.getLogger(DatabaseUtils.class.getName());
 
-    public void getArticle(Message message, Folder folder) {
+    public void persistArticle(Message message, Folder folder) {
         EntityManagerFactory emf;
         EntityManager em;
         emf = Persistence.createEntityManagerFactory("USENETPU");
