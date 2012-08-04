@@ -24,13 +24,13 @@ class ArtFact {
             newsgroup = query.getSingleResult();
             LOG.info("found " + query.getSingleResult()); //ok
         } catch (javax.persistence.NoResultException e) {
-            newsgroup = new Newsgroup(folder);
             LOG.info("\ncould not find " + fullNewsgroupName); //ok
+            newsgroup = new Newsgroup(folder);
             em.persist(newsgroup);
         } catch (NonUniqueResultException e) {
             LOG.info("\nshould never happen\t" + fullNewsgroupName); //not ok
         }
-        Article article = new Article(message,newsgroup);//what if newsgroup ==null?
+        Article article = new Article(message, newsgroup);//what if newsgroup ==null?
         em.persist(article);
         em.close();
     }
