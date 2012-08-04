@@ -22,6 +22,11 @@ public class Article implements Serializable {
     public Article() {
     }
 
+    public Article(Message message, Newsgroup newsgroup) {
+        messageNumber = message.getMessageNumber();
+        this.newsgroup = newsgroup;
+    }
+
     public Long getId() {
         return id;
     }
