@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 public class Article implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Article.class.getName());
     @Id
@@ -18,45 +18,25 @@ public class Article implements Serializable {
     private int messageNumber;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Newsgroup newsgroup;
-    
+
     public Article() {
     }
-    
-    public Article(Message message, Folder folder) {
-        messageNumber = message.getMessageNumber();
-        EntityManagerFactory emf;
-        EntityManager em;
-        emf = Persistence.createEntityManagerFactory("USENETPU");
-        em = emf.createEntityManager();
-        String fullNewsgroupName = folder.getFullName();
-        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
-        query.setParameter("newsGroupParam", fullNewsgroupName);
-        try {
-            newsgroup = query.getSingleResult();
-            LOG.info("found " + query.getSingleResult());
-        } catch (javax.persistence.NoResultException e) {
-            newsgroup = new Newsgroup(folder);
-            LOG.info("could not find " + fullNewsgroupName);
-        } catch (NonUniqueResultException e) {
-            LOG.info("should never happen");
-        }
-    }
-    
+
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -69,16 +49,16 @@ public class Article implements Serializable {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "\nmessageNumber\t" + messageNumber;
     }
-    
+
     public int getMessageNumber() {
         return messageNumber;
     }
-    
+
     public void setMessageNumber(int messageNumber) {
         this.messageNumber = messageNumber;
     }

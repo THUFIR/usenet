@@ -8,7 +8,6 @@ import javax.mail.Message;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
@@ -38,10 +37,8 @@ public class FetchBean {
             for (int i = 1; i < max; i++) {
                 Message message = messages.get(i);
                 LOG.fine(message.getSubject());
-                Article article = new Article(message, folder);
-                em.getTransaction().begin();
-                em.persist(article);
-                em.getTransaction().commit();
+                ArtFact factory = new ArtFact();
+                factory.getArticle(message, folder);
             }
         }
         em.close();
