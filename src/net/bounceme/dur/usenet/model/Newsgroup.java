@@ -8,6 +8,7 @@ import javax.mail.Folder;
 import javax.persistence.*;
 
 @Entity
+@Table(name="newsgroups")
 public class Newsgroup implements Serializable {
 
     private static final long serialVersionUID = 1L;

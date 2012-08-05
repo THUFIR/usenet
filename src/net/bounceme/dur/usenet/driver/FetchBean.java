@@ -1,25 +1,23 @@
 package net.bounceme.dur.usenet.driver;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
-
+    
     private static final Logger LOG = Logger.getLogger(FetchBean.class.getName());
     private Usenet u = Usenet.INSTANCE;
 
-    public static void main(String[] args) {
-        try {
-            FetchBean main = new FetchBean();
-        } catch (Exception ex) {
-            Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    /*
+     * public static void main(String[] args) { try { FetchBean main = new
+     * FetchBean(); } catch (Exception ex) {
+     * Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
+     * }
     }
-
+     */
     public FetchBean() throws Exception {
         List<Folder> subscribed = u.getFolders();
         LOG.info(subscribed.toString());
@@ -28,10 +26,7 @@ public class FetchBean {
             List<Message> messages = u.getMessages(folder.getFullName());
             int max = database.getMax(folder);
             for (Message message : messages) {
-                //int max = (messages.size() > 9) ? 9 : messages.size();
-                //for (int i = 1; i < max; i++) {
-                //Message message = messages.get(i);
-                if (message.getMessageNumber()>max) {
+                if (message.getMessageNumber() > max) {
                     LOG.info(message.getSubject());
                     database.persistArticle(message, folder);
                 }

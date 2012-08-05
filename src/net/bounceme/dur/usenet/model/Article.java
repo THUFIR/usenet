@@ -6,6 +6,7 @@ import javax.mail.Message;
 import javax.persistence.*;
 
 @Entity
+@Table(name="articles")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
