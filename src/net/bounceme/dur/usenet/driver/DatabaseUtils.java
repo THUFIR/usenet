@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.driver;
 
+import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -13,6 +14,18 @@ class DatabaseUtils {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("USENETPU");
     private EntityManager em = emf.createEntityManager();
 
+    public int getMax(Folder folder) {
+        em.getTransaction().begin();
+        int max = 0;
+        String ng = folder.getFullName();
+        String queryString = "select max(article.messageNumber) from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '"+ng+"'";
+        LOG.info(queryString);
+        max = (Integer) em.createQuery(queryString).getSingleResult();
+        em.getTransaction().commit();
+        LOG.info(folder.getFullName() + "\t" + max);
+        return max;
+    }
+
     public void persistArticle(Message message, Folder folder) {
         //do all the persistence here?
         em.getTransaction().begin();
@@ -22,19 +35,17 @@ class DatabaseUtils {
         query.setParameter("newsGroupParam", fullNewsgroupName);
         try {
             newsgroup = query.getSingleResult();
-            LOG.fine("found " + query.getSingleResult()); //ok
+            LOG.fine("found " + query.getSingleResult());
         } catch (javax.persistence.NoResultException e) {
-            LOG.fine(e + "\ncould not find " + fullNewsgroupName); //ok
+            LOG.fine(e + "\ncould not find " + fullNewsgroupName);
             newsgroup = new Newsgroup(folder);
-            //it seems like the persist statement never executes...
-            em.persist(newsgroup);  //how do I manually persist this?
+            em.persist(newsgroup);
         } catch (NonUniqueResultException e) {
-            LOG.warning("\nshould never happen\t" + fullNewsgroupName); //not ok, should never execute
+            LOG.warning("\nshould never happen\t" + fullNewsgroupName);
         }
-        //need some mechanism to ensure that newsgroup is never a null reference
-        //Newsgroup should never be instantiated with 
+
         Article article = new Article(message, newsgroup);
-        em.persist(article); //never seems to execute..
+        em.persist(article);
         em.getTransaction().commit();
     }
 

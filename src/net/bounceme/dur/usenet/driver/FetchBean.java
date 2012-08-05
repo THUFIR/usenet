@@ -5,9 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
@@ -28,6 +25,7 @@ public class FetchBean {
         LOG.info(subscribed.toString());
         DatabaseUtils database = new DatabaseUtils();
         for (Folder folder : subscribed) {
+            database.getMax(folder);
             List<Message> messages = u.getMessages(folder.getFullName());
             //for (Message message : messages) {
             int max = (messages.size() > 9) ? 9 : messages.size();
