@@ -25,14 +25,16 @@ public class FetchBean {
         LOG.info(subscribed.toString());
         DatabaseUtils database = new DatabaseUtils();
         for (Folder folder : subscribed) {
-            database.getMax(folder);
             List<Message> messages = u.getMessages(folder.getFullName());
-            //for (Message message : messages) {
-            int max = (messages.size() > 9) ? 9 : messages.size();
-            for (int i = 1; i < max; i++) {
-                Message message = messages.get(i);
-                LOG.fine(message.getSubject());
-                database.persistArticle(message, folder);
+            int max = database.getMax(folder);
+            for (Message message : messages) {
+                //int max = (messages.size() > 9) ? 9 : messages.size();
+                //for (int i = 1; i < max; i++) {
+                //Message message = messages.get(i);
+                if (message.getMessageNumber()>max) {
+                    LOG.info(message.getSubject());
+                    database.persistArticle(message, folder);
+                }
             }
         }
         database.close();

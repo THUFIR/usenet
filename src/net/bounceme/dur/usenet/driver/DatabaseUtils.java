@@ -15,22 +15,23 @@ class DatabaseUtils {
     private EntityManager em = emf.createEntityManager();
 
     public int getMax(Folder folder) {
-        em.getTransaction().begin();
         int max = 0;
         String ng = folder.getFullName();
-        String queryString = "select max(article.messageNumber) from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '"+ng+"'";
-        LOG.info(queryString);
-        max = (Integer) em.createQuery(queryString).getSingleResult();
-        em.getTransaction().commit();
-        LOG.info(folder.getFullName() + "\t" + max);
+        String queryString = "select max(article.messageNumber) from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '" + ng + "'";
+        try {
+            max = (Integer) em.createQuery(queryString).getSingleResult();
+        } catch (Exception e) {
+            LOG.info("setting max to zero");
+        }
+        LOG.severe(folder.getFullName() + "\t" + max);
         return max;
     }
 
     public void persistArticle(Message message, Folder folder) {
-        //do all the persistence here?
         em.getTransaction().begin();
         String fullNewsgroupName = folder.getFullName();
         Newsgroup newsgroup = null;
+        int max = getMax(folder);
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         try {
@@ -43,7 +44,6 @@ class DatabaseUtils {
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + fullNewsgroupName);
         }
-
         Article article = new Article(message, newsgroup);
         em.persist(article);
         em.getTransaction().commit();
