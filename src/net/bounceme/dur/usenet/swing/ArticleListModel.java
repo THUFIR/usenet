@@ -16,11 +16,20 @@ class ArticleListModel extends DefaultListModel {
 
     private DatabaseUtils database = DatabaseUtils.INSTANCE;
 
-    @SuppressWarnings("unchecked")
+    ArticleListModel(Page page) throws IOException, MessagingException {
+        load(page);
+    }
+
     public ArticleListModel(Newsgroup newsgroup) throws IOException, MessagingException {
         Page page = new Page(newsgroup);
+        load(page);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void load(Page page) throws IOException, MessagingException {
         List<Article> articles = database.getRangeOfArticles(page);
         for (Article article : articles) {
+            Newsgroup newsgroup = new Newsgroup(page);
             ArticleNewsgroup articleNewsgroup = new ArticleNewsgroup(newsgroup, article);
             this.addElement(articleNewsgroup);
         }
