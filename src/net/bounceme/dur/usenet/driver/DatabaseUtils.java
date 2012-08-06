@@ -33,7 +33,8 @@ class DatabaseUtils {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
+        String queryString = "SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam";
+        TypedQuery<Newsgroup> query = em.createQuery(queryString, Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         List<Newsgroup> results = query.getResultList();
         LOG.info(results.toString());
