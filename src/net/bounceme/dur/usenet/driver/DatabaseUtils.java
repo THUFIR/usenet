@@ -1,22 +1,25 @@
 package net.bounceme.dur.usenet.driver;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.persistence.*;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
-import net.bounceme.dur.usenet.model.Usenet;
 
 class DatabaseUtils {
 
     private static final Logger LOG = Logger.getLogger(DatabaseUtils.class.getName());
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("USENETPU");
     private EntityManager em = emf.createEntityManager();
+
+    public void getNewsgroups() {
+        String queryString = "select n from Newsgroup n";
+        TypedQuery<Newsgroup> query = em.createQuery(queryString, Newsgroup.class);
+        List<Newsgroup> newsgroups = query.getResultList();
+        LOG.info(newsgroups.toString());
+    }
 
     //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
     public int getMaxMessageNumber(Folder folder) {
@@ -37,8 +40,6 @@ class DatabaseUtils {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        //minRange = 554;
-        //maxRange = 557;
         String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between :minRange and :maxRange";
         TypedQuery<Article> query = em.createQuery(queryString, Article.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);

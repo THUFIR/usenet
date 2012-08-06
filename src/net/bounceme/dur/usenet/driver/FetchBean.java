@@ -28,9 +28,10 @@ public class FetchBean {
     public FetchBean() throws Exception {
         subscribed = u.getFolders();
         LOG.info(subscribed.toString());
+        //database.getNewsgroups();
         for (Folder folder : subscribed) {
             //load(folder);
-            pageOfArticles(folder);
+            //pageOfArticles(folder);
         }
         database.close();
         LOG.info("**************************done");
