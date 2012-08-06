@@ -37,23 +37,14 @@ class DatabaseUtils {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        minRange = 554;
-        maxRange = 557;
+        //minRange = 554;
+        //maxRange = 557;
         String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between :minRange and :maxRange";
         TypedQuery<Article> query = em.createQuery(queryString, Article.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         query.setParameter("minRange", minRange);
         query.setParameter("maxRange", maxRange);
         List<Article> articles = query.getResultList();
-        Usenet usenet = Usenet.INSTANCE;
-        for (Article article : articles) {
-            List<String> string = new ArrayList<>();
-            string.add(article.getId().toString());
-            string.add(Long.toString(article.getMessageNumber()));
-            Newsgroup n = article.getNewsgroup();
-            string.add(n.getNewsgroup());
-            LOG.info(string.toString());
-        }
         return articles;
     }
 
