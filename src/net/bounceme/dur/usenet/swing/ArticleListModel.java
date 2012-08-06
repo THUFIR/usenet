@@ -12,12 +12,8 @@ class ArticleListModel extends DefaultListModel {
 
     private DatabaseUtils database = new DatabaseUtils();
 
-    public ArticleListModel(Page page) {
-        load(page);
-    }
-
     @SuppressWarnings("unchecked")
-    private void load(Page page) {
+    public ArticleListModel(Page page) {
         List<Article> articles = database.getRangeOfArticles(page);
         for (Article article : articles) {
             try {

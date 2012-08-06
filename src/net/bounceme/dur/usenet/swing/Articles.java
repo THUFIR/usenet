@@ -52,11 +52,11 @@ public class Articles extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void articlesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articlesMouseReleased
-        foo();
+        event();
     }//GEN-LAST:event_articlesMouseReleased
 
     private void articlesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_articlesKeyReleased
-        foo();
+        event();
     }//GEN-LAST:event_articlesKeyReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList articles;
@@ -66,12 +66,12 @@ public class Articles extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     @SuppressWarnings("unchecked")
-    public void bar(Page page) {
+    public void load(Page page) {
         ListModel alm = new ArticleListModel(page);
         articles.setModel(alm);
     }
 
-    private void foo() {
+    private void event() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

@@ -12,8 +12,6 @@ import net.bounceme.dur.usenet.driver.DatabaseUtils;
 import net.bounceme.dur.usenet.driver.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
-import net.bounceme.dur.usenet.swing.Articles;
-import net.bounceme.dur.usenet.swing.Newsgroups;
 
 public class GraphicalDriver {
 
@@ -68,7 +66,7 @@ public class GraphicalDriver {
             case "newsgroup":
                 Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
                 Page page = new Page(newsgroup);
-                a.bar(page);
+                //a.load(page);
                 break;
             case "article":
                 break;

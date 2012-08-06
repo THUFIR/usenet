@@ -1,16 +1,17 @@
 package net.bounceme.dur.usenet.driver;
 
-import javax.mail.Folder;
+import java.util.logging.Logger;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Page {
 
+    private static final Logger LOG = Logger.getLogger(Page.class.getName());
     private DatabaseUtils database = new DatabaseUtils();
-     private String folderFullName;
-     private int min;
-     private int max;
-     private int delta = 20;
-     private int index;
+    private String folderFullName;
+    private int min;
+    private int max;
+    private int delta = 20;
+    private int index;
 
     private Page() {
     }
@@ -20,8 +21,8 @@ public class Page {
         max = database.getMaxMessageNumber(newsgroup);
         int tempMin = max - delta;
         min = (tempMin > 0) ? tempMin : 1;
+        LOG.info(toString());
     }
-
 
     @Override
     public String toString() {
