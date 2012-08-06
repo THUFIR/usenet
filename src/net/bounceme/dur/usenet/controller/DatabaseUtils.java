@@ -20,6 +20,8 @@ public enum DatabaseUtils {
     private Usenet u = Usenet.INSTANCE;
 
     public void rebuild() throws Exception {
+        LOG.info("starting..");
+        em.getTransaction().begin();
         List<Folder> folders = u.getFolders();
         for (Folder folder : folders) {
             Newsgroup newsgroup = new Newsgroup(folder);
@@ -29,6 +31,8 @@ public enum DatabaseUtils {
                 persistArticle(article, newsgroup);
             }
         }
+        em.getTransaction().commit();
+        LOG.info("..finished");
     }
 
     public List<Newsgroup> getNewsgroups() {
@@ -40,6 +44,7 @@ public enum DatabaseUtils {
     }
 
     private void persistNewsgroup(Newsgroup newsgroup) {
+        LOG.fine("trying" + newsgroup);
         List<Newsgroup> newsgroups = getNewsgroups();
         boolean unique = true;
         for (Newsgroup n : newsgroups) {
@@ -49,6 +54,7 @@ public enum DatabaseUtils {
         }
         if (unique) {
             em.persist(newsgroup);
+            LOG.fine("persisted" + newsgroup);
         }
     }
 
@@ -96,30 +102,6 @@ public enum DatabaseUtils {
             em.persist(article);
         }
         LOG.fine("\n\n\narticle\n" + article);
-    }
-
-    private void persistArticle2(Message message, Newsgroup newsgroup) throws NonUniqueResultException, NoResultException, IOException, MessagingException {
-        em.getTransaction().begin();
-        String fullNewsgroupName = newsgroup.getNewsgroup();
-        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
-        query.setParameter("newsGroupParam", fullNewsgroupName);
-        Article article = new Article();
-        try {
-            Newsgroup newsgroupQuerySingleResult = query.getSingleResult();
-            LOG.fine("found " + newsgroupQuerySingleResult);
-            article = new Article(message, newsgroup);
-            em.persist(article);
-        } catch (javax.persistence.NoResultException e) {
-            LOG.fine(e + "\ncould not find " + newsgroup);
-            em.persist(newsgroup);
-            article = new Article(message, newsgroup);
-            em.persist(article);
-        } catch (NonUniqueResultException e) {
-            LOG.warning("\nshould never happen\t" + newsgroup);
-        }
-        //ArticleNewsgroup aw = new ArticleNewsgroup(article, newsgroup);
-        LOG.fine("\n\n\narticle\n" + article);
-        em.getTransaction().commit();
     }
 
     public void close() {
