@@ -65,13 +65,13 @@ public enum Usenet {
     }
 
     public Message getMessage(Newsgroup newsgroup, Article article) {
-        LOG.fine("\n\ntrying.." + newsgroup + article);
+        LOG.info("\n\ntrying.." + newsgroup + article);
         int i = article.getMessageNumber();
         Message message = null;
         try {
             folder = root.getFolder(newsgroup.getNewsgroup());
             folder.open(Folder.READ_ONLY);
-            LOG.fine("..found\n" + message.getSubject().toString());
+            LOG.info("..found\n" + message.getSubject().toString());
             return folder.getMessage(i);
         } catch (MessagingException ex) {
             Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
