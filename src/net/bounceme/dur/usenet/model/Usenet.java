@@ -4,9 +4,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import javax.mail.search.SearchTerm;
-import javax.mail.search.SubjectTerm;
 import javax.mail.search.MessageIDTerm;
+import javax.mail.search.SearchTerm;
 
 public enum Usenet {
 
@@ -36,12 +35,6 @@ public enum Usenet {
         store.connect();
         root = store.getDefaultFolder();
         setFolders(Arrays.asList(root.listSubscribed()));
-    }
-
-    public void foo(String ng) throws Exception {
-        folder = root.getFolder(ng);
-        LOG.fine("opened the folder!!!!!");
-        folder.open(Folder.READ_ONLY);
     }
 
     public List<Message> getMessages(Newsgroup newsgroup) throws Exception {
