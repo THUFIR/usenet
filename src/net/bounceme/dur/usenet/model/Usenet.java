@@ -85,11 +85,11 @@ public enum Usenet {
     }
 
     public Message getMessage(Page page, Article article) {
+        LOG.info("page..\n" + page + "\n article\t" + article);
         String newsgroup = page.getFolderFullName();
         int i = article.getMessageNumber();
         Message message = null;
         try {
-            LOG.fine("fetching.." + newsgroup);
             folder = root.getFolder(newsgroup);
             folder.open(Folder.READ_ONLY);
             LOG.fine("" + message.getSubject().toString());

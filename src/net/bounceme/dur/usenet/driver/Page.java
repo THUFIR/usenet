@@ -5,27 +5,27 @@ import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Page {
 
-    private String folderFullName;
-    private int min;
-    private int max;
-    private int delta = 20;
+    private DatabaseUtils database = new DatabaseUtils();
+     private String folderFullName;
+     private int min;
+     private int max;
+     private int delta = 20;
+     private int index;
 
     private Page() {
     }
 
-    
-    public Page(Newsgroup folder, int max) {
-        folderFullName = folder.getNewsgroup();
-        this.max = Math.abs(max);
+    public Page(Newsgroup newsgroup) {
+        folderFullName = newsgroup.getNewsgroup();
+        max = database.getMaxMessageNumber(newsgroup);
         int tempMin = max - delta;
         min = (tempMin > 0) ? tempMin : 1;
     }
-    
-    public Page(Folder folder, int max) {
-        folderFullName = folder.getFullName();
-        this.max = Math.abs(max);
-        int tempMin = max - delta;
-        min = (tempMin > 0) ? tempMin : 1;
+
+
+    @Override
+    public String toString() {
+        return getFolderFullName() + " max\t" + getMax();
     }
 
     public String getFolderFullName() {
@@ -58,5 +58,13 @@ public class Page {
 
     public void setDelta(int delta) {
         this.delta = delta;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

@@ -67,8 +67,7 @@ public class GraphicalDriver {
         switch (event.toLowerCase()) {
             case "newsgroup":
                 Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
-                int max = database.getMaxMessageNumber(newsgroup);
-                Page page = new Page(newsgroup,max);
+                Page page = new Page(newsgroup);
                 a.bar(page);
                 break;
             case "article":

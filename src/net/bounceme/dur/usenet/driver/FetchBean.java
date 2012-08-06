@@ -15,14 +15,13 @@ public class FetchBean {
     private DatabaseUtils database = new DatabaseUtils();
     private List<Folder> subscribed;
 
-    /*public static void main(String[] args) {
-        try {
-            FetchBean main = new FetchBean();
-        } catch (Exception ex) {
-            Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-
+    /*
+     * public static void main(String[] args) { try { FetchBean main = new
+     * FetchBean(); } catch (Exception ex) {
+     * Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
+     * }
+    }
+     */
     public FetchBean() throws Exception {
         subscribed = u.getFolders();
         LOG.fine(subscribed.toString());
@@ -47,8 +46,7 @@ public class FetchBean {
     }
 
     private void pageOfArticles(Newsgroup newsgroup) {
-        int maxMessageNumber = database.getMaxMessageNumber(newsgroup);
-        Page page = new Page(newsgroup, maxMessageNumber);
+        Page page = new Page(newsgroup);
         List<Article> articles = database.getRangeOfArticles(page);
     }
 }

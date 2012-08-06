@@ -19,6 +19,7 @@ class ArticleWrapper {
     private int messageNumber = 1;
 
     ArticleWrapper(Page page, Article article) {
+        LOG.info("page..\n" + page + "\n article\t" + article);
         try {
             Message message = u.getMessage(page, article);
             newsgroup = message.getFolder().getFullName();
