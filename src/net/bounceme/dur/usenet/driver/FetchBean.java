@@ -1,5 +1,7 @@
 package net.bounceme.dur.usenet.driver;
 
+import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.controller.Page;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;

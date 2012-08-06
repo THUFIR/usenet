@@ -1,11 +1,12 @@
 package net.bounceme.dur.usenet.swing;
 
+import net.bounceme.dur.usenet.controller.ArticleWrapper;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.driver.DatabaseUtils;
-import net.bounceme.dur.usenet.driver.Page;
+import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 
 class ArticleListModel extends DefaultListModel {

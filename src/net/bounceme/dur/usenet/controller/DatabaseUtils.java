@@ -1,10 +1,10 @@
-package net.bounceme.dur.usenet.driver;
+package net.bounceme.dur.usenet.controller;
 
 import java.util.List;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.mail.Message;
 import javax.persistence.*;
+import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 

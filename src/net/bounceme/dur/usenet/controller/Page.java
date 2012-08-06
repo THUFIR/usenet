@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.driver;
+package net.bounceme.dur.usenet.controller;
 
 import java.util.logging.Logger;
 import net.bounceme.dur.usenet.model.Newsgroup;

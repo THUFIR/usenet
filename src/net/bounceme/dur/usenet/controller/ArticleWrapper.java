@@ -1,15 +1,14 @@
-package net.bounceme.dur.usenet.swing;
+package net.bounceme.dur.usenet.controller;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import net.bounceme.dur.usenet.driver.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Usenet;
 
-class ArticleWrapper {
+public class ArticleWrapper {
 
     private static final Logger LOG = Logger.getLogger(ArticleWrapper.class.getName());
     private Usenet u = Usenet.INSTANCE;
@@ -18,7 +17,7 @@ class ArticleWrapper {
     private String content = "dummy content";
     private int messageNumber = 1;
 
-    ArticleWrapper(Page page, Article article) {
+    public ArticleWrapper(Page page, Article article) {
         LOG.info("page..\n" + page + "\n article\t" + article);
         try {
             Message message = u.getMessage(page, article);

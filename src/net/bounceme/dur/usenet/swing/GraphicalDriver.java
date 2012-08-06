@@ -8,15 +8,13 @@ import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import net.bounceme.dur.usenet.driver.DatabaseUtils;
-import net.bounceme.dur.usenet.driver.Page;
+import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
-import net.bounceme.dur.usenet.model.Usenet;
 
 public class GraphicalDriver {
 
     private static final Logger LOG = Logger.getLogger(GraphicalDriver.class.getName());
-    private Usenet u = Usenet.INSTANCE;
     private DatabaseUtils database = new DatabaseUtils();
     private List<Folder> subscribed;
     private Newsgroups n = new Newsgroups();

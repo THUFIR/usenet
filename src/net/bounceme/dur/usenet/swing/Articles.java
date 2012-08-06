@@ -1,7 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.driver.Page;
+import net.bounceme.dur.usenet.controller.Page;
 
 public class Articles extends javax.swing.JPanel {
 
