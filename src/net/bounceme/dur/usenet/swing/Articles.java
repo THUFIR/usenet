@@ -3,7 +3,7 @@ package net.bounceme.dur.usenet.swing;
 import java.io.IOException;
 import javax.mail.MessagingException;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.controller.Page;
+import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Articles extends javax.swing.JPanel {
 
@@ -68,8 +68,8 @@ public class Articles extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     @SuppressWarnings("unchecked")
-    public void load(Page page) throws IOException, MessagingException {
-        ListModel alm = new ArticleListModel(page);
+    public void load(Newsgroup newsgroup) throws IOException, MessagingException {
+        ListModel alm = new ArticleListModel(newsgroup);
         articles.setModel(alm);
     }
 

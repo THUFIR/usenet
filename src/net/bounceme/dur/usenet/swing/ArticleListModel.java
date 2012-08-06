@@ -17,13 +17,12 @@ class ArticleListModel extends DefaultListModel {
     private DatabaseUtils database = DatabaseUtils.INSTANCE;
 
     @SuppressWarnings("unchecked")
-    public ArticleListModel(Page page) throws IOException, MessagingException {
-        Newsgroup newsgroup = new Newsgroup(page);
+    public ArticleListModel(Newsgroup newsgroup) throws IOException, MessagingException {
+        Page page = new Page(newsgroup);
         List<Article> articles = database.getRangeOfArticles(page);
         for (Article article : articles) {
             ArticleNewsgroup articleNewsgroup = new ArticleNewsgroup(newsgroup, article);
             this.addElement(articleNewsgroup);
-
         }
     }
 }

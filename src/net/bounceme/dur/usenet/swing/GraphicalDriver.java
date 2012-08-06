@@ -2,8 +2,10 @@ package net.bounceme.dur.usenet.swing;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import net.bounceme.dur.usenet.controller.Page;
@@ -45,7 +47,11 @@ public class GraphicalDriver {
 
             @Override
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                tabsEvent(evt);
+                try {
+                    tabsEvent(evt);
+                } catch (        IOException | MessagingException ex) {
+                    Logger.getLogger(GraphicalDriver.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -54,13 +60,12 @@ public class GraphicalDriver {
         LOG.fine("**************************done");
     }
 
-    private void tabsEvent(PropertyChangeEvent evt) {
+    private void tabsEvent(PropertyChangeEvent evt) throws IOException, MessagingException {
         String event = evt.getPropertyName();
         switch (event.toLowerCase()) {
             case "newsgroup":
                 Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
-                Page page = new Page(newsgroup);
-                //a.load(page);
+                a.load(newsgroup);
                 break;
             case "article":
                 break;
