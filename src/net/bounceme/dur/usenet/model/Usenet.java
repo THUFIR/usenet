@@ -64,41 +64,18 @@ public enum Usenet {
         this.folders = folders;
     }
 
-    //public Message getMessage(String newsgroup, int i) {
-    public Message getMessage(Page page) {
-        String newsgroup = page.getFolderFullName();
-        int i = page.getMax();
-        Message message = null;
-        try {
-            LOG.fine("fetching.." + newsgroup);
-            folder = root.getFolder(newsgroup);
-            folder.open(Folder.READ_ONLY);
-            LOG.fine("" + message.getSubject().toString());
-            return folder.getMessage(i);
-        } catch (MessagingException ex) {
-            Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
-        } finally {
-            LOG.fine(newsgroup + "\t\tnull message ");
-            return message;//crummy
-
-        }
-    }
-
     public Message getMessage(Newsgroup newsgroup, Article article) {
-        LOG.fine("page..\n" + newsgroup + "\n article\t" + article);
+        LOG.fine("\n\ntrying.." + newsgroup + article);
         int i = article.getMessageNumber();
         Message message = null;
         try {
             folder = root.getFolder(newsgroup.getNewsgroup());
             folder.open(Folder.READ_ONLY);
-            LOG.fine("" + message.getSubject().toString());
+            LOG.fine("..found\n" + message.getSubject().toString());
             return folder.getMessage(i);
         } catch (MessagingException ex) {
             Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
-        } finally {
-            LOG.fine(newsgroup + "\t\tnull message ");
-            return message;//crummy
+            return message;//crappy
         }
     }
-
 }

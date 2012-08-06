@@ -1,9 +1,11 @@
 package net.bounceme.dur.usenet.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.persistence.*;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
@@ -21,10 +23,10 @@ public enum DatabaseUtils {
         List<Folder> folders = u.getFolders();
         for (Folder folder : folders) {
             Newsgroup newsgroup = new Newsgroup(folder);
-            Page page = new Page(newsgroup);
             List<Message> messages = u.getMessages(newsgroup);
             for (Message message : messages) {
-                persistArticle(message, newsgroup);
+                Article article = new Article(message, newsgroup);
+                persistArticle(article, newsgroup);
             }
         }
     }
@@ -35,6 +37,19 @@ public enum DatabaseUtils {
         List<Newsgroup> newsgroups = query.getResultList();
         LOG.fine(newsgroups.toString());
         return newsgroups;
+    }
+
+    private void persistNewsgroup(Newsgroup newsgroup) {
+        List<Newsgroup> newsgroups = getNewsgroups();
+        boolean unique = true;
+        for (Newsgroup n : newsgroups) {
+            if (n.getNewsgroup().equals(newsgroup.getNewsgroup())) {
+                unique = false;
+            }
+        }
+        if (unique) {
+            em.persist(newsgroup);
+        }
     }
 
     //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
@@ -64,7 +79,26 @@ public enum DatabaseUtils {
         return articles;
     }
 
-    private void persistArticle(Message message, Newsgroup newsgroup) {
+    private void persistArticle(Article article, Newsgroup newsgroup) throws NonUniqueResultException, NoResultException, IOException, MessagingException {
+        persistNewsgroup(newsgroup);
+        String fullNewsgroupName = newsgroup.getNewsgroup();
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam";
+        TypedQuery<Article> query = em.createQuery(queryString, Article.class);
+        query.setParameter("newsGroupParam", fullNewsgroupName);
+        List<Article> articles = query.getResultList();
+        boolean unique = true;
+        for (Article a : articles) {
+            if (a.getMessageNumber() == article.getMessageNumber()) {
+                unique = false;
+            }
+        }
+        if (unique) {
+            em.persist(article);
+        }
+        LOG.fine("\n\n\narticle\n" + article);
+    }
+
+    private void persistArticle2(Message message, Newsgroup newsgroup) throws NonUniqueResultException, NoResultException, IOException, MessagingException {
         em.getTransaction().begin();
         String fullNewsgroupName = newsgroup.getNewsgroup();
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
@@ -83,8 +117,8 @@ public enum DatabaseUtils {
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + newsgroup);
         }
-        ArticleWrapper aw = new ArticleWrapper(article, newsgroup);
-        LOG.info("\n\n\narticle\n" + article + "\narticleWrapper\n" + aw);
+        //ArticleNewsgroup aw = new ArticleNewsgroup(article, newsgroup);
+        LOG.fine("\n\n\narticle\n" + article);
         em.getTransaction().commit();
     }
 
