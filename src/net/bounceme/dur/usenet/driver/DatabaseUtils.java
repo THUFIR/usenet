@@ -28,12 +28,22 @@ class DatabaseUtils {
         return maxMessageNumber;
     }
 
-    public <T> List<Article> getPageOfArticles(Folder folder,Page page) {
+    public <T> List<Article> getRangeOfArticles(Page page) {
+        String newsGroupName = page.getFolder().getFullName();
+        int minRange = page.getMin();
+        int maxRange = page.getMax();
+        String queryString = "SELECT * FROM `Article` LEFT JOIN `newsgroups` ON `articles`.`NEWSGROUP_ID`=`newsgroups`.`ID` WHERE `newsgroups`.`NEWSGROUP` = " + newsGroupName + " AND `Article`.`ID` BETWEEN " + minRange + " AND " + maxRange + ";";
+        List<Article> resultList = em.createNamedQuery(queryString, Article.class).getResultList();
+        return resultList;
+    }
+
+    //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;
+    public <T> List<Article> getRangeOfArticles2(Page page) {//just as an exercist, use <T> instead of Article
         String newsgroup = page.getFolder().getFullName();
         int min = page.getMin();
         int max = page.getMax();
         String queryString = "select a from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '" + newsgroup + "'";
-        List<Article> resultList = em.createNamedQuery(queryString, Article.class).getResultList();
+        List<Article> resultList = em.createNamedQuery(queryString, Article.class).getResultList();//syntax to use <T> instead of Article..?
         return resultList;
     }
 

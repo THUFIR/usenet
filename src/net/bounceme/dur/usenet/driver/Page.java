@@ -2,7 +2,7 @@ package net.bounceme.dur.usenet.driver;
 
 import javax.mail.Folder;
 
-class Page {
+public class Page {
 
     private Folder folder;
     private int min;
@@ -14,8 +14,9 @@ class Page {
 
     public Page(Folder folder, int max) {
         this.folder = folder;
-        this.max = max;
-        min = (max - delta > 0) ? max - delta : 1;
+        this.max = Math.abs(max);
+        int tempMin = max - delta;
+        min = (tempMin > 0) ? tempMin : 1;
     }
 
     public Folder getFolder() {
