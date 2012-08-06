@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.swing;
 
+import javax.swing.ListModel;
 import net.bounceme.dur.usenet.driver.Page;
 
 public class Articles extends javax.swing.JPanel {
@@ -64,8 +65,10 @@ public class Articles extends javax.swing.JPanel {
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
 
+    @SuppressWarnings("unchecked")
     public void bar(Page page) {
-        
+        ListModel alm = new ArticleListModel(page);
+        articles.setModel(alm);
     }
 
     private void foo() {

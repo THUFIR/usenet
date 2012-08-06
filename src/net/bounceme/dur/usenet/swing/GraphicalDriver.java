@@ -36,9 +36,9 @@ public class GraphicalDriver {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        frame.setMaximizedBounds(e.getMaximumWindowBounds());
-        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        //GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        //frame.setMaximizedBounds(e.getMaximumWindowBounds());
+        //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout());
 
         JTabbedPane tabs = new JTabbedPane();

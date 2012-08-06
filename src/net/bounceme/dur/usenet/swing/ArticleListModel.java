@@ -3,7 +3,6 @@ package net.bounceme.dur.usenet.swing;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.driver.DatabaseUtils;
 import net.bounceme.dur.usenet.driver.Page;
@@ -23,6 +22,7 @@ class ArticleListModel extends DefaultListModel {
         for (Article article : articles) {
             try {
                 ArticleWrapper aw = new ArticleWrapper(page,article);
+                this.addElement(aw);
             } catch (Exception ex) {
                 Logger.getLogger(ArticleListModel.class.getName()).log(Level.SEVERE, null, ex);
             }
