@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
 import net.bounceme.dur.usenet.model.Article;
+import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
@@ -34,20 +35,20 @@ public class FetchBean {
         LOG.fine("**************************done");
     }
 
-    private void load(Folder folder) throws Exception {
-        List<Message> messages = u.getMessages(folder.getFullName());
-        int maxMessageNumber = database.getMaxMessageNumber(folder);
+    private void load(Newsgroup newsgroup) throws Exception {
+        List<Message> messages = u.getMessages(newsgroup);
+        int maxMessageNumber = database.getMaxMessageNumber(newsgroup);
         for (Message message : messages) {
             if (message.getMessageNumber() > maxMessageNumber) {
                 LOG.fine(message.getSubject());
-                database.persistArticle(message, folder);
+                database.persistArticle(message, newsgroup);
             }
         }
     }
 
-    private void pageOfArticles(Folder folder) {
-        int maxMessageNumber = database.getMaxMessageNumber(folder);
-        Page page = new Page(folder, maxMessageNumber);
+    private void pageOfArticles(Newsgroup newsgroup) {
+        int maxMessageNumber = database.getMaxMessageNumber(newsgroup);
+        Page page = new Page(newsgroup, maxMessageNumber);
         List<Article> articles = database.getRangeOfArticles(page);
     }
 }

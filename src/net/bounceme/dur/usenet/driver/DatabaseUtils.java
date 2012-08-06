@@ -23,22 +23,21 @@ public class DatabaseUtils {
     }
 
     //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
-    public int getMaxMessageNumber(Folder folder) {
+    public int getMaxMessageNumber(Newsgroup newsgroup) {
         int maxMessageNumber = 0;
-        String newsgroup = folder.getFullName();
         String queryString = "select max(article.messageNumber) from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '" + newsgroup + "'";
         try {
             maxMessageNumber = (Integer) em.createQuery(queryString).getSingleResult();
         } catch (Exception e) {
             LOG.severe("setting max to zero for " + newsgroup);
         }
-        LOG.fine(folder.getFullName() + "\t" + maxMessageNumber);
+        LOG.fine(newsgroup + "\t" + maxMessageNumber);
         return maxMessageNumber;
     }
 
     //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;   
     public List<Article> getRangeOfArticles(Page page) {
-        String fullNewsgroupName = page.getFolder().getFullName();
+        String fullNewsgroupName = page.getFolderFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
         String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between :minRange and :maxRange";
@@ -50,10 +49,10 @@ public class DatabaseUtils {
         return articles;
     }
 
-    public void persistArticle(Message message, Folder folder) {
+    public void persistArticle(Message message, Newsgroup newsgroup) {
         em.getTransaction().begin();
-        String fullNewsgroupName = folder.getFullName();
-        Newsgroup newsgroup = null;
+        String fullNewsgroupName = newsgroup.getNewsgroup();
+        //Newsgroup newsgroup = null;
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         try {
@@ -61,7 +60,7 @@ public class DatabaseUtils {
             LOG.fine("found " + query.getSingleResult());
         } catch (javax.persistence.NoResultException e) {
             LOG.fine(e + "\ncould not find " + fullNewsgroupName);
-            newsgroup = new Newsgroup(folder);
+            //newsgroup = new Newsgroup(newsgroup);
             em.persist(newsgroup);
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + fullNewsgroupName);

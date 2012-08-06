@@ -9,6 +9,7 @@ import javax.mail.Folder;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import net.bounceme.dur.usenet.driver.DatabaseUtils;
+import net.bounceme.dur.usenet.driver.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.Articles;
@@ -20,6 +21,8 @@ public class GraphicalDriver {
     private Usenet u = Usenet.INSTANCE;
     private DatabaseUtils database = new DatabaseUtils();
     private List<Folder> subscribed;
+    private Newsgroups n = new Newsgroups();
+    private Articles a = new Articles();
 
     public static void main(String[] args) {
         try {
@@ -36,13 +39,11 @@ public class GraphicalDriver {
         GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
         frame.setMaximizedBounds(e.getMaximumWindowBounds());
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        frame.setResizable(false);
         frame.setLayout(new BorderLayout());
 
         JTabbedPane tabs = new JTabbedPane();
-        Newsgroups n = new Newsgroups();
         n.addPropertyChangeListener(null);
-        Articles a = new Articles();
+
         tabs.add(n);
         tabs.add(a);
         frame.add(tabs);
@@ -66,6 +67,9 @@ public class GraphicalDriver {
         switch (event.toLowerCase()) {
             case "newsgroup":
                 Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
+                int max = database.getMaxMessageNumber(newsgroup);
+                Page page = new Page(newsgroup,max);
+                a.bar(page);
                 break;
             case "article":
                 break;

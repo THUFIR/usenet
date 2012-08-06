@@ -64,7 +64,7 @@ public class Articles extends javax.swing.JPanel {
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
 
-    private void bar(Page page) {
+    public void bar(Page page) {
         
     }
 

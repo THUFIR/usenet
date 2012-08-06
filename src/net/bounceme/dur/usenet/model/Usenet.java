@@ -42,9 +42,9 @@ public enum Usenet {
         folder.open(Folder.READ_ONLY);
     }
 
-    public List<Message> getMessages(String newsgroup) throws Exception {
+    public List<Message> getMessages(Newsgroup newsgroup) throws Exception {
         LOG.fine("fetching.." + newsgroup);
-        folder = root.getFolder(newsgroup);
+        folder = root.getFolder(newsgroup.getNewsgroup());
         LOG.fine("opened the folder!!!!!");
         folder.open(Folder.READ_ONLY);
         LOG.fine("opened: " + folder.getFullName());
@@ -66,7 +66,7 @@ public enum Usenet {
 
     //public Message getMessage(String newsgroup, int i) {
     public Message getMessage(Page page) {
-        String newsgroup = page.getFolder().getFullName();
+        String newsgroup = page.getFolderFullName();
         int i = page.getMax();
         Message message = null;
         try {
@@ -85,7 +85,7 @@ public enum Usenet {
     }
 
     public Message getMessage(Page page, Article article) {
-        String newsgroup = page.getFolder().getFullName();
+        String newsgroup = page.getFolderFullName();
         int i = article.getMessageNumber();
         Message message = null;
         try {
