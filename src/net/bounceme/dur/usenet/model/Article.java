@@ -67,4 +67,12 @@ public class Article implements Serializable {
     public void setMessageNumber(int messageNumber) {
         this.messageNumber = messageNumber;
     }
+
+    public Newsgroup getNewsgroup() {
+        return newsgroup;
+    }
+
+    public void setNewsgroup(Newsgroup newsgroup) {
+        this.newsgroup = newsgroup;
+    }
 }

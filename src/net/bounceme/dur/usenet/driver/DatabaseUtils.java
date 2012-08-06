@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.driver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,13 +37,24 @@ class DatabaseUtils {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between 450 and 500";
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between 100 and 500";
         TypedQuery<Article> query = em.createQuery(queryString, Article.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         List<Article> articles = query.getResultList();
         Usenet usenet = Usenet.INSTANCE;
-        for (Article a : articles) {
-            Message message = usenet.getMessage(page.getFolder(), a.getMessageNumber());
+        for (Article article : articles) {
+            List<String> string = new ArrayList<>();
+            string.add(article.getId().toString());
+            string.add(Long.toString(article.getMessageNumber()));
+            Message message = usenet.getMessage(page.getFolder(), article.getMessageNumber());
+            try {
+                string.add(message.getSubject());
+            } catch (MessagingException ex) {
+                Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Newsgroup n = article.getNewsgroup();
+            string.add(n.getNewsgroup());
+            LOG.info(string.toString());
         }
         return articles;
     }

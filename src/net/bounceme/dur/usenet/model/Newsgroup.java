@@ -8,7 +8,7 @@ import javax.mail.Folder;
 import javax.persistence.*;
 
 @Entity
-@Table(name="newsgroups")
+@Table(name = "newsgroups")
 public class Newsgroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class Newsgroup implements Serializable {
 
     public Newsgroup(Folder folder) {
         newsgroup = folder.getFullName();//if row already exists, then what?
-        LOG.fine(newsgroup);    
+        LOG.fine(newsgroup);
     }
 
     public Long getId() {
@@ -60,6 +60,14 @@ public class Newsgroup implements Serializable {
 
     @Override
     public String toString() {
+        return getNewsgroup();
+    }
+
+    public String getNewsgroup() {
         return newsgroup;
+    }
+
+    public void setNewsgroup(String newsgroup) {
+        this.newsgroup = newsgroup;
     }
 }
