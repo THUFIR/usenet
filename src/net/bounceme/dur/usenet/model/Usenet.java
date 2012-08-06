@@ -85,7 +85,7 @@ public enum Usenet {
     }
 
     public Message getMessage(Newsgroup newsgroup, Article article) {
-        LOG.info("page..\n" + newsgroup + "\n article\t" + article);
+        LOG.fine("page..\n" + newsgroup + "\n article\t" + article);
         int i = article.getMessageNumber();
         Message message = null;
         try {

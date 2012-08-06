@@ -21,7 +21,7 @@ public class Page {
         max = database.getMaxMessageNumber(newsgroup);
         int tempMin = max - delta;
         min = (tempMin > 0) ? tempMin : 1;
-        LOG.info(toString());
+        LOG.fine(toString());
     }
 
     @Override

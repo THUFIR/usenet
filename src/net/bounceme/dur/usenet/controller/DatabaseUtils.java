@@ -69,18 +69,21 @@ public enum DatabaseUtils {
         String fullNewsgroupName = newsgroup.getNewsgroup();
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
+        Article article = new Article();
         try {
             Newsgroup newsgroupQuerySingleResult = query.getSingleResult();
             LOG.fine("found " + newsgroupQuerySingleResult);
+            article = new Article(message, newsgroup);
+            em.persist(article);
         } catch (javax.persistence.NoResultException e) {
             LOG.fine(e + "\ncould not find " + newsgroup);
             em.persist(newsgroup);
+            article = new Article(message, newsgroup);
+            em.persist(article);
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + newsgroup);
         }
-        Article article = new Article(message, newsgroup);
-        
-        em.persist(article);
+        LOG.info(article.toString());
         em.getTransaction().commit();
     }
 
