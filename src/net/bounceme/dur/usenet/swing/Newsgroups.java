@@ -1,7 +1,5 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.awt.Event;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.driver.DatabaseUtils;
@@ -9,13 +7,15 @@ import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Newsgroups extends javax.swing.JPanel {
 
-    //private DatabaseUtils database = new DatabaseUtils();
+    private DatabaseUtils database = new DatabaseUtils();
 
+    @SuppressWarnings("unchecked")
     public Newsgroups() {
-        //List<Newsgroup> newsgroups = database.getNewsgroups();
+
+        List<Newsgroup> newsgroups = database.getNewsgroups();
         initComponents();
-        //ListModel myList = new NewsgroupListModel(newsgroups);
-        //newsgroupsJList.setModel(myList);
+        ListModel myList = new NewsgroupListModel(newsgroups);
+        newsgroupsJList.setModel(myList);
     }
 
     /**
@@ -29,6 +29,8 @@ public class Newsgroups extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         newsgroupsJList = new javax.swing.JList();
+
+        setLayout(new java.awt.BorderLayout());
 
         newsgroupsJList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -48,26 +50,7 @@ public class Newsgroups extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(newsgroupsJList);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 173, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 173, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 41, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 41, Short.MAX_VALUE)))
-        );
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void newsgroupsJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newsgroupsJListKeyReleased
@@ -77,14 +60,13 @@ public class Newsgroups extends javax.swing.JPanel {
     private void newsgroupsJListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsgroupsJListMouseReleased
         foo();
     }//GEN-LAST:event_newsgroupsJListMouseReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList newsgroupsJList;
     // End of variables declaration//GEN-END:variables
 
     private void foo() {
-        Newsgroup newsgroup = (Newsgroup)newsgroupsJList.getSelectedValue();
+        Newsgroup newsgroup = (Newsgroup) newsgroupsJList.getSelectedValue();
         this.firePropertyChange("foo", null, newsgroup);
     }
 }

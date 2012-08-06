@@ -1,7 +1,6 @@
 package net.bounceme.dur.usenet.driver;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -15,13 +14,13 @@ public class FetchBean {
     private DatabaseUtils database = new DatabaseUtils();
     private List<Folder> subscribed;
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             FetchBean main = new FetchBean();
         } catch (Exception ex) {
             Logger.getLogger(FetchBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
     public FetchBean() throws Exception {
         subscribed = u.getFolders();
