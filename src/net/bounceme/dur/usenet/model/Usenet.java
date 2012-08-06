@@ -4,7 +4,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
-import net.bounceme.dur.usenet.controller.Page;
+import javax.mail.search.SearchTerm;
+import javax.mail.search.SubjectTerm;
+import javax.mail.search.MessageIDTerm;
 
 public enum Usenet {
 
@@ -64,18 +66,16 @@ public enum Usenet {
         this.folders = folders;
     }
 
-    public Message getMessage(Newsgroup newsgroup, Article article) {
+    public Message getMessage(Newsgroup newsgroup, Article article) throws MessagingException {
         LOG.info("\n\ntrying.." + newsgroup + article);
-        int i = article.getMessageNumber();
+        String id = article.getMessageId();
         Message message = null;
-        try {
-            folder = root.getFolder(newsgroup.getNewsgroup());
-            folder.open(Folder.READ_ONLY);
-            LOG.info("..found\n" + message.getSubject().toString());
-            return folder.getMessage(i);
-        } catch (MessagingException ex) {
-            Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
-            return message;//crappy
-        }
+        folder = root.getFolder(newsgroup.getNewsgroup());
+        folder.open(Folder.READ_ONLY);
+        LOG.info("..found\n" + message.getSubject().toString());
+        SearchTerm st = new MessageIDTerm(id);
+        Message[] messages = folder.search(st);
+        message = messages[0];
+        return message;
     }
 }

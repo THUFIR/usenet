@@ -94,7 +94,7 @@ public enum DatabaseUtils {
         List<Article> articles = query.getResultList();
         boolean unique = true;
         for (Article a : articles) {
-            if (a.getMessageNumber() == article.getMessageNumber()) {
+            if (a.getMessageId().equals(article.getMessageId())) {
                 unique = false;
             }
         }

@@ -15,7 +15,7 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private int messageNumber;
+     private String messageId;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Newsgroup newsgroup;
 
@@ -23,7 +23,7 @@ public class Article implements Serializable {
     }
 
     public Article(Message message, Newsgroup newsgroup) {
-        messageNumber = message.getMessageNumber();
+        //messageNumber = message.getMessageNumber();
         this.newsgroup = newsgroup;
     }
 
@@ -57,16 +57,9 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "\nmessageNumber\t" + messageNumber;
+        return "\nmessageNumber\t" + getMessageId();
     }
 
-    public int getMessageNumber() {
-        return messageNumber;
-    }
-
-    public void setMessageNumber(int messageNumber) {
-        this.messageNumber = messageNumber;
-    }
 
     public Newsgroup getNewsgroup() {
         return newsgroup;
@@ -74,5 +67,13 @@ public class Article implements Serializable {
 
     public void setNewsgroup(Newsgroup newsgroup) {
         this.newsgroup = newsgroup;
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 }
