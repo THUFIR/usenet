@@ -14,6 +14,7 @@ class DatabaseUtils {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("USENETPU");
     private EntityManager em = emf.createEntityManager();
 
+    //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
     public int getMaxMessageNumber(Folder folder) {
         int maxMessageNumber = 0;
         String newsgroup = folder.getFullName();
@@ -25,6 +26,15 @@ class DatabaseUtils {
         }
         LOG.severe(folder.getFullName() + "\t" + maxMessageNumber);
         return maxMessageNumber;
+    }
+
+    public <T> List<Article> getPageOfArticles(Folder folder,Page page) {
+        String newsgroup = page.getFolder().getFullName();
+        int min = page.getMin();
+        int max = page.getMax();
+        String queryString = "select a from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '" + newsgroup + "'";
+        List<Article> resultList = em.createNamedQuery(queryString, Article.class).getResultList();
+        return resultList;
     }
 
     public void persistArticle(Message message, Folder folder) {
@@ -42,16 +52,14 @@ class DatabaseUtils {
             em.persist(newsgroup);
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + fullNewsgroupName);
-        } /*finally {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }*/
-            Article article = new Article(message, newsgroup);
-            em.persist(article);
-            em.getTransaction().commit();
-        }
-
-    
+        } /*
+         * finally { if (em.getTransaction().isActive()) {
+         * em.getTransaction().rollback(); }
+         */
+        Article article = new Article(message, newsgroup);
+        em.persist(article);
+        em.getTransaction().commit();
+    }
 
     public void close() {
         em.close();
