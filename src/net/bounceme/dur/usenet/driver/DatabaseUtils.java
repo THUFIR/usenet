@@ -78,8 +78,4 @@ public class DatabaseUtils {
         em.close();
         emf.close();//necessary?
     }
-
-    public List<Article> getArticles() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
 }

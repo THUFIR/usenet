@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
+import net.bounceme.dur.usenet.driver.Page;
 
 public enum Usenet {
 
@@ -63,8 +64,10 @@ public enum Usenet {
         this.folders = folders;
     }
 
-
-    public Message getMessage(String newsgroup, int i) {
+    //public Message getMessage(String newsgroup, int i) {
+    public Message getMessage(Page page) {
+        String newsgroup = page.getFolder().getFullName();
+        int i = page.getMax();
         Message message = null;
         try {
             LOG.fine("fetching.." + newsgroup);
