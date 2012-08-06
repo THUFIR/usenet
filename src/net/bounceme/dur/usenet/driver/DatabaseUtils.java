@@ -8,17 +8,18 @@ import javax.persistence.*;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
-class DatabaseUtils {
+public class DatabaseUtils {
 
     private static final Logger LOG = Logger.getLogger(DatabaseUtils.class.getName());
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("USENETPU");
     private EntityManager em = emf.createEntityManager();
 
-    public void getNewsgroups() {
+    public List<Newsgroup> getNewsgroups() {
         String queryString = "select n from Newsgroup n";
         TypedQuery<Newsgroup> query = em.createQuery(queryString, Newsgroup.class);
         List<Newsgroup> newsgroups = query.getResultList();
-        LOG.info(newsgroups.toString());
+        LOG.fine(newsgroups.toString());
+        return newsgroups;
     }
 
     //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";

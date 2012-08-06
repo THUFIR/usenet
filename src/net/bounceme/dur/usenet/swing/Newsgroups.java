@@ -1,20 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.usenet.swing;
 
-/**
- *
- * @author thufir
- */
+import java.awt.Event;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.ListModel;
+import net.bounceme.dur.usenet.driver.DatabaseUtils;
+import net.bounceme.dur.usenet.model.Newsgroup;
+
 public class Newsgroups extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Newsgroups
-     */
+    //private DatabaseUtils database = new DatabaseUtils();
+
     public Newsgroups() {
+        //List<Newsgroup> newsgroups = database.getNewsgroups();
         initComponents();
+        //ListModel myList = new NewsgroupListModel(newsgroups);
+        //newsgroupsJList.setModel(myList);
     }
 
     /**
@@ -26,17 +27,64 @@ public class Newsgroups extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        newsgroupsJList = new javax.swing.JList();
+
+        newsgroupsJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        newsgroupsJList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        newsgroupsJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                newsgroupsJListMouseReleased(evt);
+            }
+        });
+        newsgroupsJList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                newsgroupsJListKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(newsgroupsJList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 173, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 173, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 41, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 41, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void newsgroupsJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newsgroupsJListKeyReleased
+        foo();
+    }//GEN-LAST:event_newsgroupsJListKeyReleased
+
+    private void newsgroupsJListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsgroupsJListMouseReleased
+        foo();
+    }//GEN-LAST:event_newsgroupsJListMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList newsgroupsJList;
     // End of variables declaration//GEN-END:variables
+
+    private void foo() {
+        Newsgroup newsgroup = (Newsgroup)newsgroupsJList.getSelectedValue();
+        this.firePropertyChange("foo", null, newsgroup);
+    }
 }
