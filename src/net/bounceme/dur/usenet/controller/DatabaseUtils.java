@@ -83,7 +83,8 @@ public enum DatabaseUtils {
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + newsgroup);
         }
-        LOG.info(article.toString());
+        ArticleWrapper aw = new ArticleWrapper(article, newsgroup);
+        LOG.info("\n\n\narticle\n" + article + "\narticleWrapper\n" + aw);
         em.getTransaction().commit();
     }
 

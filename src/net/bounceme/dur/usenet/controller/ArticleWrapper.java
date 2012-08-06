@@ -18,8 +18,11 @@ public class ArticleWrapper {
     private String content = "dummy content";
     private int messageNumber = 1;
 
-    public ArticleWrapper(Article article,Newsgroup newsgroup) {
-        LOG.fine("newsgroup..\n" + newsgroup + "\n article\t" + article);
+    private ArticleWrapper() {
+    }
+
+    public ArticleWrapper(Article article, Newsgroup newsgroup) {
+        LOG.info("trying..\n\nnewsgroup\t\t" + newsgroup + "\n" + article);
         try {
             Message message = u.getMessage(newsgroup, article);
             this.newsgroup = message.getFolder().getFullName();
@@ -29,6 +32,7 @@ public class ArticleWrapper {
         } catch (IOException | MessagingException | NullPointerException ex) {
             Logger.getLogger(ArticleWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
+        LOG.info("\narticleWrapper\t\t" + messageNumber + "\n" + article);
     }
 
     public String getNewsgroup() {
