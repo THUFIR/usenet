@@ -5,9 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import net.bounceme.dur.usenet.model.Article;
-import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
