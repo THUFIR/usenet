@@ -2,23 +2,19 @@ package net.bounceme.dur.usenet.swing;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Folder;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import net.bounceme.dur.usenet.controller.DatabaseUtils;
 import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class GraphicalDriver {
 
     private static final Logger LOG = Logger.getLogger(GraphicalDriver.class.getName());
-    private DatabaseUtils database = new DatabaseUtils();
-    private List<Folder> subscribed;
     private Newsgroups n = new Newsgroups();
     private Articles a = new Articles();
+    private Rebuild r = new Rebuild();
 
     public static void main(String[] args) {
         try {
@@ -38,8 +34,8 @@ public class GraphicalDriver {
         frame.setLayout(new BorderLayout());
 
         JTabbedPane tabs = new JTabbedPane();
-        n.addPropertyChangeListener(null);
 
+        tabs.add(r);
         tabs.add(n);
         tabs.add(a);
         frame.add(tabs);
