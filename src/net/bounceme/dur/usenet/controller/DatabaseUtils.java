@@ -7,6 +7,7 @@ import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
+import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
@@ -58,25 +59,26 @@ public enum DatabaseUtils {
         }
     }
 
-    //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
-    public int getMaxMessageNumber(Newsgroup newsgroup) {
-        int maxMessageNumber = 0;
-        String queryString = "select max(article.messageNumber) from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = '" + newsgroup + "'";
-        try {
-            maxMessageNumber = (Integer) em.createQuery(queryString).getSingleResult();
-        } catch (Exception e) {
-            LOG.severe("setting max to zero for " + newsgroup);
+    public Article getMaxArticle(Newsgroup newsgroup) {
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam";
+        TypedQuery<Article> query = em.createQuery(queryString, Article.class);
+        query.setParameter("newsGroupParam", newsgroup.getNewsgroup());
+        List<Article> articles = query.getResultList();
+        Article max = articles.get(0);
+        for (Article article : articles) {
+            max = (article.getId() > max.getId()) ? article : max;
         }
-        LOG.fine(newsgroup + "\t" + maxMessageNumber);
-        return maxMessageNumber;
+        return max;
     }
+    //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
+
 
     //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;   
     public List<Article> getRangeOfArticles(Page page) {
         String fullNewsgroupName = page.getFolderFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between :minRange and :maxRange";
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.id between :minRange and :maxRange";
         TypedQuery<Article> query = em.createQuery(queryString, Article.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         query.setParameter("minRange", minRange);

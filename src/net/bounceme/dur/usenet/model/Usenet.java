@@ -47,7 +47,7 @@ public enum Usenet {
         LOG.fine("opened: " + folder.getFullName());
         List<Message> messages = Arrays.asList(folder.getMessages());
         LOG.fine("..fetched " + folder);
-        return messages;
+        return Collections.unmodifiableList(messages);
     }
 
     public List<Folder> getFolders() {
@@ -67,8 +67,10 @@ public enum Usenet {
         folder.open(Folder.READ_ONLY);
         LOG.info("..found\n" + message.getSubject().toString());
         SearchTerm st = new MessageIDTerm(id);
-        Message[] messages = folder.search(st);
-        message = messages[0];
+        List<Message> messages = Arrays.asList(folder.search(st));
+        if (!messages.isEmpty()) {
+            message = messages.get(0);
+        }
         return message;
     }
 }

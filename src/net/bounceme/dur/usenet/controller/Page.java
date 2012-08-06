@@ -18,7 +18,7 @@ public class Page {
 
     public Page(Newsgroup newsgroup) {
         folderFullName = newsgroup.getNewsgroup();
-        max = database.getMaxMessageNumber(newsgroup);
+        //max = database.getMaxMessageNumber(newsgroup);
         int tempMin = max - delta;
         min = (tempMin > 0) ? tempMin : 1;
         LOG.fine(toString());
