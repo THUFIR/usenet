@@ -22,22 +22,21 @@ class DatabaseUtils {
         try {
             maxMessageNumber = (Integer) em.createQuery(queryString).getSingleResult();
         } catch (Exception e) {
-            LOG.info("setting max to zero");
+            LOG.severe("setting max to zero for " + newsgroup);
         }
-        LOG.severe(folder.getFullName() + "\t" + maxMessageNumber);
+        LOG.fine(folder.getFullName() + "\t" + maxMessageNumber);
         return maxMessageNumber;
     }
 
-    //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;
-    public <T> List<Article> getRangeOfArticles(Page page) {
+    //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;   
+    public void getRangeOfArticles(Page page) {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        String queryString = "SELECT a FROM Article a WHERE n.newsgroup = :newsGroupParam";
-        TypedQuery<Article> query = em.createNamedQuery(queryString, Article.class);
+        TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
-        List<Article> resultList = query.getResultList();
-        return resultList;
+        List<Newsgroup> results = query.getResultList();
+        LOG.info(results.toString());
     }
 
     public void persistArticle(Message message, Folder folder) {
