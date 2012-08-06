@@ -13,14 +13,7 @@ class ArticleListModel extends DefaultListModel {
 
     private DatabaseUtils database = new DatabaseUtils();
 
-    public ArticleListModel(Folder folder) {
-        int max = database.getMaxMessageNumber(folder);
-        Page page = new Page(folder, max);
-        load(page);
-    }
-
-    public ArticleListModel(Folder folder, int max) {
-        Page page = new Page(folder, max);
+    public ArticleListModel(Page page) {
         load(page);
     }
 
@@ -29,7 +22,7 @@ class ArticleListModel extends DefaultListModel {
         List<Article> articles = database.getRangeOfArticles(page);
         for (Article article : articles) {
             try {
-                ArticleWrapper aw = new ArticleWrapper(article,page);
+                ArticleWrapper aw = new ArticleWrapper(page,article);
             } catch (Exception ex) {
                 Logger.getLogger(ArticleListModel.class.getName()).log(Level.SEVERE, null, ex);
             }

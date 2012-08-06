@@ -73,14 +73,32 @@ public enum Usenet {
             LOG.fine("fetching.." + newsgroup);
             folder = root.getFolder(newsgroup);
             folder.open(Folder.READ_ONLY);
-            LOG.info("" + message.getSubject().toString());
+            LOG.fine("" + message.getSubject().toString());
             return folder.getMessage(i);
         } catch (MessagingException ex) {
             Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
         } finally {
-            LOG.info(newsgroup + "\t\tnull message ");
+            LOG.fine(newsgroup + "\t\tnull message ");
             return message;//crummy
 
+        }
+    }
+
+    public Message getMessage(Page page, Article article) {
+        String newsgroup = page.getFolder().getFullName();
+        int i = article.getMessageNumber();
+        Message message = null;
+        try {
+            LOG.fine("fetching.." + newsgroup);
+            folder = root.getFolder(newsgroup);
+            folder.open(Folder.READ_ONLY);
+            LOG.fine("" + message.getSubject().toString());
+            return folder.getMessage(i);
+        } catch (MessagingException ex) {
+            Logger.getLogger(Usenet.class.getName()).log(Level.FINE, null, ex);
+        } finally {
+            LOG.fine(newsgroup + "\t\tnull message ");
+            return message;//crummy
         }
     }
 }

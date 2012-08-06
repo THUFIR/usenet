@@ -1,12 +1,15 @@
-package net.bounceme.dur.usenet.driver;
+package net.bounceme.dur.usenet.swing;
 
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import net.bounceme.dur.usenet.driver.DatabaseUtils;
+import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 import net.bounceme.dur.usenet.swing.Articles;
 import net.bounceme.dur.usenet.swing.Newsgroups;
@@ -33,18 +36,44 @@ public class GraphicalDriver {
         GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
         frame.setMaximizedBounds(e.getMaximumWindowBounds());
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        frame.setResizable(false);
         frame.setLayout(new BorderLayout());
 
         JTabbedPane tabs = new JTabbedPane();
         Newsgroups n = new Newsgroups();
+        n.addPropertyChangeListener(null);
         Articles a = new Articles();
         tabs.add(n);
         tabs.add(a);
-
         frame.add(tabs);
+
+
+        n.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tabsEvent(evt);
+            }
+        });
 
         frame.pack();
         frame.setVisible(true);
-        LOG.info("**************************done");
+        LOG.fine("**************************done");
     }
+
+    private void tabsEvent(PropertyChangeEvent evt) {
+        String event = evt.getPropertyName();
+        switch (event.toLowerCase()) {
+            case "newsgroup":
+                Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
+                break;
+            case "article":
+                break;
+            default:
+                break;
+        }
+
+
+
+    }//end tabsEvent..
 }

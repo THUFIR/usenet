@@ -1,6 +1,6 @@
 package net.bounceme.dur.usenet.swing;
 
-import javax.swing.ListModel;
+import net.bounceme.dur.usenet.driver.Page;
 
 public class Articles extends javax.swing.JPanel {
 
@@ -57,13 +57,16 @@ public class Articles extends javax.swing.JPanel {
     private void articlesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_articlesKeyReleased
         foo();
     }//GEN-LAST:event_articlesKeyReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList articles;
     private javax.swing.JScrollPane center;
     private javax.swing.JTextPane content;
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
+
+    private void bar(Page page) {
+        
+    }
 
     private void foo() {
         throw new UnsupportedOperationException("Not yet implemented");

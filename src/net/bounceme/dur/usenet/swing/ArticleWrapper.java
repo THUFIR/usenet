@@ -15,13 +15,12 @@ class ArticleWrapper {
     private String content;
     private int messageNumber;
 
-    ArticleWrapper(Article article, Page page) throws Exception {
-        Message message = u.getMessage(page);
+    ArticleWrapper(Page page,Article article) throws Exception {
+        Message message = u.getMessage(page,article);
         newsgroup = message.getFolder().getFullName();
         subject = message.getSubject();
         content = message.getContent().toString();
         messageNumber = message.getMessageNumber();
-        LOG.info(this.toString());
     }
 
     public String getNewsgroup() {

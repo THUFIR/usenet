@@ -24,14 +24,14 @@ public class FetchBean {
 
     public FetchBean() throws Exception {
         subscribed = u.getFolders();
-        LOG.info(subscribed.toString());
+        LOG.fine(subscribed.toString());
         //database.getNewsgroups();
         for (Folder folder : subscribed) {
             //load(folder);
             //pageOfArticles(folder);
         }
         database.close();
-        LOG.info("**************************done");
+        LOG.fine("**************************done");
     }
 
     private void load(Folder folder) throws Exception {
@@ -39,7 +39,7 @@ public class FetchBean {
         int maxMessageNumber = database.getMaxMessageNumber(folder);
         for (Message message : messages) {
             if (message.getMessageNumber() > maxMessageNumber) {
-                LOG.info(message.getSubject());
+                LOG.fine(message.getSubject());
                 database.persistArticle(message, folder);
             }
         }

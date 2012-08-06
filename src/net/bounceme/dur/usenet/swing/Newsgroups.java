@@ -1,9 +1,12 @@
 package net.bounceme.dur.usenet.swing;
 
+import java.util.logging.Logger;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Newsgroups extends javax.swing.JPanel {
+
+    private static final Logger LOG = Logger.getLogger(Newsgroups.class.getName());
 
     @SuppressWarnings("unchecked")
     public Newsgroups() {
@@ -61,6 +64,7 @@ public class Newsgroups extends javax.swing.JPanel {
 
     private void newsgroupSelected() {
         Newsgroup newsgroup = (Newsgroup) newsgroupsJList.getSelectedValue();
-        this.firePropertyChange("newsgroup", null, newsgroup);
+        firePropertyChange("newsgroup", null, newsgroup);
+        LOG.fine(newsgroup.toString());
     }
 }
