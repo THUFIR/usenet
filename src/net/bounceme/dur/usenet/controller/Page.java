@@ -1,5 +1,6 @@
 package net.bounceme.dur.usenet.controller;
 
+import net.bounceme.dur.usenet.model.DatabaseUtils;
 import java.util.logging.Logger;
 import net.bounceme.dur.usenet.model.Newsgroup;
 

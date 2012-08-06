@@ -1,4 +1,4 @@
-package net.bounceme.dur.usenet.controller;
+package net.bounceme.dur.usenet.model;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
+import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
@@ -21,7 +22,7 @@ public enum DatabaseUtils {
     private Usenet u = Usenet.INSTANCE;
 
     public void rebuild() throws Exception {
-        LOG.info("starting..");
+        LOG.fine("starting..");
         em.getTransaction().begin();
         List<Folder> folders = u.getFolders();
         for (Folder folder : folders) {
@@ -33,7 +34,7 @@ public enum DatabaseUtils {
             }
         }
         em.getTransaction().commit();
-        LOG.info("..finished");
+        LOG.fine("..finished");
     }
 
     public List<Newsgroup> getNewsgroups() {

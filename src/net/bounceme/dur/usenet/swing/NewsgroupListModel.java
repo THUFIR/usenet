@@ -2,7 +2,7 @@ package net.bounceme.dur.usenet.swing;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
-import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.model.DatabaseUtils;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 class NewsgroupListModel extends DefaultListModel {

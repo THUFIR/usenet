@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.swing.DefaultListModel;
 import net.bounceme.dur.usenet.controller.ArticleNewsgroup;
-import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.model.DatabaseUtils;
 import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;

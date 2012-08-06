@@ -6,7 +6,7 @@ package net.bounceme.dur.usenet.swing;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.bounceme.dur.usenet.controller.DatabaseUtils;
+import net.bounceme.dur.usenet.model.DatabaseUtils;
 
 /**
  *
