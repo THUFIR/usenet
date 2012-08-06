@@ -8,8 +8,6 @@ public class Articles extends javax.swing.JPanel {
     public Articles() {
         initComponents();
         articles.setPrototypeCellValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        //ListModel myList = new ArticleListModel();
-        //articles.setModel(myList);
     }
 
     /**
@@ -33,6 +31,16 @@ public class Articles extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        articles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                articlesMouseReleased(evt);
+            }
+        });
+        articles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                articlesKeyReleased(evt);
+            }
+        });
         west.setViewportView(articles);
 
         add(west, java.awt.BorderLayout.WEST);
@@ -41,10 +49,23 @@ public class Articles extends javax.swing.JPanel {
 
         add(center, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void articlesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articlesMouseReleased
+        foo();
+    }//GEN-LAST:event_articlesMouseReleased
+
+    private void articlesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_articlesKeyReleased
+        foo();
+    }//GEN-LAST:event_articlesKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList articles;
     private javax.swing.JScrollPane center;
     private javax.swing.JTextPane content;
     private javax.swing.JScrollPane west;
     // End of variables declaration//GEN-END:variables
+
+    private void foo() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

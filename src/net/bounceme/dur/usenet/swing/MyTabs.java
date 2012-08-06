@@ -4,8 +4,6 @@
  */
 package net.bounceme.dur.usenet.swing;
 
-import net.bounceme.dur.usenet.model.Newsgroup;
-
 /**
  *
  * @author thufir

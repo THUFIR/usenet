@@ -48,18 +48,18 @@ public class Newsgroups extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newsgroupsJListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newsgroupsJListKeyReleased
-        foo();
+        newsgroupSelected();
     }//GEN-LAST:event_newsgroupsJListKeyReleased
 
     private void newsgroupsJListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newsgroupsJListMouseReleased
-        foo();
+        newsgroupSelected();
     }//GEN-LAST:event_newsgroupsJListMouseReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList newsgroupsJList;
     // End of variables declaration//GEN-END:variables
 
-    private void foo() {
+    private void newsgroupSelected() {
         Newsgroup newsgroup = (Newsgroup) newsgroupsJList.getSelectedValue();
         this.firePropertyChange("newsgroup", null, newsgroup);
     }
