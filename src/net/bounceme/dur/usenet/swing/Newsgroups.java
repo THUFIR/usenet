@@ -1,20 +1,14 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.util.List;
 import javax.swing.ListModel;
-import net.bounceme.dur.usenet.driver.DatabaseUtils;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class Newsgroups extends javax.swing.JPanel {
 
-    private DatabaseUtils database = new DatabaseUtils();
-
     @SuppressWarnings("unchecked")
     public Newsgroups() {
-
-        List<Newsgroup> newsgroups = database.getNewsgroups();
         initComponents();
-        ListModel myList = new NewsgroupListModel(newsgroups);
+        ListModel myList = new NewsgroupListModel();
         newsgroupsJList.setModel(myList);
     }
 
@@ -67,6 +61,6 @@ public class Newsgroups extends javax.swing.JPanel {
 
     private void foo() {
         Newsgroup newsgroup = (Newsgroup) newsgroupsJList.getSelectedValue();
-        this.firePropertyChange("foo", null, newsgroup);
+        this.firePropertyChange("newsgroup", null, newsgroup);
     }
 }

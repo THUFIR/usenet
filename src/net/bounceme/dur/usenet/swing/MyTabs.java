@@ -4,6 +4,8 @@
  */
 package net.bounceme.dur.usenet.swing;
 
+import net.bounceme.dur.usenet.model.Newsgroup;
+
 /**
  *
  * @author thufir
@@ -26,17 +28,32 @@ public class MyTabs extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        newsgroups1 = new net.bounceme.dur.usenet.swing.Newsgroups();
+        tabs = new javax.swing.JTabbedPane();
+        newsgroups = new net.bounceme.dur.usenet.swing.Newsgroups();
+        articles = new net.bounceme.dur.usenet.swing.Articles();
 
         setLayout(new java.awt.BorderLayout());
 
-        jTabbedPane1.addTab("tab1", newsgroups1);
+        tabs.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
 
-        add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        newsgroups.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                newsgroupsPropertyChange(evt);
+            }
+        });
+        tabs.addTab("tab1", newsgroups);
+        tabs.addTab("tab2", articles);
+
+        add(tabs, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void newsgroupsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_newsgroupsPropertyChange
+        //Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
+    }//GEN-LAST:event_newsgroupsPropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private net.bounceme.dur.usenet.swing.Newsgroups newsgroups1;
+    private net.bounceme.dur.usenet.swing.Articles articles;
+    private net.bounceme.dur.usenet.swing.Newsgroups newsgroups;
+    private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 }
