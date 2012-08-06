@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.persistence.*;
+import net.bounceme.dur.usenet.controller.Page;
 
 @Entity
 @Table(name = "newsgroups")
@@ -26,7 +27,11 @@ public class Newsgroup implements Serializable {
     }
 
     public Newsgroup(Folder folder) {
-        newsgroup = folder.getFullName();//if row already exists, then what?
+        newsgroup = folder.getFullName();
+        LOG.fine(newsgroup);
+    }
+    public Newsgroup(Page page) {
+        newsgroup = page.getFolderFullName();
         LOG.fine(newsgroup);
     }
 

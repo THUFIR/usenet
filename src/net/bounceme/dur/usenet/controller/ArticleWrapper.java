@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import net.bounceme.dur.usenet.model.Article;
+import net.bounceme.dur.usenet.model.Newsgroup;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class ArticleWrapper {
@@ -17,11 +18,11 @@ public class ArticleWrapper {
     private String content = "dummy content";
     private int messageNumber = 1;
 
-    public ArticleWrapper(Page page, Article article) {
-        LOG.info("page..\n" + page + "\n article\t" + article);
+    public ArticleWrapper(Article article,Newsgroup newsgroup) {
+        LOG.info("newsgroup..\n" + newsgroup + "\n article\t" + article);
         try {
-            Message message = u.getMessage(page, article);
-            newsgroup = message.getFolder().getFullName();
+            Message message = u.getMessage(newsgroup, article);
+            this.newsgroup = message.getFolder().getFullName();
             subject = message.getSubject();
             content = message.getContent().toString();
             messageNumber = message.getMessageNumber();
