@@ -7,7 +7,7 @@ import net.bounceme.dur.usenet.model.Newsgroup;
 
 class NewsgroupListModel extends DefaultListModel {
 
-    private DatabaseUtils database = new DatabaseUtils();
+    private DatabaseUtils database = DatabaseUtils.INSTANCE;
 
     @SuppressWarnings("unchecked")
     public NewsgroupListModel() {

@@ -101,4 +101,5 @@ public enum Usenet {
             return message;//crummy
         }
     }
+
 }

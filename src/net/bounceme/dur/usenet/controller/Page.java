@@ -6,7 +6,7 @@ import net.bounceme.dur.usenet.model.Newsgroup;
 public class Page {
 
     private static final Logger LOG = Logger.getLogger(Page.class.getName());
-    private DatabaseUtils database = new DatabaseUtils();
+    private DatabaseUtils database = DatabaseUtils.INSTANCE;
     private String folderFullName;
     private int min;
     private int max;

@@ -4,15 +4,18 @@
  */
 package net.bounceme.dur.usenet.swing;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.bounceme.dur.usenet.controller.DatabaseUtils;
+
 /**
  *
  * @author thufir
  */
 public class Rebuild extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Rebuild
-     */
+    private DatabaseUtils db = DatabaseUtils.INSTANCE;
+
     public Rebuild() {
         initComponents();
     }
@@ -40,9 +43,13 @@ public class Rebuild extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rebuildButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rebuildButtonActionPerformed
-        System.out.println("button clicked");
-    }//GEN-LAST:event_rebuildButtonActionPerformed
 
+        try {
+            db.rebuild();
+        } catch (Exception ex) {
+            Logger.getLogger(Rebuild.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_rebuildButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton rebuildButton;
     // End of variables declaration//GEN-END:variables

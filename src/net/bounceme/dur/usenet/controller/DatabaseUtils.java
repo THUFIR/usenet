@@ -2,17 +2,32 @@ package net.bounceme.dur.usenet.controller;
 
 import java.util.List;
 import java.util.logging.Logger;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.persistence.*;
-import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
+import net.bounceme.dur.usenet.model.Usenet;
 
-public class DatabaseUtils {
+public enum DatabaseUtils {
 
+    INSTANCE();
     private static final Logger LOG = Logger.getLogger(DatabaseUtils.class.getName());
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("USENETPU");
     private EntityManager em = emf.createEntityManager();
+    private Usenet u = Usenet.INSTANCE;
+
+    public void rebuild() throws Exception {
+        List<Folder> folders = u.getFolders();
+        for (Folder folder : folders) {
+            Newsgroup newsgroup = new Newsgroup(folder);
+            Page page = new Page(newsgroup);
+            List<Message> messages = u.getMessages(newsgroup);
+            for (Message message : messages) {
+                persistArticle(message, newsgroup);
+            }
+        }
+    }
 
     public List<Newsgroup> getNewsgroups() {
         String queryString = "select n from Newsgroup n";
@@ -49,10 +64,9 @@ public class DatabaseUtils {
         return articles;
     }
 
-    public void persistArticle(Message message, Newsgroup newsgroup) {
+    private void persistArticle(Message message, Newsgroup newsgroup) {
         em.getTransaction().begin();
         String fullNewsgroupName = newsgroup.getNewsgroup();
-        //Newsgroup newsgroup = null;
         TypedQuery<Newsgroup> query = em.createQuery("SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam", Newsgroup.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
         try {
@@ -60,14 +74,10 @@ public class DatabaseUtils {
             LOG.fine("found " + query.getSingleResult());
         } catch (javax.persistence.NoResultException e) {
             LOG.fine(e + "\ncould not find " + fullNewsgroupName);
-            //newsgroup = new Newsgroup(newsgroup);
             em.persist(newsgroup);
         } catch (NonUniqueResultException e) {
             LOG.warning("\nshould never happen\t" + fullNewsgroupName);
-        } /*
-         * finally { if (em.getTransaction().isActive()) {
-         * em.getTransaction().rollback(); }
-         */
+        }
         Article article = new Article(message, newsgroup);
         em.persist(article);
         em.getTransaction().commit();

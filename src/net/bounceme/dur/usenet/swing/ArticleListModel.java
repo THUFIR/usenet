@@ -11,7 +11,7 @@ import net.bounceme.dur.usenet.model.Article;
 
 class ArticleListModel extends DefaultListModel {
 
-    private DatabaseUtils database = new DatabaseUtils();
+    private DatabaseUtils database = DatabaseUtils.INSTANCE;
 
     @SuppressWarnings("unchecked")
     public ArticleListModel(Page page) {
