@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
+import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Usenet;
 
 public class FetchBean {
@@ -48,7 +49,8 @@ public class FetchBean {
         for (Folder folder : subscribed) {
             int maxMessageNumber = database.getMaxMessageNumber(folder);
             Page page = new Page(folder,maxMessageNumber);
-            database.getRangeOfArticles(page);
+            List<Article> articles = database.getRangeOfArticles(page);
+            LOG.fine(articles.toString());
         }
     }
 }
