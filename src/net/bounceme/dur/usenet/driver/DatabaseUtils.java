@@ -1,12 +1,15 @@
 package net.bounceme.dur.usenet.driver;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Folder;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.persistence.*;
 import net.bounceme.dur.usenet.model.Article;
 import net.bounceme.dur.usenet.model.Newsgroup;
+import net.bounceme.dur.usenet.model.Usenet;
 
 class DatabaseUtils {
 
@@ -29,15 +32,19 @@ class DatabaseUtils {
     }
 
     //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;   
-    public void getRangeOfArticles(Page page) {
+    public List<Article> getRangeOfArticles(Page page) {
         String fullNewsgroupName = page.getFolder().getFullName();
         int minRange = page.getMin();
         int maxRange = page.getMax();
-        String queryString = "SELECT n FROM Newsgroup n WHERE n.newsgroup = :newsGroupParam";
-        TypedQuery<Newsgroup> query = em.createQuery(queryString, Newsgroup.class);
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam and article.messageNumber between 450 and 500";
+        TypedQuery<Article> query = em.createQuery(queryString, Article.class);
         query.setParameter("newsGroupParam", fullNewsgroupName);
-        List<Newsgroup> results = query.getResultList();
-        LOG.info(results.toString());
+        List<Article> articles = query.getResultList();
+        Usenet usenet = Usenet.INSTANCE;
+        for (Article a : articles) {
+            Message message = usenet.getMessage(page.getFolder(), a.getMessageNumber());
+        }
+        return articles;
     }
 
     public void persistArticle(Message message, Folder folder) {
