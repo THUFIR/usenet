@@ -26,12 +26,6 @@ public class ArticleNewsgroup {
         this.article = article;
         this.newsgroup = newsgroup;
 }
-
-
- 
-
-
-
     @Override
     public String toString() {
         String returnVal = "frack";

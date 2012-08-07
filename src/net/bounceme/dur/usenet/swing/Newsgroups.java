@@ -11,8 +11,9 @@ public class Newsgroups extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     public Newsgroups() {
         initComponents();
-        ListModel myList = new NewsgroupListModel();
-        newsgroupsJList.setModel(myList);
+        ListModel subscribed = new NewsgroupListModel();
+        newsgroupsJList.setModel(subscribed);
+        LOG.info(newsgroupsJList.getModel().toString());
     }
 
     /**

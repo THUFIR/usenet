@@ -38,7 +38,7 @@ public class Article implements Serializable {
             LOG.fine(header.getName());
         }
         messageId = headerId.getValue();
-        LOG.info(messageId);
+        LOG.fine(messageId);
     }
 
     @Override
