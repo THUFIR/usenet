@@ -23,7 +23,8 @@ public enum DatabaseUtils {
         List<Folder> folders = u.getFolders();
         for (Folder folder : folders) {
             Newsgroup newsgroup = new Newsgroup(folder);
-            List<Message> messages = u.getMessages(newsgroup);
+            Page page = new Page(newsgroup);
+            List<Message> messages = u.getMessages(page);
             for (Message message : messages) {
                 Article article = new Article(message, newsgroup);
                 persistArticle(article, newsgroup);
@@ -101,11 +102,12 @@ public enum DatabaseUtils {
         List<Article> articles = query.getResultList();
         boolean unique = true;
         for (Article a : articles) {
-            if (a.getMessageId().equals(article.getMessageId())) {
+            if (a.getMessageId().equals(article.getMessageId())
+                    || (article.getMessageId() == null)) {
                 unique = false;
             }
         }
-        if (unique && !(article.getMessageId() == null)) {
+        if (unique) {
             em.persist(article);
         }
         LOG.fine("\n\n\narticle\n" + article);

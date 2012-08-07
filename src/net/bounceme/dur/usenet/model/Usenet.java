@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.search.MessageIDTerm;
 import javax.mail.search.SearchTerm;
+import net.bounceme.dur.usenet.controller.Page;
 
 public enum Usenet {
 
@@ -27,7 +28,7 @@ public enum Usenet {
         }
     }
 
-    private void connect() throws Exception {
+    public void connect() throws Exception {
         LOG.fine("Usenet.connect..");
         Session session = Session.getDefaultInstance(props);
         session.setDebug(true);
@@ -37,14 +38,11 @@ public enum Usenet {
         setFolders(Arrays.asList(root.listSubscribed()));
     }
 
-    public List<Message> getMessages(Newsgroup newsgroup) throws Exception {
+    public List<Message> getMessages(Page page) throws Exception {
+        Newsgroup newsgroup = new Newsgroup(page);
         LOG.fine("fetching.." + newsgroup);
         folder = root.getFolder(newsgroup.getNewsgroup());
-        LOG.fine("opened the folder!!!!!");
         folder.open(Folder.READ_ONLY);
-        LOG.fine("opened: " + folder.getFullName());
-        LOG.fine("opened: " + folder.getFullName());
-        LOG.fine("opened: " + folder.getFullName());
         List<Message> messages = Arrays.asList(folder.getMessages());
         LOG.fine("..fetched " + folder);
         return Collections.unmodifiableList(messages);
@@ -67,11 +65,11 @@ public enum Usenet {
         folder.open(Folder.READ_ONLY);
         SearchTerm st = new MessageIDTerm(id);
         List<Message> messages = Arrays.asList(folder.search(st));
-        LOG.fine(messages.toString());
+        LOG.severe(messages.toString());
         if (!messages.isEmpty()) {
             message = messages.get(0);
         }
-        LOG.fine(message.getSubject());
+        LOG.info(message.getSubject());
         return message;
     }
 }
