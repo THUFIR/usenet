@@ -1,17 +1,18 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.swing.ListModel;
 import net.bounceme.dur.usenet.controller.ArticleNewsgroup;
 import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
-import net.bounceme.dur.usenet.model.Usenet;
 
 public class Articles extends javax.swing.JPanel {
 
-    private final Logger LOG = Logger.getLogger(Articles.class.getName());
+    private static final Logger LOG = Logger.getLogger(Articles.class.getName());
 
     @SuppressWarnings("unchecked")
     public Articles() {
@@ -54,17 +55,26 @@ public class Articles extends javax.swing.JPanel {
 
         add(west, java.awt.BorderLayout.WEST);
 
+        content.setContentType("text/html");
         center.setViewportView(content);
 
         add(center, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void articlesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_articlesMouseReleased
-        event();
+        try {
+            event();
+        } catch (MessagingException | IOException ex) {
+            Logger.getLogger(Articles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_articlesMouseReleased
 
     private void articlesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_articlesKeyReleased
-        event();
+        try {
+            event();
+        } catch (MessagingException | IOException ex) {
+            Logger.getLogger(Articles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_articlesKeyReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList articles;
@@ -80,8 +90,10 @@ public class Articles extends javax.swing.JPanel {
         articles.setModel(alm);
     }
 
-    private void event() {
+    private void event() throws MessagingException, IOException {
         ArticleNewsgroup foo = (ArticleNewsgroup) articles.getSelectedValue();
+        Message message = foo.getMessage();
+        content.setText(message.getContent().toString());
         LOG.info(foo.toString());
     }
 }

@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.swing;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -8,7 +9,6 @@ import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
 
 public class GraphicalDriver {
@@ -30,9 +30,10 @@ public class GraphicalDriver {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        //frame.setMaximizedBounds(e.getMaximumWindowBounds());
-        //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        frame.setResizable(true);
+        GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        frame.setMaximizedBounds(e.getMaximumWindowBounds());
+        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setLayout(new BorderLayout());
 
         JTabbedPane tabs = new JTabbedPane();
