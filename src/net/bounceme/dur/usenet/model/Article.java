@@ -1,44 +1,50 @@
 package net.bounceme.dur.usenet.model;
 
 import java.io.Serializable;
+import java.util.Enumeration;
 import java.util.logging.Logger;
+import javax.mail.Header;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.persistence.*;
 
 @Entity
-@Table(name="articles")
+@Table(name = "articles")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    //private Usenet u = Usenet.INSTANCE;
     private static final Logger LOG = Logger.getLogger(Article.class.getName());
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-     private String messageId;
+    private String messageId;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Newsgroup newsgroup;
 
     public Article() {
     }
 
-    public Article(Message message, Newsgroup newsgroup) {
-        //messageNumber = message.getMessageNumber();
+    public Article(Message message, Newsgroup newsgroup) throws MessagingException {
         this.newsgroup = newsgroup;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        Header headerId = null;
+        Enumeration e = message.getAllHeaders();
+        while (e.hasMoreElements()) {
+            Header header = (Header) e.nextElement();
+            if ("Message-ID".equals(header.getName())) {
+                headerId = header;
+            }
+            LOG.fine(header.getName());
+        }
+        messageId = headerId.getValue();
+        LOG.info(messageId);
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -49,7 +55,7 @@ public class Article implements Serializable {
             return false;
         }
         Article other = (Article) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -57,16 +63,15 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "\nmessageNumber\t" + getMessageId();
+        return "\nmessageId\t" + getMessageId();
     }
 
-
-    public Newsgroup getNewsgroup() {
-        return newsgroup;
+    public Long getId() {
+        return id;
     }
 
-    public void setNewsgroup(Newsgroup newsgroup) {
-        this.newsgroup = newsgroup;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMessageId() {
@@ -75,5 +80,13 @@ public class Article implements Serializable {
 
     public void setMessageId(String messageId) {
         this.messageId = messageId;
+    }
+
+    public Newsgroup getNewsgroup() {
+        return newsgroup;
+    }
+
+    public void setNewsgroup(Newsgroup newsgroup) {
+        this.newsgroup = newsgroup;
     }
 }

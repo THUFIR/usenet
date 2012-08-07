@@ -73,7 +73,6 @@ public enum DatabaseUtils {
     }
     //SELECT MAX(MESSAGENUMBER) FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist";
 
-
     //SELECT * FROM articles LEFT OUTER JOIN newsgroups ON articles.NEWSGROUP_ID=newsgroups.ID  WHERE newsgroups.NEWSGROUP = "gwene.com.economist" AND articles.ID BETWEEN 450 AND 500;   
     public List<Article> getRangeOfArticles(Page page) {
         String fullNewsgroupName = page.getFolderFullName();
@@ -101,7 +100,7 @@ public enum DatabaseUtils {
                 unique = false;
             }
         }
-        if (unique) {
+        if (unique && !(article.getMessageId() == null)) {
             em.persist(article);
         }
         LOG.fine("\n\n\narticle\n" + article);
