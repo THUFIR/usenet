@@ -60,17 +60,18 @@ public enum Usenet {
     }
 
     public Message getMessage(Newsgroup newsgroup, Article article) throws MessagingException {
-        LOG.info("\n\ntrying.." + newsgroup + article);
+        LOG.fine("\n\ntrying.." + newsgroup + article);
         String id = article.getMessageId();
         Message message = null;
         folder = root.getFolder(newsgroup.getNewsgroup());
         folder.open(Folder.READ_ONLY);
-        LOG.fine("..found\n" + message.getSubject().toString());
         SearchTerm st = new MessageIDTerm(id);
         List<Message> messages = Arrays.asList(folder.search(st));
+        LOG.fine(messages.toString());
         if (!messages.isEmpty()) {
             message = messages.get(0);
         }
+        LOG.fine(message.getSubject());
         return message;
     }
 }

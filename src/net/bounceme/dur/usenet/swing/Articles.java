@@ -1,12 +1,17 @@
 package net.bounceme.dur.usenet.swing;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.swing.ListModel;
+import net.bounceme.dur.usenet.controller.ArticleNewsgroup;
 import net.bounceme.dur.usenet.controller.Page;
 import net.bounceme.dur.usenet.model.Newsgroup;
+import net.bounceme.dur.usenet.model.Usenet;
 
 public class Articles extends javax.swing.JPanel {
+
+    private final Logger LOG = Logger.getLogger(Articles.class.getName());
 
     @SuppressWarnings("unchecked")
     public Articles() {
@@ -76,6 +81,7 @@ public class Articles extends javax.swing.JPanel {
     }
 
     private void event() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        ArticleNewsgroup foo = (ArticleNewsgroup) articles.getSelectedValue();
+        LOG.info(foo.toString());
     }
 }

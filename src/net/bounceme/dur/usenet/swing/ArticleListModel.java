@@ -34,6 +34,6 @@ class ArticleListModel extends DefaultListModel {
             ArticleNewsgroup articleNewsgroup = new ArticleNewsgroup(newsgroup, article);
             this.addElement(articleNewsgroup);
         }
-        LOG.info(articles.toString());
+        LOG.fine(articles.toString());
     }
 }
