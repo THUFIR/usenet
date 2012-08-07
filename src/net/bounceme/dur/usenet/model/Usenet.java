@@ -60,7 +60,7 @@ public enum Usenet {
     }
 
     public Message getMessage(Newsgroup newsgroup, Article article) throws MessagingException {
-        LOG.fine("\n\ntrying.." + newsgroup + article);
+        LOG.info("\n\ntrying.." + newsgroup + article);
         String id = article.getMessageId();
         Message message = null;
         folder = root.getFolder(newsgroup.getNewsgroup());

@@ -8,10 +8,6 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.persistence.*;
 import net.bounceme.dur.usenet.controller.Page;
-import net.bounceme.dur.usenet.controller.Page;
-import net.bounceme.dur.usenet.model.Article;
-import net.bounceme.dur.usenet.model.Newsgroup;
-import net.bounceme.dur.usenet.model.Usenet;
 
 public enum DatabaseUtils {
 
@@ -83,6 +79,15 @@ public enum DatabaseUtils {
         query.setParameter("newsGroupParam", fullNewsgroupName);
         query.setParameter("minRange", minRange);
         query.setParameter("maxRange", maxRange);
+        List<Article> articles = query.getResultList();
+        return articles;
+    }
+
+    public List<Article> getAllArticles(Newsgroup newsgroup) {
+        String fullNewsgroupName = newsgroup.getNewsgroup();
+        String queryString = "select article from Article article left join article.newsgroup newsgroup where newsgroup.newsgroup = :newsGroupParam";
+        TypedQuery<Article> query = em.createQuery(queryString, Article.class);
+        query.setParameter("newsGroupParam", fullNewsgroupName);
         List<Article> articles = query.getResultList();
         return articles;
     }
