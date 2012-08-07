@@ -85,15 +85,17 @@ public class Articles extends javax.swing.JPanel {
 
     @SuppressWarnings("unchecked")
     public void load(Newsgroup newsgroup) throws IOException, MessagingException {
-        Page page = new Page(newsgroup);
+        LOG.info("loading\t\t" + newsgroup);
         ListModel alm = new ArticleListModel(newsgroup);
         articles.setModel(alm);
+        LOG.info("loaded\t\t" + newsgroup);
     }
+    
 
     private void event() throws MessagingException, IOException {
         ArticleNewsgroup foo = (ArticleNewsgroup) articles.getSelectedValue();
         Message message = foo.getMessage();
         content.setText(message.getContent().toString());
-        LOG.info(foo.toString());
+        LOG.fine(foo.toString());
     }
 }

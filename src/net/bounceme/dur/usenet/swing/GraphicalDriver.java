@@ -50,7 +50,7 @@ public class GraphicalDriver {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 try {
                     tabsEvent(evt);
-                } catch (        IOException | MessagingException ex) {
+                } catch (IOException | MessagingException ex) {
                     Logger.getLogger(GraphicalDriver.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -63,6 +63,7 @@ public class GraphicalDriver {
 
     private void tabsEvent(PropertyChangeEvent evt) throws IOException, MessagingException {
         String event = evt.getPropertyName();
+        LOG.info("event\t\t" + event);
         switch (event.toLowerCase()) {
             case "newsgroup":
                 Newsgroup newsgroup = (Newsgroup) evt.getNewValue();
