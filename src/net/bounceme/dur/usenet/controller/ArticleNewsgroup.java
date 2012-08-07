@@ -1,6 +1,7 @@
 package net.bounceme.dur.usenet.controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,58 +13,57 @@ public class ArticleNewsgroup {
 
     private static final Logger LOG = Logger.getLogger(ArticleNewsgroup.class.getName());
     private Usenet u = Usenet.INSTANCE;
-    private String newsgroup = "dummy newsgroup";
-    private String subject = "dummy subject";
-    private String content = "dummy content";
-    private int messageNumber = 1;
+    private Message message = null;
+    private Article article = null;
+    private Newsgroup newsgroup = null;
 
     private ArticleNewsgroup() {
     }
 
-    public ArticleNewsgroup(Newsgroup newsgroupEntity,Article articleEntity) throws IOException, MessagingException {
-        LOG.fine("trying..\n\n" + newsgroupEntity + articleEntity);
-        Message message = u.getMessage(newsgroupEntity, articleEntity);
-        newsgroup = message.getFolder().getFullName();
-        subject = message.getSubject();
-        content = message.getContent().toString();
-        messageNumber = message.getMessageNumber();
-        LOG.fine("\narticleWrapper\t\t" + messageNumber + newsgroupEntity + articleEntity);
-    }
-
-    public String getNewsgroup() {
-        return newsgroup;
-    }
-
-    public void setNewsgroup(String newsgroup) {
+    public ArticleNewsgroup(Newsgroup newsgroup,Article article) throws IOException, MessagingException {
+        LOG.fine("trying..\n\n" + newsgroup + article);
+        message = u.getMessage(newsgroup, article);
+        this.article = article;
         this.newsgroup = newsgroup;
-    }
+}
 
-    public String getSubject() {
-        return subject;
-    }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+ 
 
-    public String getContent() {
-        return content;
-    }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public int getMessageNumber() {
-        return messageNumber;
-    }
-
-    public void setMessageNumber(int messageNumber) {
-        this.messageNumber = messageNumber;
-    }
 
     @Override
     public String toString() {
-        return subject;
+        String returnVal = "frack";
+        try {
+            returnVal = message.getSubject().toString();
+        } catch (MessagingException ex) {
+            Logger.getLogger(ArticleNewsgroup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnVal;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Newsgroup getNewsgroup() {
+        return newsgroup;
+    }
+
+    public void setNewsgroup(Newsgroup newsgroup) {
+        this.newsgroup = newsgroup;
     }
 }
