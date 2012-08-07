@@ -13,7 +13,7 @@ public class Newsgroups extends javax.swing.JPanel {
         initComponents();
         ListModel subscribed = new NewsgroupListModel();
         newsgroupsJList.setModel(subscribed);
-        LOG.info(newsgroupsJList.getModel().toString());
+        LOG.fine(newsgroupsJList.getModel().toString());
     }
 
     /**

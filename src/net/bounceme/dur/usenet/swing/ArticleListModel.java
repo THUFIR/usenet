@@ -25,13 +25,16 @@ class ArticleListModel extends DefaultListModel {
         load(page);
     }
 
-    @SuppressWarnings("unchecked")
-    private void load(Page page) throws IOException, MessagingException {
-        List<Article> articles = database.getRangeOfArticles(page);
-        for (Article article : articles) {
-            Newsgroup newsgroup = new Newsgroup(page);
-            ArticleNewsgroup articleNewsgroup = new ArticleNewsgroup(newsgroup, article);
-            this.addElement(articleNewsgroup);
-        }
+    private void load(Page page) {
+        foo = database.getRangeOfArticles(page);
     }
+    /*
+     * @SuppressWarnings("unchecked") private void load(Page page) throws
+     * IOException, MessagingException { List<Article> articles =
+     * database.getRangeOfArticles(page); for (Article article : articles) {
+     * Newsgroup newsgroup = new Newsgroup(page); ArticleNewsgroup
+     * articleNewsgroup = new ArticleNewsgroup(newsgroup, article);
+     * this.addElement(articleNewsgroup); }
+    }
+     */
 }

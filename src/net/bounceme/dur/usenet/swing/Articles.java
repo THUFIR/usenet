@@ -71,7 +71,7 @@ public class Articles extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     public void load(Newsgroup newsgroup) throws IOException, MessagingException {
         Page page = new Page(newsgroup);
-        ListModel alm = new ArticleListModel(page);
+        ListModel alm = new ArticleListModel(newsgroup);
         articles.setModel(alm);
     }
 

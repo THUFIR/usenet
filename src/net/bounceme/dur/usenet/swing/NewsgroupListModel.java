@@ -18,7 +18,7 @@ class NewsgroupListModel extends DefaultListModel {
         for (Newsgroup newsgroup : newsgroups) {
             addElement(newsgroup);
         }
-        LOG.info(newsgroups.toString());
+        LOG.fine(newsgroups.toString());
     }
 
     @Override
