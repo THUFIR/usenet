@@ -6,6 +6,7 @@ package net.bounceme.dur.usenet.controller;
 //aaargh, git.  you're passwords are killing me
 //lesse what happens now
 
+//ok, now using ssh for passwords
 
 import net.bounceme.dur.usenet.model.DatabaseUtils;
 import java.util.logging.Logger;
