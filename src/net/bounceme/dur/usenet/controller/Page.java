@@ -4,6 +4,8 @@ package net.bounceme.dur.usenet.controller;
 //make Observable?
 //just make more complex and usable
 //aaargh, git.  you're passwords are killing me
+//lesse what happens now
+
 
 import net.bounceme.dur.usenet.model.DatabaseUtils;
 import java.util.logging.Logger;
