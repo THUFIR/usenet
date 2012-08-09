@@ -1,5 +1,8 @@
 package net.bounceme.dur.usenet.controller;
 
+//add collection of Article or something here
+//make Observable?
+
 import net.bounceme.dur.usenet.model.DatabaseUtils;
 import java.util.logging.Logger;
 import net.bounceme.dur.usenet.model.Newsgroup;
