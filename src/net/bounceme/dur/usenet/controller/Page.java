@@ -2,6 +2,7 @@ package net.bounceme.dur.usenet.controller;
 
 //add collection of Article or something here
 //make Observable?
+//just make more complex and usable
 
 import net.bounceme.dur.usenet.model.DatabaseUtils;
 import java.util.logging.Logger;
