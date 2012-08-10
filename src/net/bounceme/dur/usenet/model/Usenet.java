@@ -61,6 +61,7 @@ public enum Usenet {
         LOG.fine("\n\ntrying.." + newsgroup + article);
         String id = article.getMessageId();
         Message message = null;
+        message.getm
         folder = root.getFolder(newsgroup.getNewsgroup());
         folder.open(Folder.READ_ONLY);
         SearchTerm st = new MessageIDTerm(id);
@@ -73,3 +74,8 @@ public enum Usenet {
         return message;
     }
 }
+
+
+
+
+//redo model
