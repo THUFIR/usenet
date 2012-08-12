@@ -21,6 +21,9 @@ public class MessageBean {
 
     public MessageBean() {
         
+        
+        //silly
+        
     }
 
     public MessageBean(Message message) {
@@ -30,6 +33,7 @@ public class MessageBean {
             content = message.getContent().toString();
             number = message.getMessageNumber();
             sent = message.getSentDate();
+            foo = message.g
         } catch (IOException | MessagingException ex) {
             Logger.getLogger(MessageBean.class.getName()).log(Level.SEVERE, null, ex);
         }
